@@ -10,11 +10,11 @@
       };
   };
 
-  outputs = { self, nixpkgs,  ... }@inputs: {
-      system = "x86_64-linux";
-      # TODO figure this nonsense out
-      # pkgs = nixpkgs.legacyPackages.${system};
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+  outputs = { self, nixpkgs,  ... }@inputs: 
+      let 
+        system = "x86_64-linux";
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
