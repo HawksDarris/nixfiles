@@ -1,4 +1,3 @@
-{ config, lib, ... }:
 {
   programs = {
       nushell = { 
@@ -758,13 +757,13 @@ def ram [] {ps | where mem != '0 B' | sort-by mem | reverse | first 10 }
 
 def h [message] { 
 	git add /home/sour/.config/; 
-	git commit -m $message; 
+	git commit /home/sour/.config/ -m ["$message"]; 
 	home-manager switch --flake /home/sour/.config/home-manager/ --impure 
 	}
 alias rec = ffmpeg -f pulse -i 53 /tmp/output.wav
 
 # TODO move this all to nix syntax
-# TODO make nix variables for some of it? 
+# TODO make universal nix variables for some of it? 
          let carapace_completer = {|spans|
            carapace $spans.0 nushell $spans | from json
          }
@@ -880,4 +879,3 @@ starship = { enable = true;
 };
 };
 }
-
