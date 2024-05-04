@@ -2,6 +2,84 @@
   programs = {
       nushell = { 
         enable = true;
+	
+
+	##################################################
+	#################### Aliases #####################
+	##################################################
+
+         shellAliases = {
+	   cat = "bat";
+	   cpt = "rsync -rtDvzP --update ~/share/Teaching/* /mnt/";
+	   e = "emacs";
+	   g = "git";
+	   ka = "killall";
+	   sxiv = "nsxiv";
+	   trem = "transmission-remote";
+	   sdn = "shutdown -h now";
+	   z = "zathura";
+	   copy = "xsel --clipboard";
+	   copyp = "xsel --primary";
+	   autofan = "doas ectool --interface=lpc autofanctrl";
+	   configit = "/usr/bin/git --git-dir=cd ~/.dotfiles --work-tree=cd ~";
+	   devrepo = "/usr/bin/git --git-dir=cd ~/Documents/Learning --work-tree=cd ~/Documents/Learning";
+	   lf = "^lf";
+	   magit = "nvim -c MagitOnly";
+	   mount = "sudo mount -o uid=1000";
+	   weath = "less -S ~/.cache/weatherreport";
+	   vim = "nvim";
+	   v = "nvim";
+	   vpn = "Outline-Client.AppImage --disable-gpu";
+
+	##################################################
+	#################### Directories #################
+	##################################################
+	   b = "cd ~/Documents/Business";
+	   cac = "cd ~/.cache";
+	   cf = "cd ~/.config";
+	   cfs = "cd ~/.config/nvim/mysnips";
+	   cl = "cd ~/Documents/Business/Clients/";
+	   d = "cd ~/Documents";
+	   D = "cd ~/Downloads";
+	   ltk = "cd ~/Documents/Business/Law-to-Know";
+	   m = "cd ~/Music";
+	   pa = "cd ~/Pictures/Arden";
+	   pp = "cd ~/Pictures";
+	   rr = "cd ~/.local/src";
+	   six = "cd ~/share/Teaching/reveal.js-master/6G";
+	   span = "cd ~/share/Teaching/reveal.js-master/Spanish/";
+	   sev = "cd ~/share/Teaching/reveal.js-master/7G";
+	   sc = "cd ~/.local/bin";
+	   src = "cd ~/.local/src";
+	   te = "cd ~/Documents/Business/Templates";
+	   kehua = "cd ~/share/Teaching/reveal.js-master/";
+	   games = "cd ~/share/Teaching/reveal.js-master/Games";
+	   ti = "cd ~/texmf/tex/latex/local";
+	   vv = "cd ~/Videos";
+
+	##################################################
+	#################### Config Files ################
+	##################################################
+	   cfn = "nvim ~/nixfiles/modules/home-manager/nushell.nix";
+	   cfh = "nvim ~/nixfiles/hosts/default/home.nix";
+	   cfk = "nvim ~/nixfiles/modules/home-manager/kitty.nix";
+	   cfl = "nvim ~/nixfiles/modules/home-manager/lf.nix";
+	   cfm = "nvim ~/.config/mutt/muttrc		# mutt (email client) config";
+	   cfM = "nvim ~/.config/mpv/mpv.conf		# mutt (email client) config";
+	   cfq = "nvim ~/.config/qutebrowser/config.py	# sxiv (image viewer) key/script handler";
+	   cfu = "nvim ~/.config/newsboat/urls		# RSS urls for newsboat";
+	   cfv = "cd ~/.config/nvim/";
+
+	 };
+
+	 environmentVariables = {
+		 PATH = "($env.PATH | 
+				 split row (char esep) |
+				 prepend /home/myuser/.apps |
+				 append /usr/bin/env
+			     )";
+	 };
+
         extraConfig = ''
 	  let dark_theme = {
 	      separator: white
@@ -787,83 +865,6 @@ alias rec = ffmpeg -f pulse -i 53 /tmp/output.wav
          
          '';
 
-	 environmentVariables = {
-		 PATH = "($env.PATH | 
-				 split row (char esep) |
-				 prepend /home/myuser/.apps |
-				 append /usr/bin/env
-			     )";
-	 };
-
-	##################################################
-	#################### Aliases #####################
-	##################################################
-
-         shellAliases = {
-	   cat = "bat";
-	   cpt = "rsync -rtDvzP --update ~/share/Teaching/* /mnt/";
-	   e = "emacs";
-	   g = "git";
-	   ka = "killall";
-	   sxiv = "nsxiv";
-	   trem = "transmission-remote";
-	   sdn = "shutdown -h now";
-	   z = "zathura";
-	   copy = "xsel --clipboard";
-	   copyp = "xsel --primary";
-	   autofan = "doas ectool --interface=lpc autofanctrl";
-	   configit = "/usr/bin/git --git-dir=cd ~/.dotfiles --work-tree=cd ~";
-	   devrepo = "/usr/bin/git --git-dir=cd ~/Documents/Learning --work-tree=cd ~/Documents/Learning";
-	   lf = "^lf";
-	   magit = "nvim -c MagitOnly";
-	   mount = "sudo mount -o uid=1000";
-	   weath = "less -S ~/.cache/weatherreport";
-	   vim = "nvim";
-	   v = "nvim";
-	   vpn = "Outline-Client.AppImage --disable-gpu";
-
-	##################################################
-	#################### Directories #################
-	##################################################
-	   b = "cd ~/Documents/Business";
-	   cac = "cd ~/.cache";
-	   cf = "cd ~/.config";
-	   cfs = "cd ~/.config/nvim/mysnips";
-	   cl = "cd ~/Documents/Business/Clients/";
-	   d = "cd ~/Documents";
-	   D = "cd ~/Downloads";
-	   ltk = "cd ~/Documents/Business/Law-to-Know";
-	   m = "cd ~/Music";
-	   pa = "cd ~/Pictures/Arden";
-	   pp = "cd ~/Pictures";
-	   rr = "cd ~/.local/src";
-	   six = "cd ~/share/Teaching/reveal.js-master/6G";
-	   span = "cd ~/share/Teaching/reveal.js-master/Spanish/";
-	   sev = "cd ~/share/Teaching/reveal.js-master/7G";
-	   sc = "cd ~/.local/bin";
-	   src = "cd ~/.local/src";
-	   te = "cd ~/Documents/Business/Templates";
-	   kehua = "cd ~/share/Teaching/reveal.js-master/";
-	   games = "cd ~/share/Teaching/reveal.js-master/Games";
-	   ti = "cd ~/texmf/tex/latex/local";
-	   vv = "cd ~/Videos";
-
-	##################################################
-	#################### Config Files ################
-	##################################################
-
-	   cfn = "nvim ~/nixfiles/modules/home-manager/nushell.nix";
-	   cfh = "nvim ~/nixfiles/hosts/default/home.nix";
-	   cfk = "nvim ~/nixfiles/modules/home-manager/kitty.nix";
-	   cfl = "nvim ~/.config/lf/lfrc		# lf (file browser) config";
-	   cfL = "nvim ~/.config/lf/scope		# lf's scope/preview file";
-	   cfm = "nvim ~/.config/mutt/muttrc		# mutt (email client) config";
-	   cfM = "nvim ~/.config/mpv/mpv.conf		# mutt (email client) config";
-	   cfq = "nvim ~/.config/qutebrowser/config.py	# sxiv (image viewer) key/script handler";
-	   cfu = "nvim ~/.config/newsboat/urls		# RSS urls for newsboat";
-	   cfv = "cd ~/.config/nvim/";
-
-	 };
 };  
 carapace.enable = true;
 carapace.enableNushellIntegration = true;
