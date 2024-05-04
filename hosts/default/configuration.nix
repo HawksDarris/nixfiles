@@ -7,7 +7,7 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      /home/sour/nixfiles/modules/nixos/locale.nix
+      ./../../modules/nixos/locale.nix
       #<home-manager/nixos>
       #../../modules/main-user.nix
     ];
