@@ -834,9 +834,11 @@ def cpu [] {ps | where cpu > 0 | sort-by cpu | reverse | first 10 }
 def ram [] {ps | where mem != '0 B' | sort-by mem | reverse | first 10 }
 
 def h [message] { 
+	cd ~/nixfiles;
 	git add ~/nixfiles; 
-	git commit ~/nixfiles -m ["$message"]; 
-	home-manager switch --flake ~/home/nixfiles#sour 
+	git commit ~/nixfiles -m "$message"; 
+	home-manager switch --flake ~/home/nixfiles#sour;
+	cd -
 	}
 
 def N [message] { 

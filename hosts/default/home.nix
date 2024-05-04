@@ -43,6 +43,7 @@
       ripgrep
       bun 
       dart-sass
+      rsync
       fzf
 
 	# sound
