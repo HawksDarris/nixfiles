@@ -10,11 +10,11 @@
     };
   };
 
-  outputs = { self, nixpkgs,  ... }@inputs: 
-      let 
-        system = "x86_64-linux";
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
+    let 
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
       nixosConfigurations.default = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs;};
         modules = [
@@ -23,6 +23,16 @@
 	  #./hosts/default/home.nix
           #inputs.home-manager.nixosModules.default
         ];
+      };
+      homeConfigurations."sour" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./home.nix ];
+
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
       };
   };
 }
