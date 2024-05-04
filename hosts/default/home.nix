@@ -6,13 +6,13 @@
  
     imports =
       [
-        ../modules/home-manager/browsers.nix
-        ../modules/home-manager/fonts.nix
-	../modules/home-manager/nushell.nix
-	../modules/home-manager/hyprland.nix
-	../modules/home-manager/waybar.nix
-	../modules/home-manager/kitty.nix
-	../modules/home-manager/git.nix
+        ../../modules/home-manager/browsers.nix
+        ../../modules/home-manager/fonts.nix
+	../../modules/home-manager/nushell.nix
+	../../modules/home-manager/hyprland.nix
+	../../modules/home-manager/waybar.nix
+	../../modules/home-manager/kitty.nix
+	../../modules/home-manager/git.nix
       ];
 
   home.username = "sour";
