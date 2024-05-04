@@ -834,10 +834,18 @@ def cpu [] {ps | where cpu > 0 | sort-by cpu | reverse | first 10 }
 def ram [] {ps | where mem != '0 B' | sort-by mem | reverse | first 10 }
 
 def h [message] { 
-	git add /home/sour/.config/; 
-	git commit /home/sour/.config/ -m ["$message"]; 
-	home-manager switch --flake /home/sour/.config/home-manager/ --impure 
+	git add ~/nixfiles; 
+	git commit ~/nixfiles -m ["$message"]; 
+	home-manager switch --flake ~/home/nixfiles#sour 
 	}
+
+def N [message] { 
+	git add ~/nixfiles; 
+	git commit ~/nixfiles -m ["$message"]; 
+	sudo nixos-rebuild switch --flake ~/home/nixfiles#default 
+	}
+
+
 alias rec = ffmpeg -f pulse -i 53 /tmp/output.wav
 
 # TODO move this all to nix syntax
