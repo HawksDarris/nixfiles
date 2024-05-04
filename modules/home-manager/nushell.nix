@@ -814,7 +814,7 @@ alias rec = ffmpeg -f pulse -i 53 /tmp/output.wav
 	   autofan = "doas ectool --interface=lpc autofanctrl";
 	   configit = "/usr/bin/git --git-dir=cd ~/.dotfiles --work-tree=cd ~";
 	   devrepo = "/usr/bin/git --git-dir=cd ~/Documents/Learning --work-tree=cd ~/Documents/Learning";
-	   lf = "lfub";
+	   lf = "^lf";
 	   magit = "nvim -c MagitOnly";
 	   mount = "sudo mount -o uid=1000";
 	   weath = "less -S ~/.cache/weatherreport";
@@ -852,9 +852,9 @@ alias rec = ffmpeg -f pulse -i 53 /tmp/output.wav
 	#################### Config Files ################
 	##################################################
 
-	   cfn = "sudo nvim /etc/nixos/modules/home-manager/nushell.nix";
-	   cfh = "nvim ~/.config/hypr/keybindings.conf";
-	   cfk = "sudo nvim /etc/nixos/modules/home-manager/kitty.nix";
+	   cfn = "nvim ~/nixfiles/modules/home-manager/nushell.nix";
+	   cfh = "nvim ~/nixfiles/hosts/default/home.nix";
+	   cfk = "nvim ~/nixfiles/modules/home-manager/kitty.nix";
 	   cfl = "nvim ~/.config/lf/lfrc		# lf (file browser) config";
 	   cfL = "nvim ~/.config/lf/scope		# lf's scope/preview file";
 	   cfm = "nvim ~/.config/mutt/muttrc		# mutt (email client) config";
