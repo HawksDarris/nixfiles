@@ -6,21 +6,18 @@
  
     imports =
       [
-	../../modules/home-manager/fonts.nix
-	../../modules/home-manager/browsers.nix
-        ../../modules/home-manager/nushell.nix
-        ../../modules/home-manager/hyprland.nix
-        ../../modules/home-manager/waybar.nix
-        ../../modules/home-manager/kitty.nix
+        ../modules/home-manager/browsers.nix
+        ../modules/home-manager/fonts.nix
+	../modules/home-manager/nushell.nix
+	../modules/home-manager/hyprland.nix
+	../modules/home-manager/waybar.nix
+	../modules/home-manager/kitty.nix
+	../modules/home-manager/git.nix
       ];
+
   home.username = "sour";
   home.homeDirectory = "/home/sour";
 
-  programs.git = {
-    enable = true;
-    userName = "HawksDarris";
-    userEmail = "darris.hawks@gmail.com";
-  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -39,6 +36,7 @@
     # pkgs.hello
       neovim
       gh
+      tldr
       fd
       nsxiv
       ripgrep
@@ -59,9 +57,12 @@
 	dbus
 	pciutils
 	libnotify
+	lf
+	ueberzug
 	jq
 	glib
 	bat
+	ncdu
 	dunst
 	mako # Maybe replace dunst
 	kitty
@@ -117,4 +118,3 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
-
