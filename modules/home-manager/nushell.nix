@@ -837,7 +837,7 @@ def h [message] {
 	cd ~/nixfiles;
 	git add ~/nixfiles; 
 	git commit ~/nixfiles -m "$message"; 
-	home-manager switch --flake ~/home/nixfiles#sour;
+	home-manager switch --flake ~/nixfiles#sour;
 	cd -
 	}
 
