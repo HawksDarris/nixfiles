@@ -26,7 +26,7 @@
     colorschemes.catppuccin = {
       enable = true;
       settings = {
-        flavour = "mocha";
+        flavour = "latte";
         integrations = {
           cmp = true;
           gitsigns = true;
