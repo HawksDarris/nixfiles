@@ -75,6 +75,7 @@
 	brightnessctl
 	hyprpicker
 	rofi-wayland
+	rofimoji
 	slurp
 	swappy
 	swaylock

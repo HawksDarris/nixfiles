@@ -26,7 +26,7 @@ programs.firefox = {
      DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
      SearchBar = "unified"; # alternative: "separate"
      ExtensionSettings = {
-       #"*".installation_mode = "blocked"; # blocks all addons except the ones specified below
+       "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
        "uBlock0@raymondhill.net" = {
          install_url = "./assets/ublock_origin-1.57.2.xpi";
          installation_mode = "force_installed";
@@ -39,6 +39,8 @@ programs.firefox = {
      };
 
      Preferences = { 
+       "browser.urlbar.suggest.engines" = false;
+       "browser.search.region" = "US";
        "browser.contentblocking.category" = { Value = "strict"; Status = "locked"; };
        "extensions.pocket.enabled" = false;
        "extensions.screenshots.disabled" = true;
@@ -61,36 +63,55 @@ programs.firefox = {
   };
 
   profiles.sour = {
+    search.default = "Bing";
     bookmarks = [
       {
-        name = "kehua";
-        tags = [ "TEFL" "repo" "github" "git" ];
-        keyword = "kehua";
-        url = "https://github.com/HawksDarris/Kehua";
+        name= "Nix Sites";
+	toolbar = true;
+	bookmarks = [
+	  {
+            name = "NixOS Wiki";
+            tags = [ "nix" "options" ];
+            keyword = "nixwiki";
+            url = "https://nixos.wiki/wiki/";
+	  }
+          {
+            name = "Home-Manager Options";
+            tags = [ "nix" "options" ];
+            keyword = "ho";
+            url = "https://home-manager-options.extranix.com/";
+          }
+	];
       }
       {
-        name = "toPhonetics";
-        tags = [ "TEFL" ];
-        keyword = "phonetics";
-        url = "https://tophonetics.com/";
-      }
-      {
-        name = "Grade 7 Lesson Plans";
-        tags = [ "TEFL" ];
-        keyword = "G7";
-        url = "file:///home/sour/share/Teaching/TEFL/Lesson%20Plans/Grade%207%20Lesson%20Plans.html";
-      }
-      {
-        name = "Grade 6 Lesson Plans";
-        tags = [ "TEFL" ];
-        keyword = "G6";
-        url = "file:///home/sour/share/Teaching/TEFL/Lesson%20Plans/Grade%206%20Lesson%20Plans.html";
-      }
-      {
-        name = "Home-Manager Options";
-        tags = [ "nix" "options" ];
-        keyword = "ho";
-        url = "https://home-manager-options.extranix.com/";
+        name= "Teaching";
+	toolbar = true;
+	bookmarks = [
+          {
+            name = "kehua";
+            tags = [ "TEFL" "repo" "github" "git" ];
+            keyword = "kehua";
+            url = "https://github.com/HawksDarris/Kehua";
+          }
+          {
+            name = "toPhonetics";
+            tags = [ "TEFL" ];
+            keyword = "phonetics";
+            url = "https://tophonetics.com/";
+          }
+          {
+            name = "Grade 7 Lesson Plans";
+            tags = [ "TEFL" ];
+            keyword = "G7";
+            url = "file:///home/sour/share/Teaching/TEFL/Lesson%20Plans/Grade%207%20Lesson%20Plans.html";
+          }
+          {
+            name = "Grade 6 Lesson Plans";
+            tags = [ "TEFL" ];
+            keyword = "G6";
+            url = "file:///home/sour/share/Teaching/TEFL/Lesson%20Plans/Grade%206%20Lesson%20Plans.html";
+          }
+	];
       }
     ];
 
@@ -105,7 +126,6 @@ programs.firefox = {
     };
     
     extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-       darkreader
     ];
   };
 };
