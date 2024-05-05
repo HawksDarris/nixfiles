@@ -25,7 +25,6 @@
     defaultEditor = true;
     colorschemes.rose-pine.enable = true;
     clipboard.register = "unnamedplus";
-    options.clipboard = [ "unnamedplus" ];
     # clipboard.providers.wl-copy.enable
 
 
@@ -52,6 +51,7 @@
     };
 
     opts = {
+      clipboard = [ "unnamedplus" ];
       number = true;         # Show line numbers
       relativenumber = true; # Show relative line numbers
 
