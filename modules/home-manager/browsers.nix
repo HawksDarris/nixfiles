@@ -104,11 +104,9 @@ programs.firefox = {
       # "signon.rememberSignons" = false;
     };
     
-    #extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-      # Error 451 = legal ban on download.
-      # ublock-origin
-      # darkreader
-    #];
+    extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+       darkreader
+    ];
   };
 };
   programs.librewolf = {
