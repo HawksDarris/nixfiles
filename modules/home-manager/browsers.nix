@@ -106,7 +106,7 @@ programs.firefox = {
     
     #extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
       # Error 451 = legal ban on download.
-      # uborigin
+      # ublock-origin
       # darkreader
     #];
   };
