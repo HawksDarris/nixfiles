@@ -152,4 +152,5 @@
     autoUpgrade.enable  = true;
     stateVersion = "23.11"; # Did you read the comment?
   };
+  home-manager.backupFileExtension = "backup";
 }
