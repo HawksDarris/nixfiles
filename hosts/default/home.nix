@@ -24,7 +24,7 @@
     enable = true;
     defaultEditor = true;
     colorschemes.rose-pine.enable = true;
-    clipboard.register = "unnamedplus";
+    # clipboard.register = "unnamedplus";
     # clipboard.providers.wl-copy.enable
 
 
