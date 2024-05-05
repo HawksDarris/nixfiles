@@ -23,7 +23,7 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
-    colorschemes.catpuccin = {
+    colorschemes.catppuccin = {
       enable = true;
       settings = {
         flavour = "mocha";
