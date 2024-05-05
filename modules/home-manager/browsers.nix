@@ -15,24 +15,23 @@ programs.firefox = {
          Cryptomining = true;
          Fingerprinting = true;
        };
-       DisablePocket = true;
-       DisableFirefoxAccounts = true;
-       DisableAccounts = true;
-       DisableFirefoxScreenshots = true;
-       OverrideFirstRunPage = "";
-       OverridePostUpdatePage = "";
-       DontCheckDefaultBrowser = true;
-       DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
-       DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
-       SearchBar = "unified"; # alternative: "separate"
-  };
-
-  ExtensionSettings = {
-    "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
-    "uBlock0@raymondhill.net" = {
-      install_url = "./assets/ublock_origin-1.57.2.xpi";
-      installation_mode = "force_installed";
-    };
+     DisablePocket = true;
+     DisableFirefoxAccounts = true;
+     DisableAccounts = true;
+     DisableFirefoxScreenshots = true;
+     OverrideFirstRunPage = "";
+     OverridePostUpdatePage = "";
+     DontCheckDefaultBrowser = true;
+     DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
+     DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
+     SearchBar = "unified"; # alternative: "separate"
+     ExtensionSettings = {
+       "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
+       "uBlock0@raymondhill.net" = {
+         install_url = "./assets/ublock_origin-1.57.2.xpi";
+         installation_mode = "force_installed";
+       };
+     };
   };
 
   profiles.sour = {
