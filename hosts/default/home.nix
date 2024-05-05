@@ -23,12 +23,32 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
-    colorschemes.gruvbox.enable = true;
+    colorschemes.rose-pine.enable = true;
+    clipboard.register = "unnamedplus";
+    # clipboard.providers.wl-copy.enable
 
     plugins = {
-      # lightline.enable = true;
-      lualine.enable = true;
+      lightline.enable = true;
+      surround.enable = true;
+      treesitter.enable = true;
+    };
+
+    plugins.lsp = {
+      enable = true;
+      servers = {
+	tsserver.enable = true;
+	lua-ls = {
+          enable = true;
+          settings.telemetry.enable = false;
+        };
+        rust-analyzer = {
+          enable = true;
+	  installRustc = true;
+          installCargo = true;
+        };
       };
+    };
+
     opts = {
       number = true;         # Show line numbers
       relativenumber = true; # Show relative line numbers
