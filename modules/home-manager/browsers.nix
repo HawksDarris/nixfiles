@@ -13,7 +13,7 @@ programs.firefox = {
 	tags = [ "TEFL" "repo" "github" "git" ];
 	keyword = "kehua";
 	url = "https://github.com/HawksDarris/Kehua"
-      }
+      };
       {
         name = "toPhonetics";
 	tags = [ "TEFL" ];
