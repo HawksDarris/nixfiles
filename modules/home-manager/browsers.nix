@@ -6,7 +6,7 @@
 ];
 programs.firefox = {
   enable = true;
-  profiles.sour = [
+  profiles.sour = {
     bookmarks = [
       {
         name = "kehua";
@@ -51,6 +51,6 @@ programs.firefox = {
       ublock-origin
       darkreader
     ];
-  ];
+  };
 };
 }
