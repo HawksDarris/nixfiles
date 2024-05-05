@@ -68,7 +68,7 @@
           cfM = "nvim ~/.config/mpv/mpv.conf		# mutt (email client) config";
           cfq = "nvim ~/.config/qutebrowser/config.py	# sxiv (image viewer) key/script handler";
           cfu = "nvim ~/.config/newsboat/urls		# RSS urls for newsboat";
-          cfv = "cd ~/.config/nvim/";
+          cfv = "nvim ~/nixfiles/modules/home-manager/nixvim/nixvim.nix";
         };
 
       environmentVariables = {
