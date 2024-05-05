@@ -881,9 +881,9 @@ carapace.enableNushellIntegration = true;
 
 starship = { enable = true;
 	settings = {
-		format = lib.concatStrings [
-		"$battery"
-		];
+		# format = lib.concatStrings [
+		# "$battery"
+		# ];
 		add_newline = true;
 		character = { 
 			success_symbol = "[➜](bold green)";
