@@ -55,7 +55,7 @@
     extraPlugins = with pkgs.vimPlugins; [
     {
       plugin = vimwiki;
-      config = "lua require(\"Comment\").setup()";
+      config = "";
     }
     ];
 
