@@ -25,7 +25,9 @@
     defaultEditor = true;
     colorschemes.rose-pine.enable = true;
     clipboard.register = "unnamedplus";
+    options.clipboard = [ "unnamedplus" ];
     # clipboard.providers.wl-copy.enable
+
 
     plugins = {
       lightline.enable = true;
