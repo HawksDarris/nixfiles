@@ -40,23 +40,23 @@ programs.firefox = {
 
      Preferences = { 
        "browser.contentblocking.category" = { Value = "strict"; Status = "locked"; };
-       "extensions.pocket.enabled" = lock-false;
+       "extensions.pocket.enabled" = false;
        "extensions.screenshots.disabled" = lock-true;
-       "browser.topsites.contile.enabled" = lock-false;
-       "browser.formfill.enable" = lock-false;
-       "browser.search.suggest.enabled" = lock-false;
-       "browser.search.suggest.enabled.private" = lock-false;
-       "browser.urlbar.suggest.searches" = lock-false;
-       "browser.urlbar.showSearchSuggestionsFirst" = lock-false;
-       "browser.newtabpage.activity-stream.feeds.section.topstories" = lock-false;
-       "browser.newtabpage.activity-stream.feeds.snippets" = lock-false;
-       "browser.newtabpage.activity-stream.section.highlights.includePocket" = lock-false;
-       "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = lock-false;
-       "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = lock-false;
-       "browser.newtabpage.activity-stream.section.highlights.includeVisited" = lock-false;
-       "browser.newtabpage.activity-stream.showSponsored" = lock-false;
-       "browser.newtabpage.activity-stream.system.showSponsored" = lock-false;
-       "browser.newtabpage.activity-stream.showSponsoredTopSites" = lock-false;
+       "browser.topsites.contile.enabled" = false;
+       "browser.formfill.enable" = false;
+       "browser.search.suggest.enabled" = false;
+       "browser.search.suggest.enabled.private" = false;
+       "browser.urlbar.suggest.searches" = false;
+       "browser.urlbar.showSearchSuggestionsFirst" = false;
+       "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+       "browser.newtabpage.activity-stream.feeds.snippets" = false;
+       "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+       "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = false;
+       "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = false;
+       "browser.newtabpage.activity-stream.section.highlights.includeVisited" = false;
+       "browser.newtabpage.activity-stream.showSponsored" = false;
+       "browser.newtabpage.activity-stream.system.showSponsored" = false;
+       "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
      };
   };
 
