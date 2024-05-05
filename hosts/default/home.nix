@@ -28,11 +28,21 @@
     globals.mapleader = " ";
 
     plugins = {
-      lightline.enable = true;
-      surround.enable = true;
+      cmp.enable = true;
+      cmp-buffer.enable = true;
+      cmp-cmdline.enable = true;
+      cmp-nvim-lsp.enable = true;
+      cmp-path.enable = true;
+      cmp_luasnip.enable = true;
       comment.enable = true;
-      treesitter.enable = true;
+      friendly-snippets.enable = true;
+      fzf-lua.enable = true;
+      lightline.enable = true;
+      luasnip.enable = true;
       nix.enable = true;
+      surround.enable = true;
+      telescope.enable = true;
+      treesitter.enable = true;
       typst-vim.enable = true;
     };
 
