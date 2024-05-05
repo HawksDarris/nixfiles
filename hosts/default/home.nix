@@ -23,7 +23,31 @@
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
-    colorschemes.rose-pine.enable = true;
+    colorschemes.catpuccin = {
+      enable = true;
+      settings = {
+        flavour = "mocha";
+        integrations = {
+          cmp = true;
+          gitsigns = true;
+          mini = {
+            enabled = true;
+            indentscope_color = "";
+          };
+          treesitter = true;
+        };
+        styles = {
+          booleans = [
+            "bold"
+            "italic"
+          ];
+          conditionals = [
+            "bold"
+          ];
+        };
+        term_colors = true;
+      };
+    };
 
     globals.mapleader = " ";
 
@@ -38,6 +62,7 @@
       friendly-snippets.enable = true;
       fzf-lua.enable = true;
       lightline.enable = true;
+      lint.enable = true; # TODO set up linting https://github.com/mfussenegger/nvim-lint
       luasnip.enable = true;
       nix.enable = true;
       surround.enable = true;
@@ -49,39 +74,39 @@
     plugins.lsp = {
       enable = true;
       servers = {
-	tsserver.enable = true;
-	lua-ls = {
-	  enable = true;
-	  settings.telemetry.enable = false;
-	};
-	rust-analyzer = {
-	  enable = true;
-	  installRustc = true;
-	  installCargo = true;
-	};
+        tsserver.enable = true;
+        lua-ls = {
+          enable = true;
+          settings.telemetry.enable = false;
+        };
+        rust-analyzer = {
+          enable = true;
+          installRustc = true;
+          installCargo = true;
+        };
       };
     };
 
     extraPlugins = with pkgs.vimPlugins; [
-    {
-      plugin = vimwiki;
-      config = "";
-    }
+      {
+        plugin = vimwiki;
+        config = "";
+      }
     ];
 
     opts = {
       clipboard = [ "unnamedplus" ];
       number = true;         # Show line numbers
-	relativenumber = true; # Show relative line numbers
+      relativenumber = true; # Show relative line numbers
 
-	shiftwidth = 2;        # Tab width should be 2
+      shiftwidth = 2;        # Tab width should be 2
     };
     extraConfigLua = ''
-      -- Print a little welcome message when nvim is opened!
-      print("Hello world!")
-      '';
+    -- Print a little welcome message when nvim is opened!
+    print("Hello world!")
+    '';
     extraConfigVim = ''
-      '';
+    '';
 
   };
 
@@ -92,64 +117,64 @@
 # You should not change this value, even if you update Home Manager. If you do
 # want to update the value, then make sure to first check the Home Manager
 # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+home.stateVersion = "23.11"; # Please read the comment before changing.
 
 # The home.packages option allows you to install Nix packages into your
 # environment.
-    home.packages = with pkgs; [
+home.packages = with pkgs; [
 # # Adds the 'hello' command to your environment. It prints a friendly
 # # "Hello, world!" when run.
 # pkgs.hello
 # neovim
-    emacs 
-      gh
-      tldr
-      fd
-      nsxiv
-      ripgrep
-      bun 
-      dart-sass
-      rsync
-      fzf
+emacs 
+gh
+tldr
+fd
+nsxiv
+ripgrep
+bun 
+dart-sass
+rsync
+fzf
 
 # sound
-      pavucontrol
-      pamixer
-      brightnessctl
-      mpc-cli
-      ncmpcpp
-      playerctl
+pavucontrol
+pamixer
+brightnessctl
+mpc-cli
+ncmpcpp
+playerctl
 
 # To sort
 # lxqt-policykit-agent
-      pandoc
-      dbus
-      pciutils
-      libnotify
-      ueberzug # for lf previews
-      jq
-      glib
-      bat
-      ncdu
-      dunst
-      mako # Maybe replace dunst
-      kitty
-      swww
-      wlogout
-      eww
-      brightnessctl
-      hyprpicker
-      rofi-wayland
-      rofimoji
-      slurp
-      swappy
-      swaylock
-      wf-recorder
-      wl-gammactl
-      wl-clipboard
-      wofi
-      wayshot
-      xdotool
+pandoc
+dbus
+pciutils
+libnotify
+ueberzug # for lf previews
+jq
+glib
+bat
+ncdu
+dunst
+mako # Maybe replace dunst
+kitty
+swww
+wlogout
+eww
+brightnessctl
+hyprpicker
+rofi-wayland
+rofimoji
+slurp
+swappy
+swaylock
+wf-recorder
+wl-gammactl
+wl-clipboard
+wofi
+wayshot
+xdotool
 
 # # It is sometimes useful to fine-tune packages, for example, by applying
 # # overrides. You can do that directly here, just don't forget the
@@ -167,7 +192,7 @@
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
 # plain files is through 'home.file'.
-  home.file = {
+home.file = {
 # # Building this configuration will create a copy of 'dotfiles/screenrc' in
 # # the Nix store. Activating the configuration will then make '~/.screenrc' a
 # # symlink to the Nix store copy.
@@ -186,5 +211,5 @@
   };
 
 # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+programs.home-manager.enable = true;
 }
