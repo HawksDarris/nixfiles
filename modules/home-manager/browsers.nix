@@ -44,13 +44,28 @@ programs.firefox = {
       "dom.security.https_only_mode" = true;
       "browser.download.panel.shown" = true;
       "identity.fx.accounts.enabled" = false;
+      # allow local, unsigned extensions
+      # "xpinstall.signatures.required" = false
+      # remember 
       # "signon.rememberSignons" = false;
     };
     
     extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
-      ublock-origin
+      # Error 451 = legal ban on download.
+      # ublock-origin
       darkreader
     ];
   };
 };
+  programs.librewolf = {
+    enable = true;
+    # Enable WebGL, cookies and history
+    settings = {
+      "webgl.disabled" = false;
+      "privacy.resistFingerprinting" = false;
+      "privacy.clearOnShutdown.history" = false;
+      "privacy.clearOnShutdown.cookies" = false;
+      "network.cookie.lifetimePolicy" = 0;
+    };
+  };
 }
