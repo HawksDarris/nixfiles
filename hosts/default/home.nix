@@ -22,6 +22,7 @@
 
   programs.nixvim = {
     plugins.lightline.enable = true;
+    colorschemes.gruvbox.enable = true;
     opts = {
       number = true;         # Show line numbers
       relativenumber = true; # Show relative line numbers
