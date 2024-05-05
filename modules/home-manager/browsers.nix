@@ -41,7 +41,7 @@ programs.firefox = {
      Preferences = { 
        "browser.contentblocking.category" = { Value = "strict"; Status = "locked"; };
        "extensions.pocket.enabled" = false;
-       "extensions.screenshots.disabled" = lock-true;
+       "extensions.screenshots.disabled" = true;
        "browser.topsites.contile.enabled" = false;
        "browser.formfill.enable" = false;
        "browser.search.suggest.enabled" = false;
@@ -106,7 +106,7 @@ programs.firefox = {
     
     #extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
       # Error 451 = legal ban on download.
-      # ublock-origin
+      # uborigin
       # darkreader
     #];
   };
