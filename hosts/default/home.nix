@@ -14,11 +14,27 @@
 	../../modules/home-manager/waybar.nix
         ../../modules/home-manager/browsers.nix
         ../../modules/home-manager/fonts.nix
+	inputs.nixvim.homeManagerModules.nixvim
       ];
 
   home.username = "sour";
   home.homeDirectory = "/home/sour";
 
+  programs.nixvim = {
+    plugins.lightline.enable = true;
+    opts = {
+      number = true;         # Show line numbers
+      relativenumber = true; # Show relative line numbers
+
+      shiftwidth = 2;        # Tab width should be 2
+    };
+    extraConfigLua = ''
+      -- Print a little welcome message when nvim is opened!
+      print("Hello world!")
+    '';
+    extraConfigVim = ''
+    '';
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
