@@ -21,6 +21,7 @@
   home.homeDirectory = "/home/sour";
 
   programs.nixvim = {
+    defaultEditor = true;
     plugins = {
       # lightline.enable = true;
       lualine.enable = true;
