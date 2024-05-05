@@ -115,7 +115,8 @@
   };
 
   home.sessionVariables = {
-    EDITOR = "nvim";
+    # Didn't work for some reason. Will move to nushell.nix and see.
+    # EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
