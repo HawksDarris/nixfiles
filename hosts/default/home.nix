@@ -14,7 +14,7 @@
       ../../modules/home-manager/waybar.nix
       ../../modules/home-manager/browsers.nix
       ../../modules/home-manager/fonts.nix
-      ../../modules/home-manager/../nixvim.nix
+      ../../modules/home-manager/nixvim/nixvim.nix
     ];
 
   home.username = "sour";
