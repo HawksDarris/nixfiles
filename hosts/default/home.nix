@@ -21,8 +21,10 @@
   home.homeDirectory = "/home/sour";
 
   programs.nixvim = {
-    plugins.lightline.enable = true;
-    colorschemes.gruvbox.enable = true;
+    plugins = {
+      # lightline.enable = true;
+      lualine.enable = true;
+      };
     opts = {
       number = true;         # Show line numbers
       relativenumber = true; # Show relative line numbers
