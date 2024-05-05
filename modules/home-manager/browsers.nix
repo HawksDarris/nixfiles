@@ -65,6 +65,7 @@ programs.firefox = {
           install_url = "./assets/ublock_origin-1.57.2.xpi";
           installation_mode = "force_installed";
         };
+      };
     settings = {
       "dom.security.https_only_mode" = true;
       "browser.download.panel.shown" = true;
