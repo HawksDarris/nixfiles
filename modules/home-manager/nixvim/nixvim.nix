@@ -11,7 +11,7 @@
       colorschemes.catppuccin = {
         enable = true;
         settings = {
-          flavour = "latte";
+          # flavour = "latte";
           integrations = {
             cmp = true;
             gitsigns = true;

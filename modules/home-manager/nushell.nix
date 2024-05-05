@@ -832,9 +832,10 @@ def ram [] {ps | where mem != '0 B' | sort-by mem | reverse | first 10 }
 
 def h [message] { 
 	cd ~/nixfiles;
-	home-manager switch --flake ~/nixfiles#sour || 
+	try {home-manager switch --flake ~/nixfiles#sour
 	git add ~/nixfiles; 
-	git commit ~/nixfiles -m "$message"; 
+        git commit ~/nixfiles -m "$message"; 
+      }
 	cd -
 	}
 
