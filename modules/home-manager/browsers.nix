@@ -14,6 +14,7 @@ programs.firefox = {
           keyword = "wiki";
           url = "https://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go";
         }
+	];
     # bookmarks = [
     #   {
     #     name = "kehua";
