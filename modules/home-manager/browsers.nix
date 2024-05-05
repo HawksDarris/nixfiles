@@ -37,7 +37,7 @@ programs.firefox = {
 	tags = [ "nix" "options" ];
 	keyword = "ho";
 	url = "https://home-manager-options.extranix.com/";
-      };
+      }
     ];
 
     settings = {
