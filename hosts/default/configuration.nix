@@ -152,5 +152,7 @@
     autoUpgrade.enable  = true;
     stateVersion = "23.11"; # Did you read the comment?
   };
-  home-manager.backupFileExtension = "backup";
+
+# TODO either figure this out (and delete firefox files on close, since the errors are caused mostly by firefox files existing during home-manager rebuilds)
+#  home-manager.backupFileExtension = "backup";
 }
