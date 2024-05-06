@@ -31,11 +31,12 @@ programs.firefox = {
          install_url = "./assets/ublock_origin-1.57.2.xpi";
          installation_mode = "force_installed";
        };
+       #  Seems to slow things down. TODO; double check 
        # Privacy Badger:
-       "jid1-MnnxcxisBPnSXQ@jetpack" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
-          installation_mode = "force_installed";
-        };
+       # "jid1-MnnxcxisBPnSXQ@jetpack" = {
+       #    install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
+       #    installation_mode = "force_installed";
+       #  };
      };
 
      Preferences = { 

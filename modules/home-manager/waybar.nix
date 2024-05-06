@@ -30,7 +30,8 @@
                  animation-direction: alternate;
                }
                window#waybar {
-                 background-color: transparent;
+                /*  background-color: transparent; */
+                 background-color: rgba(ca9ee6ff);
                }
                window > box {
                  margin-left: 5px;
