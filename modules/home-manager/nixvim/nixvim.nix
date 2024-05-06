@@ -85,45 +85,6 @@
       {
         plugin = vimwiki;
         config = "
-        init=function ()
-        vim.g.vimwiki_ext2syntax = {
-          Rmd = 'markdown',
-          rmd = 'markdown',
-          md = 'markdown',
-          markdown = 'markdown',
-          mdown = 'markdown',
-        }
-        local l = {}
-        l.path = '$HOME/Documents'
-        l.syntax = 'markdown'
-        l.ext = '.md'
-        l.nested_syntaxes = {
-          js = 'javascript',
-          html = 'html',
-          css = 'css',
-          python = 'python',
-          py = 'python',
-          rust = 'rust',
-          tex = 'tex',
-        }
-        vim.g.vimwiki_list = {
-          l
-        }
-        -- Do not apply vimwiki settings to all md files
-        vim.g.vimwiki_global_ext = 0
-        -- Conceal preformatted text markers
-        vim.g.vimwiki_conceal_pre = 1
-
-        -- This is to allow code execution on python
-        -- This needs to be done in the vimwiki_server settings, if I decide to bring that to nvchad
-        -- vim.g.vimwiki_server#code#python = 'python3'
-
-        -- stop vimwiki from stealing the tab key for completion purposes
-        vim.g.vimwiki_key_mappings = {
-          table_mappings = 0,
-        }
-        end,
-
         ";
       }
     ];
@@ -164,6 +125,45 @@
     else 
     os.execute("compiler " .. bufname)
     end
+    end
+
+    init=function ()
+      vim.g.vimwiki_ext2syntax = {
+        Rmd = 'markdown',
+        rmd = 'markdown',
+        md = 'markdown',
+        markdown = 'markdown',
+        mdown = 'markdown',
+      }
+      local l = {}
+      l.path = '$HOME/Documents'
+      l.syntax = 'markdown'
+      l.ext = '.md'
+      l.nested_syntaxes = {
+        js = 'javascript',
+        html = 'html',
+        css = 'css',
+        python = 'python',
+        py = 'python',
+        rust = 'rust',
+        tex = 'tex',
+      }
+      vim.g.vimwiki_list = {
+        l
+      }
+      -- Do not apply vimwiki settings to all md files
+      vim.g.vimwiki_global_ext = 0
+      -- Conceal preformatted text markers
+      vim.g.vimwiki_conceal_pre = 1
+
+      -- This is to allow code execution on python
+      -- This needs to be done in the vimwiki_server settings, if I decide to bring that to nvchad
+      -- vim.g.vimwiki_server#code#python = 'python3'
+
+      -- stop vimwiki from stealing the tab key for completion purposes
+      vim.g.vimwiki_key_mappings = {
+        table_mappings = 0,
+      }
     end
     '';
 
