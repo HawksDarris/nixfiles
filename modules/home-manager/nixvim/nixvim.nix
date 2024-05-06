@@ -83,12 +83,10 @@
       clipboard = [ "unnamedplus" ];
       number = true;         # Show line numbers
       relativenumber = true; # Show relative line numbers
-
       shiftwidth = 2;        # Tab width should be 2
     };
     extraConfigLua = ''
-    -- Print a little welcome message when nvim is opened!
-    print("Hello world!")
+      print("Hiya")
     '';
     extraConfigVim = ''
     '';

@@ -74,6 +74,9 @@
                  padding-right: 6px;
                  color: #7ebae4;
                }
+         #battery {
+           color: #7ebae4;
+         }
          #mode, #clock, #memory, #temperature,#cpu,#mpd, #custom-wall, #temperature, #backlight, #pulseaudio, #network, #battery, #custom-powermenu, #custom-cava-internal {
                  padding-left: 10px;
                  padding-right: 10px;
@@ -156,6 +159,7 @@
           "network"
           "custom/powermenu"
           "tray"
+          "battery"
         ];
         "custom/launcher" = {
           "format" = " ";
@@ -177,6 +181,8 @@
           };
           "on-click" = "pamixer -t";
           "tooltip" = false;
+        };
+        "battery" = {
         };
         "clock" = {
           "interval" = 1;
