@@ -836,10 +836,10 @@
     home-manager switch --flake ~/nixfiles#sour;
     git commit ~/nixfiles -m "$message"; 
   }
-  catch {
-    git reset --mixed origin/master;
-    print "trouble building home-manager. Resetting git."
-  }
+  # catch {
+  #   git reset --mixed origin/master;
+  #   print "trouble building home-manager. Resetting git."
+  # }
   cd -
 }
 
