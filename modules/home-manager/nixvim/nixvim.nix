@@ -54,6 +54,7 @@
         telescope.enable = true;
         treesitter.enable = true;
         typst-vim.enable = true;
+        vim-css-color.enable = true;
       };
 
       plugins.lsp = {

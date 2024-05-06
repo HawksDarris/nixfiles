@@ -2,6 +2,27 @@
  * Keyframes
  * -------------------------------------------------------------------------- */
 
+@keyframes blink_red {
+  to {
+    background-color: rgb(242, 143, 173);
+    color: rgb(26, 24, 38);
+  }
+}
+
+@keyframes blink {
+    to {
+        color: #4c566a;
+        background-color: #eceff4;
+    }
+}
+
+@keyframes blink_green {
+  to {
+    background-color: rgb(242, 143, 173);
+    color: rgb(0, 255, 0);
+  }
+}
+
 
 /*
 Polar Night
@@ -25,6 +46,8 @@ nord13 #ebcb8b
 nord14 #a3be8c
 nord15 #b48ead
 */
+
+
 
 /* -----------------------------------------------------------------------------
  * Base styles
@@ -88,7 +111,7 @@ window#waybar {
 }
 
 #battery.charging {
-    color: #81a1c1;
+    color: #21c181;
 }
 
 
@@ -98,20 +121,6 @@ window#waybar {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-}
-
-/* @keyframes blink_red { */
-/*   to { */
-/*     background-color: rgb(242, 143, 173); */
-/*     color: rgb(26, 24, 38); */
-/*   } */
-/* } */
-
-@keyframes blink {
-    to {
-        color: #4c566a;
-        background-color: #eceff4;
-    }
 }
 
 #battery.critical:not(.charging) {
