@@ -1,5 +1,6 @@
 { pkgs, ...}: 
 {
+home.packages = with pkgs; [
 (pkgs.writeShellScriptBin "compiler" 
   ''
 #!/bin/sh
@@ -54,4 +55,5 @@ case "$ext" in
         *) sed -n '/^#!/s/^#!//p; q' "$file" | xargs -r -I % "$file" ;;
         esac
         '')
+    ];
 }
