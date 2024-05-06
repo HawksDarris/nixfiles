@@ -136,19 +136,6 @@
         isolation: false 
       }
 
-      # TODO: This block appears twice, it seems. Test with this commented then delete if no issues.
-      # completions: {
-      #   case_sensitive: false 
-      #   quick: true    
-      #   partial: true    
-      #   algorithm: "prefix"    
-      #   external: {
-      #     enable: true 
-      #     max_results: 100 
-      #     completer: carapace_completer 
-      #   }
-      # }
-
       filesize: {
         metric: true # true => KB, MB, GB (ISO standard), false => KiB, MiB, GiB (Windows standard)
         format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, auto
@@ -174,7 +161,7 @@
       highlight_resolved_externals: false 
 
       hooks: {
-        pre_prompt: [{ poke-get 1 }] # run before the prompt is shown
+        pre_prompt: [{ null }] # run before the prompt is shown
         pre_execution: [{ null }] # run before the repl input is run
         env_change: {
           PWD: [{|before, after| null }] # run if the PWD environment is different since the last repl input
@@ -761,20 +748,20 @@
   '';
     };  
 
-    carapace.enable = true;
-    carapace.enableNushellIntegration = true;
-
-    starship = { enable = true;
-    settings = {
-                # format = lib.concatStrings [
-                # "$battery"
-                # ];
-      add_newline = true;
-      character = { 
-        success_symbol = "[➜](bold green)";
-        error_symbol = "[➜](bold red)";
+      carapace.enable = true;
+      carapace.enableNushellIntegration = true;
+  
+      starship = { enable = true;
+      settings = {
+                  # format = lib.concatStrings [
+                  # "$battery"
+                  # ];
+        add_newline = true;
+        character = { 
+          success_symbol = "[➜](bold green)";
+          error_symbol = "[➜](bold red)";
+        };
       };
     };
   };
-};
-        }
+}
