@@ -17,24 +17,17 @@
         "margin" = "0 0 0 0";
         "spacing" = 0;
 
-        modules-left = [ "custom/launcher" "hyprland/workspaces" "hyprland/window"
-          "weather"
+        modules-left = [ "custom/launcher" "hyprland/workspaces" "hyprland/window" "custom/weather"
           # "mpd"
-          # "custom/cava-internal"
         ];
         modules-center = [
           "clock"
         ];
-        modules-right = [
-          "cpu"
-          "memory"
-          "battery"
-          "pulseaudio"
-          "tray"
+        modules-right = [ "cpu" "memory" "battery" "tray" "network" 
           # "backlight"
-          "network"
-          "custom/powermenu"
           # "custom/power"
+          # "pulseaudio" 
+          # "custom/powermenu"
         ];
 
         "hyprland/workspaces" = {
@@ -78,11 +71,6 @@
           "on-click" = "pkill -x rofi || ~/.config/hypr/scripts/rofilaunch.sh";
           "on-click-middle" = "exec default_wall";
           "on-click-right" = "exec wallpaper_random";
-          "tooltip" = false;
-        };
-
-        "custom/cava-internal" = {
-          "exec" = "sleep 1s && cava-internal";
           "tooltip" = false;
         };
 
