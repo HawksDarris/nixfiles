@@ -44,6 +44,7 @@ home.packages = with pkgs; [
   rsync
   fzf
   bottom
+  mpv
   yad
 
   # sound

@@ -99,7 +99,7 @@
     };
 
     extraConfigLua = ''
-    local function IsPresentation(bufname)
+    local function IsRevealJSPresentation(bufname)
       if string.find(bufname, "reveal.js%-master/") then
           return true
       else return false
@@ -111,7 +111,7 @@
     local filename = bufname:match("^.+/(.+)%..+$")
     local output_html = filename .. ".html"
 
-      if IsPresentation(bufname) then
+      if IsRevealJSPresentation(bufname) then
         os.execute("pandoc -i " .. bufname .. " -t revealjs -o " .. output_html .. " --slide-level=2 --standalone")
       else 
         os.execute("compiler " .. bufname)

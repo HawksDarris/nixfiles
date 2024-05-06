@@ -1,5 +1,9 @@
-# Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# Run sudo nixos-rebuild switch --flake .#default
+# Then run home-manager switch --flake .#sour
+# TODO: 
+# Figure out how to use disko
+# 1. Impermanence
+# 2. LUKS
 
 { config, pkgs, inputs, ... }:
 

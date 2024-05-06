@@ -2,7 +2,6 @@
 {
   home.packages = with pkgs; [ 
     chromium
-    qutebrowser
 ];
 programs.firefox = {
   enable = true;
@@ -141,4 +140,17 @@ programs.firefox = {
       "network.cookie.lifetimePolicy" = 0;
     };
   };
+  programs.qutebrowser = {
+    enable = true;
+    settings = {
+      colors = {
+        hints = {
+          bg = "#000000";
+          fg = "#ffffff";
+        };
+      };
+      tabs.bar.bg = "#000000";
+    };
+  };
+
 }
