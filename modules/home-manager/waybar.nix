@@ -12,17 +12,18 @@
 
       settings = [{
         "layer" = "top";
-        "position" = "top";
+        "position" = "bottom";
         "height" = 40;
         "margin" = "0 0 0 0";
         "spacing" = 0;
 
         modules-left = [ "custom/launcher" "hyprland/workspaces" "hyprland/window"
-          # "temperature"
+          "weather"
           # "mpd"
           # "custom/cava-internal"
         ];
         modules-center = [
+          "clock"
         ];
         modules-right = [
           "cpu"
@@ -30,7 +31,6 @@
           "battery"
           "pulseaudio"
           "tray"
-          "clock"
           # "backlight"
           "network"
           "custom/powermenu"
@@ -151,7 +151,7 @@
           "format-alt" = "bluetooth: {status}";
           "format-on" = "";
           "format-off" = "!";
-          "on-click" = "foot bluetoothctl";
+          "on-click" = "kitty -e bluetoothctl";
           "tooltip-format" = "{status}";
         };
 

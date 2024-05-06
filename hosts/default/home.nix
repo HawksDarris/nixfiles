@@ -43,6 +43,7 @@ home.packages = with pkgs; [
   dart-sass
   rsync
   fzf
+  bottom
   yad
 
   # sound
