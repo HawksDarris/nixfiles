@@ -223,7 +223,7 @@ window#waybar {
 window > box {
   margin-left: 25px; 
   margin-right: 5px; 
-  background-color: #ffffff; /* #1e1e2a; 
+  background-color: #ffffff; 
   padding: 3px;
   padding-left:8px;
   border: 2px none #33ccff;
