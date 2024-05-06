@@ -17,15 +17,15 @@
         "margin" = "0 0 0 0";
         "spacing" = 0;
 
-        modules-left = [ "custom/launcher" "hyprland/workspaces" "hyprland/window" "custom/weather"
+        modules-left = [ "custom/launcher" "hyprland/workspaces" "hyprland/window" 
           # "mpd"
         ];
         modules-center = [
           "clock"
         ];
-        modules-right = [ "cpu" "memory" "battery" "tray" "network" 
+        modules-right = [ "cpu" "memory" "battery" "tray" "custom/weather"
+          # "network"  # Maybe I will add this again with an on-click to launch nmtui
           # "backlight"
-          # "custom/power"
           # "pulseaudio" 
           # "custom/powermenu"
         ];
