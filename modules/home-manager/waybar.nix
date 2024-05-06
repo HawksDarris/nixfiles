@@ -123,7 +123,7 @@
         "custom/weather" = {
           "exec" = "curl 'https://wttr.in/Shenzhen?format=2'";
           "interval" = 900;
-          "on-click" = "yad --html --uri='https://wttr.in/Essen' --center --fixed --width=1000 --height=680 --timeout=60 --timeout-indicator=right";
+          "on-click" = "yad --html --uri='https://wttr.in/Schenzhen' --center --fixed --width=1000 --height=680 --timeout=60 --timeout-indicator=right";
         };
 
         "clock" = {
