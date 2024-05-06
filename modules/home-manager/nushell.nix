@@ -8,68 +8,68 @@
         #################### Aliases #####################
         ##################################################
 
-        shellAliases = {
-          cat = "bat";
-          cpt = "rsync -rtDvzP --update ~/share/Teaching/* /run/media/sour/Teaching/";
-          e = "emacs";
-          g = "git";
-          ka = "killall";
-          sxiv = "nsxiv";
-          trem = "transmission-remote";
-          sdn = "shutdown -h now";
-          z = "zathura";
-          copy = "xsel --clipboard";
-          copyp = "xsel --primary";
-          autofan = "doas ectool --interface=lpc autofanctrl";
-          configit = "/usr/bin/git --git-dir=cd ~/.dotfiles --work-tree=cd ~";
-          devrepo = "/usr/bin/git --git-dir=cd ~/Documents/Learning --work-tree=cd ~/Documents/Learning";
-          lf = "^lf";
-          magit = "nvim -c MagitOnly";
-          mount = "sudo mount -o uid=1000";
-          weath = "less -S ~/.cache/weatherreport";
-          vim = "nvim";
-          v = "nvim";
-          vpn = "Outline-Client.AppImage --disable-gpu";
+      shellAliases = {
+        cat = "bat";
+        cpt = "rsync -rtDvzP --update ~/share/Teaching/* /run/media/sour/Teaching/";
+        e = "emacs";
+        g = "git";
+        ka = "killall";
+        sxiv = "nsxiv";
+        trem = "transmission-remote";
+        sdn = "shutdown -h now";
+        z = "zathura";
+        copy = "xsel --clipboard";
+        copyp = "xsel --primary";
+        autofan = "doas ectool --interface=lpc autofanctrl";
+        configit = "/usr/bin/git --git-dir=cd ~/.dotfiles --work-tree=cd ~";
+        devrepo = "/usr/bin/git --git-dir=cd ~/Documents/Learning --work-tree=cd ~/Documents/Learning";
+        lf = "^lf";
+        magit = "nvim -c MagitOnly";
+        mount = "sudo mount -o uid=1000";
+        weath = "less -S ~/.cache/weatherreport";
+        vim = "nvim";
+        v = "nvim";
+        vpn = "Outline-Client.AppImage --disable-gpu";
 
         ##################################################
         #################### Directories #################
         ##################################################
-          b = "cd ~/Documents/Business";
-          cac = "cd ~/.cache";
-          cf = "cd ~/.config";
-          cfs = "cd ~/.config/nvim/mysnips";
-          cl = "cd ~/Documents/Business/Clients/";
-          d = "cd ~/Documents";
-          D = "cd ~/Downloads";
-          ltk = "cd ~/Documents/Business/Law-to-Know";
-          m = "cd ~/Music";
-          pa = "cd ~/Pictures/Arden";
-          pp = "cd ~/Pictures";
-          rr = "cd ~/.local/src";
-          six = "cd ~/share/Teaching/reveal.js-master/6G";
-          span = "cd ~/share/Teaching/reveal.js-master/Spanish/";
-          sev = "cd ~/share/Teaching/reveal.js-master/7G";
-          sc = "cd ~/.local/bin";
-          src = "cd ~/.local/src";
-          te = "cd ~/Documents/Business/Templates";
-          kehua = "cd ~/share/Teaching/reveal.js-master/";
-          games = "cd ~/share/Teaching/reveal.js-master/Games";
-          ti = "cd ~/texmf/tex/latex/local";
-          vv = "cd ~/Videos";
+        b = "cd ~/Documents/Business";
+        cac = "cd ~/.cache";
+        cf = "cd ~/.config";
+        cfs = "cd ~/.config/nvim/mysnips";
+        cl = "cd ~/Documents/Business/Clients/";
+        d = "cd ~/Documents";
+        D = "cd ~/Downloads";
+        ltk = "cd ~/Documents/Business/Law-to-Know";
+        m = "cd ~/Music";
+        pa = "cd ~/Pictures/Arden";
+        pp = "cd ~/Pictures";
+        rr = "cd ~/.local/src";
+        six = "cd ~/share/Teaching/reveal.js-master/6G";
+        span = "cd ~/share/Teaching/reveal.js-master/Spanish/";
+        sev = "cd ~/share/Teaching/reveal.js-master/7G";
+        sc = "cd ~/.local/bin";
+        src = "cd ~/.local/src";
+        te = "cd ~/Documents/Business/Templates";
+        kehua = "cd ~/share/Teaching/reveal.js-master/";
+        games = "cd ~/share/Teaching/reveal.js-master/Games";
+        ti = "cd ~/texmf/tex/latex/local";
+        vv = "cd ~/Videos";
 
         ##################################################
         #################### Config Files ################
         ##################################################
-          cfn = "nvim ~/nixfiles/modules/home-manager/nushell.nix";
-          cfh = "nvim ~/nixfiles/hosts/default/home.nix";
-          cfk = "nvim ~/nixfiles/modules/home-manager/kitty.nix";
-          cfl = "nvim ~/nixfiles/modules/home-manager/lf.nix";
-          cfm = "nvim ~/.config/mutt/muttrc		# mutt (email client) config";
-          cfM = "nvim ~/.config/mpv/mpv.conf		# mutt (email client) config";
-          cfq = "nvim ~/.config/qutebrowser/config.py	# sxiv (image viewer) key/script handler";
-          cfu = "nvim ~/.config/newsboat/urls		# RSS urls for newsboat";
-          cfv = "nvim ~/nixfiles/modules/home-manager/nixvim/nixvim.nix";
-        };
+        cfn = "nvim ~/nixfiles/modules/home-manager/nushell.nix";
+        cfh = "nvim ~/nixfiles/hosts/default/home.nix";
+        cfk = "nvim ~/nixfiles/modules/home-manager/kitty.nix";
+        cfl = "nvim ~/nixfiles/modules/home-manager/lf.nix";
+        cfm = "nvim ~/.config/mutt/muttrc		# mutt (email client) config";
+        cfM = "nvim ~/.config/mpv/mpv.conf		# mutt (email client) config";
+        cfq = "nvim ~/.config/qutebrowser/config.py	# sxiv (image viewer) key/script handler";
+        cfu = "nvim ~/.config/newsboat/urls		# RSS urls for newsboat";
+        cfv = "nvim ~/nixfiles/modules/home-manager/nixvim/nixvim.nix";
+      };
 
       environmentVariables = {
         PATH = "($env.PATH | split row (char esep) | prepend /home/myuser/.apps | append /usr/bin/env)";
@@ -180,12 +180,11 @@
           PWD: [{|before, after| null }] # run if the PWD environment is different since the last repl input
         }
         display_output: "if (term size).columns >= 100 { table -e } else { table }" # run to display the output of a pipeline
-        command_not_found: { null } # return an error message when a command is not found
+        # TODO when command_not_found, run `command-not-found {command}`
+        command_not_found: { command-not-found } # return an error message when a command is not found
       }
 
       menus: [
-        # Configuration for default nushell menus
-        # Note the lack of source parameter
         {
           name: completion_menu
           only_buffer_difference: false
@@ -193,7 +192,7 @@
           type: {
             layout: columnar
             columns: 4
-            col_width: 20     # Optional value. If missing all the screen width is used to calculate column width
+            # col_width: 20     # Optional value. If missing all the screen width is used to calculate column width
             col_padding: 2
           }
           style: {
@@ -241,7 +240,7 @@
           name: completion_menu
           modifier: none
           keycode: tab
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {
             until: [
               { send: menu name: completion_menu }
@@ -254,21 +253,21 @@
           name: history_menu
           modifier: control
           keycode: char_r
-          mode: [emacs, vi_insert, vi_normal]
+          mode: [vi_normal, vi_insert, emacs]
           event: { send: menu name: history_menu }
         }
         {
           name: help_menu
           modifier: none
           keycode: f1
-          mode: [emacs, vi_insert, vi_normal]
+          mode: [vi_normal, vi_insert, emacs]
           event: { send: menu name: help_menu }
         }
         {
           name: completion_previous_menu
           modifier: shift
           keycode: backtab
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: { send: menuprevious }
         }
         {
@@ -294,49 +293,49 @@
           name: escape
           modifier: none
           keycode: escape
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: { send: esc }    # NOTE: does not appear to work
         }
         {
           name: cancel_command
           modifier: control
           keycode: char_c
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: { send: ctrlc }
         }
         {
           name: quit_shell
           modifier: control
           keycode: char_d
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: { send: ctrld }
         }
         {
           name: clear_screen
           modifier: control
           keycode: char_l
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: { send: clearscreen }
         }
         {
           name: search_history
           modifier: control
           keycode: char_q
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: { send: searchhistory }
         }
         {
           name: open_command_editor
           modifier: control
           keycode: char_o
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: { send: openeditor }
         }
         {
           name: move_up
           modifier: none
           keycode: up
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {
             until: [
               {send: menuup}
@@ -348,7 +347,7 @@
           name: move_down
           modifier: none
           keycode: down
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {
             until: [
               {send: menudown}
@@ -360,7 +359,7 @@
           name: move_left
           modifier: none
           keycode: left
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {
             until: [
               {send: menuleft}
@@ -372,7 +371,7 @@
           name: move_right_or_take_history_hint
           modifier: none
           keycode: right
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {
             until: [
               {send: historyhintcomplete}
@@ -385,14 +384,14 @@
           name: move_one_word_left
           modifier: control
           keycode: left
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {edit: movewordleft}
         }
         {
           name: move_one_word_right_or_take_history_hint
           modifier: control
           keycode: right
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {
             until: [
               {send: historyhintwordcomplete}
@@ -404,21 +403,21 @@
           name: move_to_line_start
           modifier: none
           keycode: home
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {edit: movetolinestart}
         }
         {
           name: move_to_line_start
           modifier: control
           keycode: char_a
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {edit: movetolinestart}
         }
         {
           name: move_to_line_end_or_take_history_hint
           modifier: none
           keycode: end
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {
             until: [
               {send: historyhintcomplete}
@@ -430,7 +429,7 @@
           name: move_to_line_end_or_take_history_hint
           modifier: control
           keycode: char_e
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {
             until: [
               {send: historyhintcomplete}
@@ -442,21 +441,21 @@
           name: move_to_line_start
           modifier: control
           keycode: home
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {edit: movetolinestart}
         }
         {
           name: move_to_line_end
           modifier: control
           keycode: end
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {edit: movetolineend}
         }
         {
           name: move_up
           modifier: control
           keycode: char_p
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {
             until: [
               {send: menuup}
@@ -468,7 +467,7 @@
           name: move_down
           modifier: control
           keycode: char_t
-          mode: [emacs, vi_normal, vi_insert]
+          mode: [vi_normal, vi_insert, emacs]
           event: {
             until: [
               {send: menudown}
@@ -707,79 +706,75 @@
         home-manager switch --flake ~/nixfiles#sour;
         git commit ~/nixfiles -m "$message"; 
       }
-  # catch {
-  #   git reset --mixed origin/master;
-  #   print "trouble building home-manager. Resetting git."
-  # }
-  cd -
-}
+      cd -
+    }
 
-def N [message] { 
-  try {
-    sudo nixos-rebuild switch --flake ~/home/nixfiles#default;
-    git add ~/nixfiles; 
-    git commit ~/nixfiles -m ["$message"]; 
-  }
-}
+    def N [message] { 
+      try {
+        sudo nixos-rebuild switch --flake ~/home/nixfiles#default;
+        git add ~/nixfiles; 
+        git commit ~/nixfiles -m ["$message"]; 
+      }
+    }
 
 
-alias rec = ffmpeg -f pulse -i 53 /tmp/output.wav
+    alias rec = ffmpeg -f pulse -i 53 /tmp/output.wav
 
-# TODO move this all to nix syntax
-# TODO make universal nix variables for some of it? 
-let carapace_completer = {|spans|
-carapace $spans.0 nushell $spans | from json
-         }
-         $env.config = {
-           edit_mode: vi,
-           show_banner: false,
-           completions: {
-             case_sensitive: false 
-             quick: true    
-             partial: true 
-             algorithm: "fuzzy"    # prefix or fuzzy
-             external: {
-               enable: true 
-               max_results: 100 
-               completer: $carapace_completer 
-             }
-           }
-         } 
+  # TODO move this all to nix syntax
+  # TODO make universal nix variables for some of it? 
+  let carapace_completer = { |spans|
+  carapace $spans.0 nushell $spans | from json }
+  $env.config = {
+    edit_mode: vi,
+    show_banner: false,
+    completions: {
+      case_sensitive: false 
+      quick: true    
+      partial: true 
+      algorithm: "fuzzy"    # prefix or fuzzy
+      external: {
+        enable: true 
+        max_results: 100 
+        completer: $carapace_completer 
+      }
+    }
+  } 
 
-         export extern "lf" [
-           --command                   # command to execute on client initialization
-           --config: string            # path to the config file (instead of the usual paths)
-           --cpuprofile: string        # path to the file to write the CPU profile
-           --doc                       # show documentation
-           --last-dir-path: string     # path to the file to write the last dir on exit (to use for cd)
-           --log: string               # path to the log file to write messages
-           --memprofile: string        # path to the file to write the memory profile
-           --print-last-dir            # print the last dir to stdout on exit (to use for cd)
-           --print-selection           # print the selected files to stdout on open (to use as open file dialog)
-           --remote: string            # send remote command to server
-           --selection-path: string    # path to the file to write selected files on open (to use as open file dialog)
-           --server                    # start server (automatic)
-           --single                    # start a client without server
-           --version                   # show version
-           --help                      # show help
-         ]
-         '';
+  export extern "lf" [
+    --command                   # command to execute on client initialization
+    --config: string            # path to the config file (instead of the usual paths)
+    --cpuprofile: string        # path to the file to write the CPU profile
+    --doc                       # show documentation
+    --last-dir-path: string     # path to the file to write the last dir on exit (to use for cd)
+    --log: string               # path to the log file to write messages
+    --memprofile: string        # path to the file to write the memory profile
+    --print-last-dir            # print the last dir to stdout on exit (to use for cd)
+    --print-selection           # print the selected files to stdout on open (to use as open file dialog)
+    --remote: string            # send remote command to server
+    --selection-path: string    # path to the file to write selected files on open (to use as open file dialog)
+    --server                    # start server (automatic)
+    --single                    # start a client without server
+    --version                   # show version
+    --help                      # show help
+  ]
 
-       };  
-       carapace.enable = true;
-       carapace.enableNushellIntegration = true;
+  '';
+    };  
 
-       starship = { enable = true;
-       settings = {
+    carapace.enable = true;
+    carapace.enableNushellIntegration = true;
+
+    starship = { enable = true;
+    settings = {
                 # format = lib.concatStrings [
                 # "$battery"
                 # ];
-                add_newline = true;
-                character = { 
-                  success_symbol = "[➜](bold green)";
-                  error_symbol = "[➜](bold red)";
-                };
-              };
-            };
-          };
+      add_newline = true;
+      character = { 
+        success_symbol = "[➜](bold green)";
+        error_symbol = "[➜](bold red)";
+      };
+    };
+  };
+};
         }
