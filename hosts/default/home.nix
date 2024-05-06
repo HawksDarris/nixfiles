@@ -58,6 +58,7 @@ home.packages = with pkgs; [
   # To sort
   # lxqt-policykit-agent
   pandoc
+  pokeget-rs
   dbus
   pciutils
   libnotify
