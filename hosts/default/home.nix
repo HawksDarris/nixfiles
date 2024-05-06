@@ -15,6 +15,7 @@
       ../../modules/home-manager/browsers.nix
       ../../modules/home-manager/fonts.nix
       ../../modules/home-manager/nixvim/nixvim.nix
+      ../../modules/home-manager/scripts.nix
     ];
 
   home.username = "sour";
@@ -32,73 +33,71 @@ home.stateVersion = "23.11"; # Please read the comment before changing.
 # The home.packages option allows you to install Nix packages into your
 # environment.
 home.packages = with pkgs; [
-# # Adds the 'hello' command to your environment. It prints a friendly
-# # "Hello, world!" when run.
-# pkgs.hello
-# neovim
-emacs 
-gh
-tldr
-fd
-nsxiv
-ripgrep
-bun 
-dart-sass
-rsync
-fzf
+  emacs 
+  gh
+  tldr
+  fd
+  nsxiv
+  ripgrep
+  bun 
+  dart-sass
+  rsync
+  fzf
+  yad
 
-# sound
-pavucontrol
-pamixer
-brightnessctl
-mpc-cli
-ncmpcpp
-playerctl
+  # sound
+  pavucontrol
+  pamixer
+  brightnessctl
+  mpc-cli
+  ncmpcpp
+  playerctl
 
-# To sort
-# lxqt-policykit-agent
-pandoc
-dbus
-pciutils
-libnotify
-ueberzug # for lf previews
-jq
-glib
-bat
-ncdu
-dunst
-mako # Maybe replace dunst
-kitty
-swww
-wlogout
-eww
-brightnessctl
-hyprpicker
-rofi-wayland
-rofimoji
-slurp
-swappy
-swaylock
-wf-recorder
-wl-gammactl
-wl-clipboard
-wofi
-wayshot
-xdotool
+  # To sort
+  # lxqt-policykit-agent
+  pandoc
+  dbus
+  pciutils
+  libnotify
+  ueberzug # for lf previews
+  jq
+  glib
+  bat
+  ncdu
+  dunst
+  mako # Maybe replace dunst
+  kitty
+  swww
+  wlogout
+  eww
+  brightnessctl
+  hyprpicker
+  rofi-wayland
+  rofimoji
+  slurp
+  swappy
+  swaylock
+  wf-recorder
+  wl-gammactl
+  wl-clipboard
+  wofi
+  wayshot
+  xdotool
 
-# # It is sometimes useful to fine-tune packages, for example, by applying
-# # overrides. You can do that directly here, just don't forget the
-# # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-# # fonts?
-# (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+  # # It is sometimes useful to fine-tune packages, for example, by applying
+  # # overrides. You can do that directly here, just don't forget the
+  # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+  # # fonts?
+  # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-# # You can also create simple shell scripts directly inside your
-# # configuration. For example, this adds a command 'my-hello' to your
-# # environment:
-# (pkgs.writeShellScriptBin "my-hello" ''
-#   echo "Hello, ${config.home.username}!"
-# '')
-      ];
+  # # You can also create simple shell scripts directly inside your
+  # # configuration. For example, this adds a command 'my-hello' to your
+  # # environment:
+  # (pkgs.writeShellScriptBin "my-hello" ''
+  #   echo "Hello, ${config.home.username}!"
+  # '')
+
+        ];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
 # plain files is through 'home.file'.

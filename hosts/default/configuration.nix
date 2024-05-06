@@ -97,8 +97,8 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-  # programs.neovim.enable = true;
-  # programs.nano.enable = false;
+  programs.neovim.enable = true;
+  programs.nano.enable = false;
 
 
   security = {

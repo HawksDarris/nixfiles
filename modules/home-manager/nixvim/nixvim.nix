@@ -77,7 +77,18 @@
       #   plugin = vimwiki;
       #   config = "";
       # }
-    ];
+      ];
+
+      autoCmd = [
+        {
+          event = [ "BufWritePost" ];
+          pattern = [ "*.c" "*.cpp" "*.cs" "*.go" "*.h" "*.java" "*.m" "*.md" "*.mom" "*.ms" "*.org" "*.py" "*.Rmd" "*.rs" "*.sass" "*.scad" "*.sent" "*.tex" "*.typ" ];
+          callback = { 
+            __raw = "function() CompileOnSave() end"; 
+          };
+        }
+      ];
+
 
     opts = {
       clipboard = [ "unnamedplus" ];
@@ -85,9 +96,28 @@
       relativenumber = true; # Show relative line numbers
       shiftwidth = 2;        # Tab width should be 2
     };
+
     extraConfigLua = ''
-      print("Hiya")
+    local function IsPresentation(bufname)
+      if string.find(bufname, "reveal.js%-master/") then
+          return true
+      else return false
+      end
+    end
+
+    local function CompileOnSave()
+    local bufname = vim.api.nvim_buf_get_name(0)
+    local filename = bufname:match("^.+/(.+)%..+$")
+    local output_html = filename .. ".html"
+
+      if IsPresentation(bufname) then
+        os.execute("pandoc -i " .. bufname .. " -t revealjs -o " .. output_html .. " --slide-level=2 --standalone")
+      else 
+        os.execute("compiler " .. bufname)
+      end
+    end
     '';
+
     extraConfigVim = ''
     '';
 
