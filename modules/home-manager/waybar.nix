@@ -13,7 +13,7 @@
       settings = [{
         "layer" = "top";
         "position" = "bottom";
-        "height" = 40;
+        "height" = 20;
         "margin" = "0 0 0 0";
         "spacing" = 0;
 
@@ -24,8 +24,7 @@
           "clock"
         ];
         modules-right = [ "cpu" "memory" "battery" "tray" "custom/weather"
-          # "network"  # Maybe I will add this again with an on-click to launch nmtui
-          # "backlight"
+          # "network"  # TODO add this again with an on-click to launch nmtui
           # "pulseaudio" 
           # "custom/powermenu"
         ];
