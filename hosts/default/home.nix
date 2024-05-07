@@ -46,6 +46,7 @@ home.packages = with pkgs; [
   bottom
   mpv
   yad
+  zathura
 
   # sound
   pavucontrol
