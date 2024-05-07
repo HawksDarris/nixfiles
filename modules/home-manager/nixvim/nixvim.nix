@@ -121,9 +121,9 @@
     local output_html = filename .. ".html"
 
     if IsRevealJSPresentation(bufname) then
-    os.execute("pandoc -i " .. bufname .. " -t revealjs -o " .. output_html .. " --slide-level=2 --standalone")
+      os.execute("pandoc -i " .. bufname .. " -t revealjs -o " .. output_html .. " --slide-level=2 --standalone")
     else 
-    os.execute("compiler " .. bufname)
+      os.execute("compiler " .. bufname)
     end
     end
 
