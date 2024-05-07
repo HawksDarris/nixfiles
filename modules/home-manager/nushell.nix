@@ -10,7 +10,8 @@
 
       shellAliases = {
         cat = "bat";
-        cpt = "rsync -rtDvzP --update ~/share/Teaching/* /run/media/sour/Teaching/";
+        # cpt = "rsync -rtDvzP --update ~/share/Teaching/* /run/media/sour/Teaching/";
+        cpt = "rsync -auv --update ~/share/Teaching/* /run/media/sour/Teaching/";
         e = "emacs";
         g = "git";
         ka = "killall";
