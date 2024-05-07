@@ -69,6 +69,7 @@
         cfq = "nvim ~/.config/qutebrowser/config.py	# sxiv (image viewer) key/script handler";
         cfu = "nvim ~/.config/newsboat/urls		# RSS urls for newsboat";
         cfv = "nvim ~/nixfiles/modules/home-manager/nixvim/nixvim.nix";
+        cfw = "nvim ~/nixfiles/modules/home-manager/waybar.nix";
       };
 
       environmentVariables = {
