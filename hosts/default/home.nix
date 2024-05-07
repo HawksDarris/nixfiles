@@ -35,6 +35,7 @@ home.stateVersion = "23.11"; # Please read the comment before changing.
 home.packages = with pkgs; [
   emacs 
   gh
+  grimblast
   tldr
   fd
   fdupes
