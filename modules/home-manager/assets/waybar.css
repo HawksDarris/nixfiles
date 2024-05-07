@@ -115,13 +115,13 @@ window#waybar {
 }
 
 
-.warning, .critical, .urgent {
-  animation-name: blink_red;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
+/* .warning, .critical, .urgent{ */
+/*   animation-name: blink_red; */
+/*   animation-duration: 1s; */
+/*   animation-timing-function: linear; */
+/*   animation-iteration-count: infinite; */
+/*   animation-direction: alternate; */
+/* } */
 
 #battery.critical:not(.charging) {
     background: #bf616a;
