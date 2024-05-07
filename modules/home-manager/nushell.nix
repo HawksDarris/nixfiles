@@ -747,7 +747,7 @@
     --help                      # show help
   ]
 
-  pokeget --hide-name bulbasaur
+  # pokeget --hide-name bulbasaur
   '';
     };  
 
