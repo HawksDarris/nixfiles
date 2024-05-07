@@ -149,7 +149,7 @@ programs.firefox = {
           fg = "#ffffff";
         };
       };
-      tabs.bar.bg = "#000000";
+      # tabs.bar.bg = "#000000";
     };
   };
 
