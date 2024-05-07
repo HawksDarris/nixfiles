@@ -70,11 +70,11 @@ nord15 #b48ead
   }
 
 window#waybar {
-    background:rgba (0, 0, 0, 0.5);
+    background:rgba (128, 255, 255, 0.2);
     border-radius: 20px 20px 20px 20px;
 }
 
-#workspaces:hover { background-color:goldenrod; }
+#workspaces button:hover { background-color:goldenrod; }
 
 #workspaces button {
     padding: 2px 0px;
@@ -102,6 +102,9 @@ window#waybar {
  * Module styles
  * -------------------------------------------------------------------------- */
 
+#custom-weather{
+  color: #d8dee9;
+}
 
 #clock {
  color:#99FFFF;
