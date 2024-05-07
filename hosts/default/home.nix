@@ -37,6 +37,7 @@ home.packages = with pkgs; [
   gh
   tldr
   fd
+  fdupes
   nsxiv
   ripgrep
   bun 
