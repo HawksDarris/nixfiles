@@ -61,7 +61,6 @@ nord15 #b48ead
   border-radius: 0;
   padding: 0 0;
   font-family:JetBrainsMono Nerd Font;
-  font-size: 100%;
   margin-right: 5px;
   margin-left: 5px;
   padding-bottom:2px;
@@ -70,8 +69,9 @@ nord15 #b48ead
 }
 
 window#waybar {
-  border-radius: 20px 20px 20px 20px;
+  /* border-radius: 20% 20% 0 0; */
   background-color: rgba(128, 255, 255, 0.1);
+  margin: 0 20px 0 20px;
 }
 
 #workspaces {
