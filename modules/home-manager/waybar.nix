@@ -22,8 +22,9 @@
         ];
         modules-center = [
           "clock"
+          "custom/weather"
         ];
-        modules-right = [ "cpu" "memory" "battery" "tray" "custom/weather"
+        modules-right = [ "cpu" "memory" "battery" "tray" 
           # "network"  # TODO add this again with an on-click to launch nmtui
           # "pulseaudio" 
           # "custom/powermenu"
@@ -120,7 +121,7 @@
         };
 
         "custom/weather" = {
-          "exec" = "curl 'https://wttr.in/Shenzhen?format=2'";
+          "exec" = "curl 'https://wttr.in/Shenzhen?format=1'";
           "interval" = 900;
           "on-click" = "yad --html --uri='https://wttr.in/Schenzhen' --center --fixed --width=1000 --height=680 --timeout=60 --timeout-indicator=right";
         };

@@ -70,27 +70,24 @@ nord15 #b48ead
 }
 
 window#waybar {
-  /* make background invisible so I can make a background for each element instead. */
-  background:rgba (128, 255, 255, 0.0);
   border-radius: 20px 20px 20px 20px;
+  background-color: rgba(128, 255, 255, 0.1);
 }
 
 #workspaces {
-  background:rgba (128, 255, 255, 0.2);
 }
 
 #workspaces button {
   padding: 2px 0px;
   border-color: #99FFFF;
   margin-top:2px;
-  background:rgba (128, 255, 255, 0.2);
+  border-radius: 25% 10%;
 }
 
 #workspaces button.active {
-  background:rgba (128, 255, 255, 0.2);
   border-bottom: 2px;
   border-style: solid;
-  border-radius: 2px;
+  border-radius: 25% 10%;
 }
 
 #clock, #battery, #cpu, #memory, #idle_inhibitor, #temperature,#custom-keyboard-layout, #backlight, #network, #pulseaudio, #tray, #window,#custom-launcher, #custom-power, #custom-network_traffic, #custom-weather{
@@ -104,12 +101,16 @@ window#waybar {
  * -------------------------------------------------------------------------- */
 
 #custom-weather{
-  color: #d8dee9;
+  margin-top: 5px;
+  font-size: 80%;
+  border-style: hidden;
 }
 
 #clock {
-  color:#99FFFF;
-  font-size: 80%
+  margin-top: 5px;
+  font-size: 80%;
+  border-style: hidden;
+  /* color:#99FFFF; */
 }
 
 #battery {
@@ -178,11 +179,12 @@ window#waybar {
   border-style: hidden;
   margin-top:2px;
   color:#99ffff;
+  font-size: 120%;
 }
 
 #window{
   border-style: hidden;
-  margin-top:1px;
+  margin-top:3px;
 }
 #custom-keyboard-layout{
   color:#d08770;
