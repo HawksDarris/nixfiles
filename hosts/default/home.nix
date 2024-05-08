@@ -1,5 +1,4 @@
-{ config, pkgs, inputs, ... }:
-
+{ config, pkgs, inputs, username, ... }:
 {
 imports =
   [
@@ -16,8 +15,8 @@ imports =
   ];
 
   # TODO replace username with variable
-  home.username = "sour";
-  home.homeDirectory = "/home/sour";
+  home.username = "${username}";
+  home.homeDirectory = "/home/${username}";
 
 # This value determines the Home Manager release that your configuration is
 # compatible with. This helps avoid breakage when a new Home Manager release

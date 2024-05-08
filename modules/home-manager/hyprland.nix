@@ -1,6 +1,5 @@
-{config, pkgs, ... }: 
+{config, pkgs, home, ... }: 
 {
-
   imports = [
 	# ./hyprland-keybindings.nix
   ];
@@ -85,8 +84,12 @@
 
   };
 
-  #home.file."${config.xdg.configHome}/hypr" = {
-  #  source = ./unported/hyprpaper.conf;
-  #  recursive = true;
-  #};
+  #home.file."${config.xdg.configHome}".text = ''
+  home.file.".config/swappy/config".text = ''
+    [Default]
+    save_dir=${home.homeDirectory}/Pictures/Screenshots
+    save_filename_format=%Y%m%d-%H%M%S.png
+  '';
+  # source = ./unported/hyprpaper.conf;
+    # recursive = true;
 }

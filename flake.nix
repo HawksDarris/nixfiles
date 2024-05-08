@@ -23,16 +23,22 @@
   };
 
   outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs: 
-    let 
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/default/configuration.nix
-      	  #./modules/nixos/locale.nix
-	  #./hosts/default/home.nix
+  let
+    /* ---- SYSTEM SETTINGS ---- */
+    system = "x86_64-linux";
+    hostname = "NixOS";
+    pkgs = nixpkgs.legacyPackages.${system};
+
+    /* ---- USER SETTINGS ---- */
+    username = "sour";
+
+  in {
+    nixosConfigurations.default = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs;};
+      modules = [
+        ./hosts/default/configuration.nix
+          #./modules/nixos/locale.nix
+          #./hosts/default/home.nix
           #inputs.home-manager.nixosModules.default
         ];
       };
@@ -45,12 +51,12 @@
           ./hosts/default/home.nix
           hyprland.homeManagerModules.default
           {wayland.windowManager.hyprland.enable = true;}
-	  ];
+        ];
 
-	extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = { inherit inputs username; };
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
       };
-  };
-}
+    };
+  }
