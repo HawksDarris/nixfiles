@@ -1,9 +1,6 @@
 { config, pkgs, inputs, ... }:
 
 {
-# Home Manager needs a bit of information about you and the paths it should
-# manage.
-
 imports =
   [
     ../../modules/home-manager/git.nix
@@ -18,6 +15,7 @@ imports =
     ../../modules/home-manager/scripts.nix
   ];
 
+  # TODO replace username with variable
   home.username = "sour";
   home.homeDirectory = "/home/sour";
 
