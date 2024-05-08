@@ -5,7 +5,6 @@
 	# ./hyprland-keybindings.nix
   ];
   home.packages = with pkgs; [
-    hyprpaper
     hyprpicker
   ];
 
@@ -86,8 +85,8 @@
 
   };
 
-  home.file."${config.xdg.configHome}/hypr" = {
-    source = ./unported/hyprpaper.conf;
-    # recursive = true;
-  };
+  #home.file."${config.xdg.configHome}/hypr" = {
+  #  source = ./unported/hyprpaper.conf;
+  #  recursive = true;
+  #};
 }
