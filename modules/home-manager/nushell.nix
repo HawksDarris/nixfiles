@@ -62,6 +62,7 @@
         #################### Config Files ################
         ##################################################
         cfn = "nvim ~/nixfiles/modules/home-manager/nushell.nix";
+        cfN = "nvim ~/nixfiles/hosts/default/configuration.nix";
         cfh = "nvim ~/nixfiles/hosts/default/home.nix";
         cfH = "nvim ~/nixfiles/modules/home-manager/hyprland.nix";
         cfk = "nvim ~/nixfiles/modules/home-manager/kitty.nix";
