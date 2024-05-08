@@ -122,6 +122,7 @@
 
     if IsRevealJSPresentation(bufname) then
       os.execute("pandoc -i " .. bufname .. " -t revealjs -o " .. output_html .. " --slide-level=2 --standalone")
+      os.execute("sed -i 's;https://unpkg.com/reveal.js@^4//;../;g' " .. output_html)
     else 
       os.execute("compiler " .. bufname)
     end
