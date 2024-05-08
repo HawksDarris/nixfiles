@@ -4,19 +4,19 @@
 # Home Manager needs a bit of information about you and the paths it should
 # manage.
 
-  imports =
-    [
+imports =
+  [
     ../../modules/home-manager/git.nix
-      ../../modules/home-manager/hyprland.nix
-      ../../modules/home-manager/kitty.nix
-      ../../modules/home-manager/lf.nix
-      ../../modules/home-manager/nushell.nix
-      ../../modules/home-manager/waybar.nix
-      ../../modules/home-manager/browsers.nix
-      ../../modules/home-manager/fonts.nix
-      ../../modules/home-manager/nixvim/nixvim.nix
-      ../../modules/home-manager/scripts.nix
-    ];
+    ../../modules/home-manager/hyprland.nix
+    ../../modules/home-manager/kitty.nix
+    ../../modules/home-manager/lf.nix
+    ../../modules/home-manager/nushell.nix
+    ../../modules/home-manager/waybar.nix
+    ../../modules/home-manager/browsers.nix
+    ../../modules/home-manager/fonts.nix
+    ../../modules/home-manager/nixvim/nixvim.nix
+    ../../modules/home-manager/scripts.nix
+  ];
 
   home.username = "sour";
   home.homeDirectory = "/home/sour";
@@ -77,8 +77,6 @@ home.packages = with pkgs; [
   wlogout
   eww
   brightnessctl
-  hyprpicker
-  hyprpaper
   rofi-wayland
   rofimoji
   slurp
@@ -104,7 +102,7 @@ home.packages = with pkgs; [
   #   echo "Hello, ${config.home.username}!"
   # '')
 
-        ];
+];
 
 # Home Manager is pretty good at managing dotfiles. The primary way to manage
 # plain files is through 'home.file'.
