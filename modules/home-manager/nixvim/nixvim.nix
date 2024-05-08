@@ -57,7 +57,7 @@
         vim-css-color.enable = true;
         vimtex = {
           enable = true; 
-          texlivePackage = null; # if not set, has default package
+#          texlivePackage = null; # if not set, has default package
           settings = {
             # compiler_method = "latexrun";
             view_method = "zathura";
