@@ -78,6 +78,7 @@ home.packages = with pkgs; [
   eww
   brightnessctl
   hyprpicker
+  hyprpaper
   rofi-wayland
   rofimoji
   slurp

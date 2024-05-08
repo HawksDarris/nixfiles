@@ -5,13 +5,13 @@
 	# ./hyprland-keybindings.nix
   ];
 
-  # programs.hyprland.enable = true;
+#  programs.hyprland.enable = true;
   
   # TODO replace username with variable
   # home-manager.users.sour.
 
   wayland.windowManager.hyprland = {
-    enable = true;
+    # enable = true;
     package = pkgs.hyprland;
         xwayland.enable = true;
 
