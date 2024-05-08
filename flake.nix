@@ -54,9 +54,6 @@
         ];
 
         extraSpecialArgs = { inherit inputs username; };
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
       };
     };
   }
