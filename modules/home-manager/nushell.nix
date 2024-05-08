@@ -63,7 +63,6 @@
         ##################################################
         cfn = "nvim ~/nixfiles/modules/home-manager/nushell.nix";
         cfh = "nvim ~/nixfiles/hosts/default/home.nix";
-        cfH = "nvim ~/nixfiles/modules/home-manager/hyprland.nix";
         cfk = "nvim ~/nixfiles/modules/home-manager/kitty.nix";
         cfl = "nvim ~/nixfiles/modules/home-manager/lf.nix";
         cfm = "nvim ~/.config/mutt/muttrc		# mutt (email client) config";
