@@ -39,6 +39,7 @@ home.packages = with pkgs; [
   fdupes
   nsxiv
   ripgrep
+  texliveFull
   bun 
   dart-sass
   rsync
