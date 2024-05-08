@@ -57,7 +57,7 @@
         vim-css-color.enable = true;
         vimtex = {
           enable = true; 
-#          texlivePackage = null; # if not set, has default package
+         texlivePackage = null; # if not set to null, has default package: texlive-combined-medium-2023-final. I need full.
           settings = {
             # compiler_method = "latexrun";
             view_method = "zathura";
