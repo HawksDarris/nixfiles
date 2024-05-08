@@ -5,3 +5,4 @@
    
 # TODO 
 - Figure out how to make pandoc use local revealjs instead of going to unpkg.com.
+- Set nixvim to remember cursor location between closes
