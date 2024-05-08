@@ -85,4 +85,9 @@
     '';
 
   };
+
+  home.file."${config.xdg.configHome}/hypr" = {
+    source = ./unported/hyprpaper.conf;
+    # recursive = true;
+  };
 }
