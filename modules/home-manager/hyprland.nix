@@ -9,11 +9,6 @@
     hyprpicker
   ];
 
-#  programs.hyprland.enable = true;
-  
-  # TODO replace username with variable
-  # home-manager.users.sour.
-
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
