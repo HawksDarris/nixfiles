@@ -18,9 +18,11 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs: 
     let 
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -41,6 +43,8 @@
         # the path to your home.nix.
         modules = [ 
           ./hosts/default/home.nix
+          hyprland.homeManagerModules.default
+          {wayland.windowManager.hyprland.enable = true;}
 	  ];
 
 	extraSpecialArgs = { inherit inputs; };
