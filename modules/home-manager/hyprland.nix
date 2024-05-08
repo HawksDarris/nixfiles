@@ -4,6 +4,10 @@
   imports = [
 	# ./hyprland-keybindings.nix
   ];
+  home.packages = with pkgs; [
+    hyprpaper
+    hyprpicker
+  ];
 
 #  programs.hyprland.enable = true;
   
