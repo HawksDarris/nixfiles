@@ -5,8 +5,9 @@
    
 # TODO 
 - Figure out how to make pandoc use local revealjs instead of going to unpkg.com.
-- Set nixvim to remember cursor location between closes
-
+- Set nixvim to persist cursor location on close
+- Set nixvim to persist undo on close
+ 
 # System crashed.
 
 The following is some bits from `journalctl -xb`
