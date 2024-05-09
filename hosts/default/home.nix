@@ -32,6 +32,7 @@ home.stateVersion = "23.11"; # Please read the comment before changing.
 # environment.
 home.packages = with pkgs; [
   emacs 
+  neomutt
   gh
   grimblast
   tldr
