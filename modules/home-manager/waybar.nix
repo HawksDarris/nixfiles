@@ -22,6 +22,7 @@
         ];
         modules-center = [
           "clock"
+          # "custom/weather-wttrbar"
           "custom/weather"
         ];
         modules-right = [ "cpu" "memory" "battery" "tray" 
@@ -124,6 +125,15 @@
           "exec" = "curl 'https://wttr.in/Shenzhen?format=1'";
           "interval" = 900;
           "on-click" = "yad --html --uri='https://wttr.in/Shenzhen' --center --fixed --width=1000 --height=680 --timeout=60 --timeout-indicator=right";
+        };
+
+        "custom/weather-wttrbar" = {
+          "format" = "{}°";
+          "tooltip" = true;
+          "interval" = 3600;
+          "exec" = "wttrbar";
+          "return-type" = "json";
+          "on-click" = "wttrbar --date-format '%m/%d' --location Shenzhen --hide-conditions";
         };
 
         "clock" = {
