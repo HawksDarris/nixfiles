@@ -7,6 +7,7 @@ imports =
     ../../modules/home-manager/hyprland.nix
     ../../modules/home-manager/kitty.nix
     ../../modules/home-manager/lf.nix
+    ../../modules/home-manager/neomutt.nix
     ../../modules/home-manager/nushell.nix
     ../../modules/home-manager/waybar.nix
     ../../modules/home-manager/browsers.nix
@@ -32,7 +33,6 @@ home.stateVersion = "23.11"; # Please read the comment before changing.
 # environment.
 home.packages = with pkgs; [
   emacs 
-  neomutt
   gh
   grimblast
   tldr
