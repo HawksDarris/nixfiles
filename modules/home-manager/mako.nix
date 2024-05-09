@@ -1,6 +1,6 @@
 {config, pkgs, ... }: 
 {
-  services.mako = with config.colorScheme.colors; {
+  services.mako = with config.colorScheme.palette; {
     enable = true;
     backgroundColor = "#${base01}";
     borderColor = "#${base0E}";

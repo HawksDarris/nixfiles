@@ -6,7 +6,7 @@ imports =
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/hyprland.nix
     inputs.nix-colors.homeManagerModules.default
-    #../../modules/home-manager/mako.nix
+    ../../modules/home-manager/mako.nix
     ../../modules/home-manager/kitty.nix
     ../../modules/home-manager/lf.nix
     # ../../modules/home-manager/neomutt.nix
