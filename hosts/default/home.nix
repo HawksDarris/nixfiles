@@ -74,8 +74,8 @@ home.packages = with pkgs; [
   glib
   bat
   ncdu
-  dunst
-  mako # Maybe replace dunst
+  # dunst
+  # mako # Maybe replace dunst
   kitty
   swww
   wlogout
