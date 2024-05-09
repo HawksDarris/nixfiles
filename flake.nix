@@ -31,7 +31,6 @@
 
     /* ---- USER SETTINGS ---- */
     username = "sour";
-    emailAddress = "insert email";
 
   in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {

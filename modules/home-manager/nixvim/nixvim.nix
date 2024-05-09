@@ -6,12 +6,19 @@
     ];
 
     programs.nixvim = {
+      enableMan = true;
       enable = true;
       defaultEditor = true;
+      highlight = {
+        Comment.fg = "#ff00ff";
+        Comment.bg = "#000000";
+        Comment.underline = true;
+        Comment.bold = true;
+      };
       colorschemes.catppuccin = {
         enable = true;
         settings = {
-          # flavour = "latte";
+          flavour = "latte";
           integrations = {
             cmp = true;
             gitsigns = true;
@@ -35,9 +42,32 @@
       };
 
       globals.mapleader = " ";
-
+      # mapping = {
+      #   "<CR>" = "cmp.mapping.confirm({ select = true })";
+      #   "<Tab>" = {
+      #     action = ''
+      #     function(fallback)
+      #     if cmp.visible() then
+      #     cmp.select_next_item()
+      #     elseif luasnip.expandable() then
+      #     luasnip.expand()
+      #     elseif luasnip.expand_or_jumpable() then
+      #     luasnip.expand_or_jump()
+      #     elseif check_backspace() then
+      #     fallback()
+      #     else
+      #     fallback()
+      #     end
+      #     end
+      #     '';
+      #     modes = [ "i" "s" ];
+      #   };
+      # };
       plugins = {
-        cmp.enable = true;
+        cmp = {
+          enable = true;
+          autoEnableSources = true;
+        };
         cmp-buffer.enable = true;
         cmp-cmdline.enable = true;
         cmp-nvim-lsp.enable = true;
@@ -50,14 +80,19 @@
         lint.enable = true; # TODO set up linting https://github.com/mfussenegger/nvim-lint
         luasnip.enable = true;
         nix.enable = true;
+        rainbow-delimiters.enable = true;
         surround.enable = true;
         telescope.enable = true;
-        treesitter.enable = true;
+        treesitter = {
+          enable = true;
+          folding = true;
+          indent = true;
+        };
         typst-vim.enable = true;
         vim-css-color.enable = true;
         vimtex = {
           enable = true; 
-         texlivePackage = null; # if not set to null, has default package: texlive-combined-medium-2023-final. I need full.
+          texlivePackage = null; # if not set to null, has default package: texlive-combined-medium-2023-final. I need full.
           settings = {
             # compiler_method = "latexrun";
             view_method = "zathura";
@@ -68,11 +103,17 @@
       plugins.lsp = {
         enable = true;
         servers = {
-          tsserver.enable = true;
+          bashls.enable = true;
+          cssls.enable = true;
+          jsonls.enable = true;
+          kotlin-language-server.enable = true;
           lua-ls = {
             enable = true;
             settings.telemetry.enable = false;
           };
+          nushell.enable = true;
+          tsserver.enable = true;
+
           rust-analyzer = {
             enable = true;
             installRustc = true;
@@ -82,55 +123,55 @@
       };
 
       extraPlugins = with pkgs.vimPlugins; [
-      {
-        plugin = vimwiki;
-        config = "
-        ";
-      }
-    ];
+        {
+          plugin = vimwiki;
+          config = "
+          ";
+        }
+      ];
 
-    autoCmd = [
-      {
-        event = [ "BufWritePost" ];
-        pattern = [ "*.c" "*.cpp" "*.cs" "*.go" "*.h" "*.java" "*.m" "*.md" "*.mom" "*.ms" "*.org" "*.py" "*.Rmd" "*.rs" "*.sass" "*.scad" "*.sent" "*.tex" "*.typ" ];
-        callback = { 
-          __raw = "function() CompileOnSave() end"; 
-        };
-      }
-    ];
+      autoCmd = [
+        {
+          event = [ "BufWritePost" ];
+          pattern = [ "*.c" "*.cpp" "*.cs" "*.go" "*.h" "*.java" "*.m" "*.md" "*.mom" "*.ms" "*.org" "*.py" "*.Rmd" "*.rs" "*.sass" "*.scad" "*.sent" "*.tex" "*.typ" ];
+          callback = { 
+            __raw = "function() CompileOnSave() end"; 
+          };
+        }
+      ];
 
 
-    opts = {
-      clipboard = [ "unnamedplus" ];
-      number = true;         # Show line numbers
-      relativenumber = true; # Show relative line numbers
-      shiftwidth = 2;        # Tab width should be 2
-    };
+      opts = {
+        clipboard = [ "unnamedplus" ];
+        number = true;         # Show line numbers
+        relativenumber = true; # Show relative line numbers
+        shiftwidth = 2;        # Tab width should be 2
+      };
 
-    extraConfigLua = ''
-    local function IsRevealJSPresentation(bufname)
-    if string.find(bufname, "reveal.js%-master/") then
+      extraConfigLua = ''
+      local function IsRevealJSPresentation(bufname)
+      if string.find(bufname, "reveal.js%-master/") then
       return true
-    else 
+      else 
       return false
-    end
-    end
+      end
+      end
 
-    local function CompileOnSave()
-    local bufname = vim.api.nvim_buf_get_name(0)
-    local filename = bufname:match("^.+/(.+)%..+$")
-    local output_html = filename .. ".html"
+      local function CompileOnSave()
+      local bufname = vim.api.nvim_buf_get_name(0)
+      local filename = bufname:match("^.+/(.+)%..+$")
+      local output_html = filename .. ".html"
 
-    if IsRevealJSPresentation(bufname) then
+      if IsRevealJSPresentation(bufname) then
       os.execute("pandoc -i \"" .. bufname .. "\" -t revealjs -o " .. output_html .. " --slide-level=2 --standalone")
       os.execute("sed -i 's;https://unpkg.com/reveal.js@^4//;../;g' " .. output_html)
-    else 
+      else 
       -- print(bufname)
       os.execute("compiler \"" .. bufname .. "\"" )
-    end
-    end
+      end
+      end
 
-    init=function ()
+      init=function ()
       vim.g.vimwiki_ext2syntax = {
         Rmd = 'markdown',
         rmd = 'markdown',
@@ -167,12 +208,12 @@
       vim.g.vimwiki_key_mappings = {
         table_mappings = 0,
       }
-    end
-    '';
+      end
+      '';
 
-    extraConfigVim = ''
-    '';
+      extraConfigVim = ''
+      '';
 
-  };
+    };
 
-}
+  }
