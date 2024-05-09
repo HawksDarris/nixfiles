@@ -5,9 +5,11 @@ imports =
   [
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/hyprland.nix
+    inputs.nix-colors.homeManagerModules.default
+    #../../modules/home-manager/mako.nix
     ../../modules/home-manager/kitty.nix
     ../../modules/home-manager/lf.nix
-    ../../modules/home-manager/neomutt.nix
+    # ../../modules/home-manager/neomutt.nix
     ../../modules/home-manager/nushell.nix
     ../../modules/home-manager/waybar.nix
     ../../modules/home-manager/browsers.nix
@@ -19,6 +21,7 @@ imports =
   # TODO replace username with variable
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 
 # This value determines the Home Manager release that your configuration is
 # compatible with. This helps avoid breakage when a new Home Manager release
