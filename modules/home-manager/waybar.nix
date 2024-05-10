@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
     programs.waybar = {
@@ -8,7 +8,141 @@
         target = "graphical-session.target";
       };
 
-      style = ./assets/waybar.css;
+      style = with config.colorScheme.palette; ''
+      * {
+        color: #${base05};
+        border: 0;
+        border-radius: 0;
+        padding: 0 0;
+        font-family:JetBrainsMono Nerd Font;
+        margin-right: 5px;
+        margin-left: 5px;
+        padding-bottom:2px;
+        transition-property: background-color;
+        transition-duration: 0.5s;
+      }
+
+      window#waybar {
+        background-color: #${base00};
+        margin: 0 20px 0 20px;
+      }
+
+      #workspaces button {
+        padding: 2px 0px;
+        border-color: #${base05};
+        margin-top:2px;
+        border-radius: 25% 10%;
+      }
+
+      #workspaces button.active {
+        border-bottom: 2px;
+        border-style: solid;
+        border-radius: 25% 10%;
+      }
+
+      #clock, #battery, #cpu, #memory, #idle_inhibitor, #temperature,#custom-keyboard-layout, #backlight, #network, #pulseaudio, #tray, #window,#custom-launcher, #custom-power, #custom-network_traffic, #custom-weather{
+        padding: 0 3px;
+        border-bottom: 2px;
+        border-style: solid;
+      }
+
+      #custom-weather{
+        margin-top: 5px;
+        font-size: 80%;
+        border-style: hidden;
+      }
+
+      #clock {
+        margin-top: 5px;
+        font-size: 80%;
+        border-style: hidden;
+        color:#${base07};
+      }
+
+      #battery {
+        color: #${base05};
+        /* color: #d8dee9; */
+      }
+
+      #battery.charging {
+        color: #${base0B};
+        /* color: #21c181; */
+      }
+
+
+      .warning:not(.charging), .critical:not(.charging), .urgent:not(.charging){
+        animation-name: blink_red;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+      }
+
+      #cpu {
+        /* color:#a3be8c; */
+        color: #${base0B}
+      }
+
+      #memory {
+        color: #${base08};
+        /* color: #d3869b; */
+      }
+
+      #network.disabled {
+        color:#bf616a;
+      }
+
+      #network{
+        color:#a3be8c;
+      }
+
+      #network.disconnected {
+        color: #bf616a;
+      }
+
+      #pulseaudio {
+        color: #b48ead;
+      }
+
+      #pulseaudio.muted {
+        color: #3b4252;
+      }
+
+      #idle_inhibitor {
+        color: #ebcb8b;
+      }
+
+      #tray {
+        color: #${base05};
+        /* color: d08770; */
+      }
+
+      #custom-launcher {
+        color:#99FFFF;
+      }
+
+      #custom-launcher,#custom-power{
+        border-style: hidden;
+        margin-top:2px;
+        font-size: 120%;
+      }
+
+      #window{
+        border-style: hidden;
+        margin-top:3px;
+        color: #${base05};
+      }
+      #custom-keyboard-layout{
+        color: #${base05};
+        /* color: d08770; */
+      }
+      #custom-network_traffic{
+        color: #${base05};
+        /* color: d08770; */
+      }
+
+      '';
+      # ./assets/waybar.css;
 
       settings = [{
         "layer" = "top";
