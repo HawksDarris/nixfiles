@@ -2,6 +2,12 @@
 1. Re-style waybar. 
 2. Set up wallpaper picker
 3. Maybe some way to change between themes
+4. pink (catppuccin red?): 
+  - hyprland borders 
+  - highlighted text
+5. add pacman chasing ghosts maybe 
+  - to kitty not to nu (otherwise it shows up in tty)
+
    
 # TODO 
 - Figure out how to make pandoc use local revealjs instead of going to unpkg.com.

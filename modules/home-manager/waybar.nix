@@ -10,7 +10,7 @@
 
       style = with config.colorScheme.palette; ''
       * {
-        color: #${base05};
+        color: #${base07};
         border: 0;
         border-radius: 0;
         padding: 0 0;
@@ -56,11 +56,9 @@
         margin-top: 5px;
         font-size: 80%;
         border-style: hidden;
-        color:#${base07};
       }
 
       #battery {
-        color: #${base05};
         /* color: #d8dee9; */
       }
 
@@ -80,7 +78,7 @@
 
       #cpu {
         /* color:#a3be8c; */
-        color: #${base0B}
+        color: #${base0C}
       }
 
       #memory {
@@ -130,14 +128,11 @@
       #window{
         border-style: hidden;
         margin-top:3px;
-        color: #${base05};
       }
       #custom-keyboard-layout{
-        color: #${base05};
         /* color: d08770; */
       }
       #custom-network_traffic{
-        color: #${base05};
         /* color: d08770; */
       }
 

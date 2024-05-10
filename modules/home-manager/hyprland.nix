@@ -51,7 +51,9 @@
 	  "$scrPath/batterynotify.sh # battery notification"
       ];
     };
-   extraConfig = ''
+   extraConfig = with config.colorScheme.palette; ''
+   general:col.inactive_border = rgb(${base08}) rgb(${base09}) 45deg
+   general:col.active_border = rgb(${base0A}) rgb(${base0F}) 45deg
    $scrPath=~/.config/hypr/scripts
 
    input {
