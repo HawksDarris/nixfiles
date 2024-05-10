@@ -69,6 +69,7 @@
         cfl = "nvim ~/nixfiles/modules/home-manager/lf.nix";
         cfm = "nvim ~/.config/mutt/muttrc		# mutt (email client) config";
         cfM = "nvim ~/.config/mpv/mpv.conf		# mutt (email client) config";
+        cfma = "nvim ~/nixfiles/modules/home-manager/mako.nix";
         cfq = "nvim ~/.config/qutebrowser/config.py	# sxiv (image viewer) key/script handler";
         cfu = "nvim ~/.config/newsboat/urls		# RSS urls for newsboat";
         cfv = "nvim ~/nixfiles/modules/home-manager/nixvim/nixvim.nix";
