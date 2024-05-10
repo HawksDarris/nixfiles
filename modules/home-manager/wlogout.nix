@@ -11,7 +11,7 @@
       }
 
       window {
-    /*    background-color: ${WindBg}; */
+    /*    background-color: $${WindBg}; */
         background-color: black;
       }
 
