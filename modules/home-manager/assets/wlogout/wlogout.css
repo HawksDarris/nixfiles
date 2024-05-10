@@ -1,14 +1,4 @@
-* {
-    background-image: none;
-    font-size: 100%;
-}
-
 /* @import "../waybar.css"; */
-
-window {
-    background-color: ${WindBg};
-}
-
 /* button { */
 /*     color: ${BtnCol}; */
 /*     background-color: @main-bg; */

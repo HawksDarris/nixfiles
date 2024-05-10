@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   home.packages = with pkgs; [ 
     chromium
@@ -144,9 +144,12 @@ programs.firefox = {
     enable = true;
     settings = {
       colors = {
+        webpage.preferred_color_scheme = "${config.colorScheme.variant}";
+        tabs.bar.bg = "#${config.colorScheme.palette.base00}";
+        keyhint.fg = "#${config.colorScheme.palette.base05}";
         hints = {
-          bg = "#000000";
-          fg = "#ffffff";
+          fg = "#${config.colorScheme.palette.base05}";
+          bg = "#${config.colorScheme.palette.base00}";
         };
       };
       # tabs.bar.bg = "#000000";

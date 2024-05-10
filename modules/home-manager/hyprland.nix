@@ -44,7 +44,6 @@
 	  "waybar # launch the system panel"
 	  "blueman-applet # systray app for BT"
 	  "nm-applet --indicator # systray app for Network/Wifi"
-          # "dunst # start notification demon"
           "mako"
 	  "wl-paste --type text --watch cliphist store # clipboard store text data"
 	  "wl-paste --type image --watch cliphist store # clipboard store image data"
