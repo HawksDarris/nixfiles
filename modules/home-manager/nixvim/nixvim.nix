@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 {  
   imports =
     [
@@ -10,36 +10,58 @@
       enable = true;
       defaultEditor = true;
       highlight = {
-        Comment.fg = "#ff00ff";
-        Comment.bg = "#000000";
+        # Comment.fg = "#ff00ff";
+        # Comment.bg = "#000000";
         Comment.underline = true;
         Comment.bold = true;
       };
-      colorschemes.catppuccin = {
+
+      colorschemes.base16 = with config.colorScheme.palette; {
         enable = true;
-        settings = {
-          flavour = "macchiato";
-          integrations = {
-            cmp = true;
-            gitsigns = true;
-            mini = {
-              enabled = true;
-              indentscope_color = "";
-            };
-            treesitter = true;
-          };
-          styles = {
-            booleans = [
-              "bold"
-              "italic"
-            ];
-            conditionals = [
-              "bold"
-            ];
-          };
-          term_colors = true;
+        colorscheme = {
+          base00 = "#${base00}";
+          base01 = "#${base01}";
+          base02 = "#${base02}";
+          base03 = "#${base03}";
+          base04 = "#${base04}";
+          base05 = "#${base05}";
+          base06 = "#${base06}";
+          base07 = "#${base07}";
+          base08 = "#${base08}";
+          base09 = "#${base09}";
+          base0A = "#${base0A}";
+          base0B = "#${base0B}";
+          base0C = "#${base0C}";
+          base0D = "#${base0D}";
+          base0E = "#${base0E}";
+          base0F = "#${base0F}";
         };
       };
+      # colorschemes.catppuccin = {
+      #   enable = true;
+      #   settings = {
+      #     flavour = "macchiato";
+      #     integrations = {
+      #       cmp = true;
+      #       gitsigns = true;
+      #       mini = {
+      #         enabled = true;
+      #         indentscope_color = "";
+      #       };
+      #       treesitter = true;
+      #     };
+      #     styles = {
+      #       booleans = [
+      #         "bold"
+      #         "italic"
+      #       ];
+      #       conditionals = [
+      #         "bold"
+      #       ];
+      #     };
+      #     term_colors = true;
+      #   };
+      # };
 
       globals.mapleader = " ";
       # mapping = {
@@ -164,7 +186,6 @@
 
       if IsRevealJSPresentation(bufname) then
       os.execute("pandoc -i \"" .. bufname .. "\" -t revealjs -o " .. output_html .. " --slide-level=2 --standalone")
-      os.execute("sed -i 's;https://unpkg.com/reveal.js@^4//;../;g' " .. output_html)
       else 
       -- print(bufname)
       os.execute("compiler \"" .. bufname .. "\"" )
