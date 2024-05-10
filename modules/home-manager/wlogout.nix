@@ -8,11 +8,12 @@
       * {
         background-image: none;
         font-size: 100%;
+        color: white;
       }
 
       window {
-    /*    background-color: $${WindBg}; */
-        background-color: black;
+        background-color: #99FFFF;
+        /* background-color: $${WindBg}; */
       }
 
     '';
