@@ -53,7 +53,7 @@ imports =
   # wlogout
   programs.wlogout = {
     enable = true;
-    style = ../../modules/home-manager/assets/wlogout.css;
+    style = ../../modules/home-manager/assets/wlogout/wlogout.css;
     layout = [
       {
         label = "lock";
@@ -98,6 +98,20 @@ imports =
       }
     ];
   };
+
+  # pandoc
+  programs.pandoc = {
+    enable = true;
+    citationStyles = [ # list of paths to .csl files
+    ];
+    defaults = {
+      metadata = {
+        author = "John Doe";
+      };
+      pdf-engine = "xelatex";
+      citeproc = true; # What is citeproc? I forget.
+    };
+  };
 # This value determines the Home Manager release that your configuration is
 # compatible with. This helps avoid breakage when a new Home Manager release
 # introduces backwards incompatible changes.
@@ -137,7 +151,6 @@ home.packages = with pkgs; [
 
   # To sort
   # lxqt-policykit-agent
-  pandoc
   pokeget-rs
   dbus
   pciutils

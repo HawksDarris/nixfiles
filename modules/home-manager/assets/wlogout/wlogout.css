@@ -1,9 +1,9 @@
 * {
     background-image: none;
-    font-size: ${fntSize}px;
+    font-size: 100%;
 }
 
-@import "$HOME/.config/waybar/themes/${wbarTheme}.css";
+/* @import "$HOME/.config/waybar/themes/${wbarTheme}.css"; */
 
 window {
     background-color: ${WindBg};
