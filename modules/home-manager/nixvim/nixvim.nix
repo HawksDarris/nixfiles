@@ -5,15 +5,15 @@
       inputs.nixvim.homeManagerModules.nixvim
     ];
 
-    programs.nixvim = {
+    programs.nixvim = with config.colorScheme.palette; {
       enableMan = true;
       enable = true;
       defaultEditor = true;
       highlight = {
-        # Comment.fg = "#ff00ff";
-        # Comment.bg = "#000000";
-        Comment.underline = true;
-        Comment.bold = true;
+        # Comment.fg = "#${base09}";
+        # Comment.bg = "#${base00}";
+        # Comment.underline = true;
+        # Comment.bold = true;
       };
 
       colorschemes.base16 = with config.colorScheme.palette; {
@@ -111,7 +111,7 @@
           indent = true;
         };
         typst-vim.enable = true;
-        vim-css-color.enable = true;
+        nvim-colorizer.enable = true;
         vimtex = {
           enable = true; 
           texlivePackage = null; # if not set to null, has default package: texlive-combined-medium-2023-final. I need full.
