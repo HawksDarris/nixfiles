@@ -10,6 +10,8 @@
     borderRadius = 5;
     borderSize = 2;
     maxVisible = 20;
+    format = "󰟪 %a\\n<b>󰋑 %s</b>\\n%b";
+    icons = true;
     font = "JetBrainsMono Nerd Font 8";
     layer = "overlay";
     defaultTimeout = 5000;

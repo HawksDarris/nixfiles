@@ -23,6 +23,81 @@ imports =
   home.homeDirectory = "/home/${username}";
   colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-medium;
 
+  # TODO Modularize
+
+  # fd
+  programs.fd = {
+    enable = true;
+    hidden = true; # Pass --hidden flag by default
+    ignores = [ # globally ignore given paths
+      ".git/"
+      "*.bak"
+    ];
+  };
+
+  # thefuck
+  programs.thefuck = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
+
+  # ripgrep
+  programs.ripgrep = {
+    enable = true;
+    arguments = [
+      "--max-columns-preview"
+      "--colors=line:style:bold"
+    ];
+  };
+
+  # wlogout
+  programs.wlogout = {
+    enable = true;
+    style = ../../modules/home-manager/assets/wlogout.css;
+    layout = [
+      {
+        label = "lock";
+        action = "swaylock";
+        text = "Lock";
+        keybind = "l";
+      }
+
+      {
+        label = "logout";
+        action = "hyprctl dispatch exit 0";
+        text = "Logout";
+        keybind = "e";
+      }
+
+      {
+        label = "suspend";
+        action = "swaylock -f && systemctl suspend";
+        text = "Suspend";
+        keybind = "u";
+      }
+
+      {
+        label = "shutdown";
+        action = "systemctl poweroff";
+        text = "Shutdown";
+        keybind = "s";
+      }
+
+      {
+        label = "hibernate";
+        action = "systemctl hibernate";
+        text = "Hibernate";
+        keybind = "h";
+      }
+
+      {
+        label = "reboot";
+        action = "systemctl reboot";
+        text = "Reboot";
+        keybind = "r";
+      }
+    ];
+  };
 # This value determines the Home Manager release that your configuration is
 # compatible with. This helps avoid breakage when a new Home Manager release
 # introduces backwards incompatible changes.
@@ -39,10 +114,8 @@ home.packages = with pkgs; [
   gh
   grimblast
   tldr
-  fd
   fdupes
   nsxiv
-  ripgrep
   texliveFull
   bun 
   dart-sass
@@ -78,7 +151,6 @@ home.packages = with pkgs; [
   # mako # Maybe replace dunst
   kitty
   swww
-  wlogout
   eww
   brightnessctl
   rofi-wayland
