@@ -16,6 +16,7 @@ imports =
     ../../modules/home-manager/fonts.nix
     ../../modules/home-manager/nixvim/nixvim.nix
     ../../modules/home-manager/scripts.nix
+    ../../modules/home-manager/wlogout.nix
   ];
 
   # TODO replace username with variable
@@ -47,55 +48,6 @@ imports =
     arguments = [
       "--max-columns-preview"
       "--colors=line:style:bold"
-    ];
-  };
-
-  # wlogout
-  programs.wlogout = {
-    enable = true;
-    style = ../../modules/home-manager/assets/wlogout/wlogout.css;
-    layout = [
-      {
-        label = "lock";
-        action = "swaylock";
-        text = "Lock";
-        keybind = "l";
-      }
-
-      {
-        label = "logout";
-        action = "hyprctl dispatch exit 0";
-        text = "Logout";
-        keybind = "e";
-      }
-
-      {
-        label = "suspend";
-        action = "swaylock -f && systemctl suspend";
-        text = "Suspend";
-        keybind = "u";
-      }
-
-      {
-        label = "shutdown";
-        action = "systemctl poweroff";
-        text = "Shutdown";
-        keybind = "s";
-      }
-
-      {
-        label = "hibernate";
-        action = "systemctl hibernate";
-        text = "Hibernate";
-        keybind = "h";
-      }
-
-      {
-        label = "reboot";
-        action = "systemctl reboot";
-        text = "Reboot";
-        keybind = "r";
-      }
     ];
   };
 
