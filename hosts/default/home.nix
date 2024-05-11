@@ -56,7 +56,6 @@ imports =
     ];
     defaults = {
       metadata = {
-        # author = "Me";
         revealjs-url = "..";
       };
       pdf-engine = "xelatex";
