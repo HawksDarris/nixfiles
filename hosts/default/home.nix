@@ -56,7 +56,8 @@ imports =
     ];
     defaults = {
       metadata = {
-        author = "John Doe";
+        # author = "Me";
+        revealjs-url = "..";
       };
       pdf-engine = "xelatex";
       citeproc = true; # What is citeproc? I forget.

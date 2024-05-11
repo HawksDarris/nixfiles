@@ -13,8 +13,10 @@
       ./hardware-configuration.nix
       ./../../modules/nixos/locale.nix
       #<home-manager/nixos>
-      #../../modules/main-user.nix
+      ../../modules/main-user.nix
     ];
+main-user.enable = true;
+main-user.userName = "sour";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ]; 
 
@@ -80,17 +82,15 @@
     #media-session.enable = true;
   };
 
-#main-user.enable = true;
-#main-user.userName = "sour";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.sour = {
-    isNormalUser = true;
-    description = "sour";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    ];
-  };
+  # users.users.sour = {
+  #   isNormalUser = true;
+  #   description = "sour";
+  #   extraGroups = [ "networkmanager" "wheel" ];
+  #   packages = with pkgs; [
+  #   ];
+  # };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
