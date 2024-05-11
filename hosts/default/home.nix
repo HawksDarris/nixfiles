@@ -22,7 +22,7 @@ imports =
   # TODO replace username with variable
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  colorScheme = inputs.nix-colors.colorSchemes.dracula;
 
   # TODO Modularize
   # colorScheme = {
