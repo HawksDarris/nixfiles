@@ -6,7 +6,7 @@
       name = "JetBrainsMono Nerd Font";
       size = 10;
     };
-    # theme = "Catppuccin-Macchiato";
+    # theme = "Catppuccin-Mocha";
     settings = {
       scrollback_lines = 200000;
       foreground = "#${config.colorScheme.palette.base05}";

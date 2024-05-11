@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, config, ... }:
 {
   programs = {
     nushell = { 
@@ -21,9 +21,6 @@
         z = "zathura";
         copy = "xsel --clipboard";
         copyp = "xsel --primary";
-        autofan = "doas ectool --interface=lpc autofanctrl";
-        configit = "/usr/bin/git --git-dir=cd ~/.dotfiles --work-tree=cd ~";
-        devrepo = "/usr/bin/git --git-dir=cd ~/Documents/Learning --work-tree=cd ~/Documents/Learning";
         lf = "^lf";
         magit = "nvim -c MagitOnly";
         mount = "sudo mount -o uid=1000";
@@ -81,7 +78,7 @@
         EDITOR = "nvim";
       };
 
-      extraConfig = ''
+      extraConfig = with config.colorScheme.palette; ''
 
       $env.config = {
         show_banner: false 
@@ -118,17 +115,17 @@
           }
 
           explore: {
-            status_bar_background: {fg: "#1D1F21", bg: "#C4C9C6"},
-            command_bar_text: {fg: "#C4C9C6"},
-            highlight: {fg: "black", bg: "yellow"},
+            status_bar_background: {fg: "#${base01}", bg: "#${base04}"},
+            command_bar_text: {fg: "#${base03}"},
+            highlight: {fg: "#${base00}", bg: "#${base0A}"},
             status: {
-              error: {fg: "white", bg: "red"},
+              error: {fg: "#${base06}", bg: "#${base08}"},
               warn: {}
               info: {}
             },
             table: {
-              split_line: {fg: "#404040"},
-              selected_cell: {bg: light_blue},
+              split_line: {fg: "#${base03}"},
+              selected_cell: {bg: "#${base0D}"},
               selected_row: {},
               selected_column: {},
             },

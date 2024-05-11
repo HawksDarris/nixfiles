@@ -9,6 +9,11 @@
       };
 
       style = with config.colorScheme.palette; ''
+      .modules-right * {
+        margin: 0 2px 0 2px;
+        padding: 0 5px 0 2px;
+      }
+
       * {
         color: #${base07};
         border: 0;
@@ -20,51 +25,60 @@
         padding-bottom:2px;
         transition-property: background-color;
         transition-duration: 0.5s;
+        background-color: transparent;
+        border-radius: 8px;
       }
 
       window#waybar {
-        background-color: #${base00};
         margin: 0 20px 0 20px;
       }
 
       #workspaces button {
-        padding: 2px 0px;
+        background-color: #${base00};
+      }
+
+      #workspaces button {
+        opacity: 0.3;
+        background-color: #${base00};
+        padding: 2px 2px 0 2px;
         border-color: #${base05};
-        margin-top:2px;
+        margin: 0px 2.5px 0 0;
         border-radius: 25% 10%;
       }
 
       #workspaces button.active {
+        opacity: 1;
         border-bottom: 2px;
         border-style: solid;
         border-radius: 25% 10%;
       }
 
-      #clock, #battery, #cpu, #memory, #idle_inhibitor, #temperature,#custom-keyboard-layout, #backlight, #network, #pulseaudio, #tray, #window,#custom-launcher, #custom-power, #custom-network_traffic, #custom-weather{
-        padding: 0 3px;
+      #clock, #battery, #cpu, #memory, #idle_inhibitor, #temperature, #backlight, #network, #pulseaudio, #tray, #window,#custom-launcher, #custom-power, #custom-network_traffic, #custom-weather{
         border-bottom: 2px;
         border-style: solid;
+        background-color: #${base00};
       }
 
       #custom-weather{
-        margin-top: 5px;
         font-size: 80%;
         border-style: hidden;
       }
 
       #clock {
-        margin-top: 5px;
+        font-weight: bold;
         font-size: 80%;
         border-style: hidden;
+        background-color: transparent;
+        color: #${base09};
       }
 
       #battery {
-        /* color: #d8dee9; */
+        opacity: 0.7;
+        margin-left: 10px;
       }
 
       #battery.charging {
         color: #${base0B};
-        /* color: #21c181; */
       }
 
 
@@ -77,25 +91,23 @@
       }
 
       #cpu {
-        /* color:#a3be8c; */
         color: #${base0C}
       }
 
       #memory {
-        color: #${base08};
-        /* color: #d3869b; */
+        color: #${base09};
       }
 
       #network.disabled {
-        color:#bf616a;
+        color: #${base09};
       }
 
       #network{
-        color:#a3be8c;
+        color: #${base0B};
       }
 
       #network.disconnected {
-        color: #bf616a;
+        color: #${base08};
       }
 
       #pulseaudio {
@@ -112,10 +124,10 @@
 
       #tray {
         color: #${base05};
-        /* color: d08770; */
       }
 
       #custom-launcher {
+        padding: 0 6px 0 10px;
         color:#99FFFF;
       }
 
@@ -127,10 +139,7 @@
 
       #window{
         border-style: hidden;
-        margin-top:3px;
-      }
-      #custom-keyboard-layout{
-        /* color: d08770; */
+        padding-top: 3px;
       }
       #custom-network_traffic{
         /* color: d08770; */
@@ -152,9 +161,9 @@
         modules-center = [
           "clock"
           # "custom/weather-wttrbar"
-          "custom/weather"
+          "custom/weather-wttrbar"
         ];
-        modules-right = [ "cpu" "memory" "battery" "tray" 
+        modules-right = [ "network" "cpu" "memory" "battery" "tray" 
           # "network"  # TODO add this again with an on-click to launch nmtui
           # "pulseaudio" 
           # "custom/powermenu"
@@ -248,6 +257,7 @@
           "format-wifi" = "󰖩 {essid}";
           "interval" = 1;
           "tooltip" = false;
+          "on-click" = "kitty -e nmtui";
         };
 
         "custom/weather" = {
