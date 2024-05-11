@@ -12,6 +12,7 @@
     maxVisible = 20;
     format = "󰟪 %a\\n<b>󰋑 %s</b>\\n%b";
     icons = true;
+    iconPath = "./assets/notifier-icons:./assets/notifier-icons/vol"; #colon-delimited string of paths
     font = "JetBrainsMono Nerd Font 8";
     layer = "overlay";
     defaultTimeout = 5000;
