@@ -1,6 +1,11 @@
 { inputs, ... }: 
 let 
-  theme = dracula;
+  theme = "catppuccin-macchiato";
+  # catppuccin-latte
+  # catppuccin-mocha;
+  # catppuccin-macchiato;
+  # catppuccin-latte;
+  # dracula
 in {
   colorScheme = inputs.nix-colors.colorSchemes.${theme};
 

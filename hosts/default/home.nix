@@ -4,53 +4,27 @@
 imports =
   [
     inputs.nix-colors.homeManagerModules.default
+    # ../../modules/home-manager/neomutt.nix
     ../../modules/home-manager/bottom.nix
+    ../../modules/home-manager/browsers.nix
+    ../../modules/home-manager/colors.nix
+    ../../modules/home-manager/fonts.nix
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/hyprland.nix
-    ../../modules/home-manager/mako.nix
     ../../modules/home-manager/kitty.nix
     ../../modules/home-manager/lf.nix
-    # ../../modules/home-manager/neomutt.nix
-    ../../modules/home-manager/nushell.nix
-    ../../modules/home-manager/waybar.nix
-    ../../modules/home-manager/browsers.nix
-    ../../modules/home-manager/fonts.nix
+    ../../modules/home-manager/mako.nix
     ../../modules/home-manager/nixvim/nixvim.nix
+    ../../modules/home-manager/nushell.nix
     ../../modules/home-manager/scripts.nix
+    ../../modules/home-manager/waybar.nix
     ../../modules/home-manager/wlogout.nix
   ];
 
   # TODO replace username with variable
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
-  colorScheme = inputs.nix-colors.colorSchemes.dracula;
 
-  # TODO Modularize
-  # colorScheme = {
-  #   slug = "icyblue";
-  #   name = "Icyblue";
-  #   author = "Gabriel Fontes (https://github.com/Misterio77)";
-  #   palette = {
-  #     base00 = "#271C3A";
-  #     base01 = "#100323";
-  #     base02 = "#3E2D5C";
-  #     base03 = "#5D5766";
-  #     base04 = "#BEBCBF";
-  #     base05 = "#DEDCDF";
-  #     base06 = "#EDEAEF";
-  #     base07 = "#BBAADD";
-  #     base08 = "#A92258";
-  #     base09 = "#918889";
-  #     base0A = "#804ead";
-  #     base0B = "#C6914B";
-  #     base0C = "#7263AA";
-  #     base0D = "#8E7DC6";
-  #     base0E = "#953B9D";
-  #     base0F = "#59325C";
-  #   };
-  # };
-
-  # fd
   programs.fd = {
     enable = true;
     hidden = true; # Pass --hidden flag by default
