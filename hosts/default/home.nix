@@ -25,6 +25,7 @@ imports =
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
 
+  programs.pywal.enable = true;
   programs.fd = {
     enable = true;
     hidden = true; # Pass --hidden flag by default
