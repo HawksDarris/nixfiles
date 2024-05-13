@@ -7,30 +7,30 @@ let
   # catppuccin-latte;
   # dracula
 in {
-  colorScheme = inputs.nix-colors.colorSchemes.${theme};
+  # colorScheme = inputs.nix-colors.colorSchemes.${theme};
 
   # TODO Modularize
-  # colorScheme = {
-  #   slug = "icyblue";
-  #   name = "Icyblue";
-  #   author = "Gabriel Fontes (https://github.com/Misterio77)";
-  #   palette = {
-  #     base00 = "#271C3A";
-  #     base01 = "#100323";
-  #     base02 = "#3E2D5C";
-  #     base03 = "#5D5766";
-  #     base04 = "#BEBCBF";
-  #     base05 = "#DEDCDF";
-  #     base06 = "#EDEAEF";
-  #     base07 = "#BBAADD";
-  #     base08 = "#A92258";
-  #     base09 = "#918889";
-  #     base0A = "#804ead";
-  #     base0B = "#C6914B";
-  #     base0C = "#7263AA";
-  #     base0D = "#8E7DC6";
-  #     base0E = "#953B9D";
-  #     base0F = "#59325C";
-  #   };
-  # };
+  colorScheme = {
+    slug = "pywalgen";
+    name = "Pywal Generated";
+    author = "A computer";
+    palette = {
+      base00 = "#100614";
+      base01 = "#4F4EB4";
+      base02 = "#DC61A6";
+      base03 = "#4D9BDD";
+      base04 = "#F4A3A9";
+      base05 = "#F0CBB2";
+      base06 = "#A6A2DE";
+      base07 = "#edcde4";
+      base08 = "#a58f9f";
+      base09 = "#4F4EB4";
+      base0A = "#DC61A6";
+      base0B = "#4D9BDD";
+      base0C = "#F4A3A9";
+      base0D = "#F0CBB2";
+      base0E = "#A6A2DE";
+      base0F = "#59325C";
+    };
+  };
 }

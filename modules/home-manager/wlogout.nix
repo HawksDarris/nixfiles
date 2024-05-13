@@ -1,6 +1,6 @@
 { inputs, config, ...}:
 let 
-  hvr = "2";
+  hvr = "5";
   active_rad = "8";
   mgn = "5" ;
   button_rad = "5";
@@ -59,17 +59,17 @@ in {
 
     button:hover#suspend {
       border-radius: ${active_rad}px;
-      margin : ${hvr}px 0px ${hvr}px 0px;
+      margin : ${hvr}px ${hvr}px ${hvr}px 0px;
     }
 
     button:hover#shutdown {
       border-radius: ${active_rad}px;
-      margin : ${hvr}px 0px ${hvr}px 0px;
+      margin : ${hvr}px ${hvr}px ${hvr}px 0px;
     }
 
     button:hover#hibernate {
       border-radius: ${active_rad}px;
-      margin : ${hvr}px 0px ${hvr}px 0px;
+      margin : ${hvr}px ${hvr}px ${hvr}px 0px;
     }
 
     button:hover#reboot {
@@ -118,10 +118,17 @@ in {
 
     layout = [
       {
-        label = "lock";
-        action = "swaylock";
-        text = "Lock";
-        keybind = "l";
+        label = "shutdown";
+        action = "systemctl poweroff";
+        text = "Shutdown";
+        keybind = "s";
+      }
+
+      {
+        label = "reboot";
+        action = "systemctl reboot";
+        text = "Reboot";
+        keybind = "r";
       }
 
       {
@@ -139,10 +146,10 @@ in {
       }
 
       {
-        label = "shutdown";
-        action = "systemctl poweroff";
-        text = "Shutdown";
-        keybind = "s";
+        label = "lock";
+        action = "swaylock";
+        text = "Lock";
+        keybind = "l";
       }
 
       {
@@ -152,12 +159,6 @@ in {
         keybind = "h";
       }
 
-      {
-        label = "reboot";
-        action = "systemctl reboot";
-        text = "Reboot";
-        keybind = "r";
-      }
     ];
   };
 }

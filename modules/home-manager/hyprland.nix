@@ -49,6 +49,7 @@
 	  "wl-paste --type image --watch cliphist store # clipboard store image data"
 	  "$scrPath/swwwallpaper.sh # start wallpaper daemon"
 	  "$scrPath/batterynotify.sh # battery notification"
+          "emacs --daemon"
       ];
     };
    extraConfig = with config.colorScheme.palette; ''

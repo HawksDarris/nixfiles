@@ -90,6 +90,7 @@ home.packages = with pkgs; [
   mpv
   yad
   killall
+  keepassxc
   wttrbar
   zathura
 

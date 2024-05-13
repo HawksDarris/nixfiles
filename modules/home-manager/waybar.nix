@@ -1,151 +1,27 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, username, ... }:
 
 {
-    programs.waybar = {
-      enable = true;
-      systemd = {
-        enable = false;
-        target = "graphical-session.target";
-      };
+  programs.waybar = {
+    enable = true;
+    systemd = {
+      enable = false;
+      target = "graphical-session.target";
+    };
 
-      style = with config.colorScheme.palette; ''
-      .modules-right * {
-        margin: 0 2px 0 2px;
-        padding: 0 5px 0 2px;
-      }
+    style = with config.colorScheme.palette; ''
+    @import url("/home/${username}/.cache/wal/colors-waybar.css");
 
-      * {
-        color: #${base07};
-        border: 0;
-        border-radius: 0;
-        padding: 0 0;
-        font-family:JetBrainsMono Nerd Font;
-        margin-right: 5px;
-        margin-left: 5px;
-        padding-bottom:2px;
-        transition-property: background-color;
-        transition-duration: 0.5s;
-        background-color: transparent;
-        border-radius: 8px;
-      }
+    @define-color bg @background;
+    @define-color fg @foreground;
+    @define-color textcolor @cursor;
 
-      window#waybar {
-        margin: 0 20px 0 20px;
-      }
+    @import url("/home/${username}/.config/waybar/other.css");
 
-      #workspaces button {
-        background-color: #${base00};
-      }
-
-      #workspaces button {
-        opacity: 0.3;
-        background-color: #${base00};
-        padding: 2px 2px 0 2px;
-        border-color: #${base05};
-        margin: 0px 2.5px 0 0;
-        border-radius: 25% 10%;
-      }
-
-      #workspaces button.active {
-        opacity: 1;
-        border-bottom: 2px;
-        border-style: solid;
-        border-radius: 25% 10%;
-      }
-
-      #clock, #battery, #cpu, #memory, #idle_inhibitor, #temperature, #backlight, #network, #pulseaudio, #tray, #window,#custom-launcher, #custom-power, #custom-network_traffic, #custom-weather{
-        border-bottom: 2px;
-        border-style: solid;
-        background-color: #${base00};
-      }
-
-      #custom-weather{
-        font-size: 80%;
-        border-style: hidden;
-      }
-
-      #clock {
-        font-weight: bold;
-        font-size: 80%;
-        border-style: hidden;
-        background-color: transparent;
-        color: #${base09};
-      }
-
-      #battery {
-        opacity: 0.7;
-        margin-left: 10px;
-      }
-
-      #battery.charging {
-        color: #${base0B};
-      }
-
-
-      .warning:not(.charging), .critical:not(.charging), .urgent:not(.charging){
-        animation-name: blink_red;
-        animation-duration: 1s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-      }
-
-      #cpu {
-        color: #${base0C}
-      }
-
-      #memory {
-        color: #${base09};
-      }
-
-      #network.disabled {
-        color: #${base09};
-      }
-
-      #network{
-        color: #${base0B};
-      }
-
-      #network.disconnected {
-        color: #${base08};
-      }
-
-      #pulseaudio {
-        color: #b48ead;
-      }
-
-      #pulseaudio.muted {
-        color: #3b4252;
-      }
-
-      #idle_inhibitor {
-        color: #ebcb8b;
-      }
-
-      #tray {
-        color: #${base05};
-      }
-
-      #custom-launcher {
-        padding: 0 6px 0 10px;
-        color:#99FFFF;
-      }
-
-      #custom-launcher,#custom-power{
-        border-style: hidden;
-        margin-top:2px;
-        font-size: 120%;
-      }
-
-      #window{
-        border-style: hidden;
-        padding-top: 3px;
-      }
-      #custom-network_traffic{
-        /* color: d08770; */
-      }
-
-      '';
+    #custom-launcher {
+      padding: 0 6px 0 10px;
+      color:#99FFFF;
+    }
+    '';
       # ./assets/waybar.css;
 
       settings = [{
@@ -161,7 +37,7 @@
         modules-center = [
           "clock"
           # "custom/weather-wttrbar"
-          "custom/weather-wttrbar"
+          "custom/weather"
         ];
         modules-right = [ "network" "cpu" "memory" "battery" "tray" 
           # "network"  # TODO add this again with an on-click to launch nmtui
@@ -261,12 +137,6 @@
         };
 
         "custom/weather" = {
-          "exec" = "curl 'https://wttr.in/Shenzhen?format=1'";
-          "interval" = 900;
-          "on-click" = "yad --html --uri='https://wttr.in/Shenzhen' --center --fixed --width=1000 --height=680 --timeout=60 --timeout-indicator=right";
-        };
-
-        "custom/weather-wttrbar" = {
           "format" = "{}°";
           "tooltip" = true;
           "interval" = 3600;
