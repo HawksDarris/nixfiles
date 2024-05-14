@@ -3,6 +3,25 @@
   home.packages = with pkgs; [ 
     chromium
 ];
+  programs.qutebrowser = {
+    enable = true;
+    searchEngines = {
+      DEFAULT = "https://bing.com/search?q={}";
+      ew = "https://bing.com/search?q=site:emacswiki.org%20{}";
+    };
+    settings = {
+      colors = {
+        webpage.preferred_color_scheme = "${config.colorScheme.variant}";
+        tabs.bar.bg = "#${config.colorScheme.palette.base00}";
+        keyhint.fg = "#${config.colorScheme.palette.base05}";
+        hints = {
+          fg = "#${config.colorScheme.palette.base05}";
+          bg = "#${config.colorScheme.palette.base00}";
+        };
+      };
+      # tabs.bar.bg = "#000000";
+    };
+  };
 programs.firefox = {
   enable = true;
   policies = {
@@ -138,24 +157,6 @@ programs.firefox = {
       "privacy.clearOnShutdown.history" = false;
       "privacy.clearOnShutdown.cookies" = false;
       "network.cookie.lifetimePolicy" = 0;
-    };
-  };
-  programs.qutebrowser = {
-    enable = true;
-    searchEngines = {
-      DEFAULT = "https://bing.com/search?q={}";
-    };
-    settings = {
-      colors = {
-        webpage.preferred_color_scheme = "${config.colorScheme.variant}";
-        tabs.bar.bg = "#${config.colorScheme.palette.base00}";
-        keyhint.fg = "#${config.colorScheme.palette.base05}";
-        hints = {
-          fg = "#${config.colorScheme.palette.base05}";
-          bg = "#${config.colorScheme.palette.base00}";
-        };
-      };
-      # tabs.bar.bg = "#000000";
     };
   };
 
