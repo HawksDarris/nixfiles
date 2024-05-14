@@ -172,7 +172,7 @@
       autoCmd = [
         {
           event = [ "BufWritePost" ];
-          pattern = [ "*.c" "*.cpp" "*.cs" "*.go" "*.h" "*.java" "*.m" "*.md" "*.mom" "*.ms" "*.org" "*.py" "*.Rmd" "*.rs" "*.sass" "*.scad" "*.sent" "*.tex" "*.typ" ];
+          pattern = [ "*.c" "*.cpp" "*.cs" "*.go" "*.h" "*.java" "*.m" "*.md" "*.mom" "*.ms" "*.py" "*.Rmd" "*.rs" "*.sass" "*.scad" "*.sent" "*.tex" "*.typ" ];
           callback = { 
             __raw = "function() CompileOnSave() end"; 
           };
@@ -188,25 +188,28 @@
       };
 
       extraConfigLua = ''
-      local function IsRevealJSPresentation(bufname)
-      if string.find(bufname, "reveal.js%-master/") then
-      return true
-      else 
-      return false
-      end
+      local function AvoidStrings(bufname)
+        local stringsToAvoid = {"reveal.js%-master/", "README"}
+        for i = 1, #stringsToAvoid do
+          if stringsToAvoid[i] == bufname then
+            return true
+          end
+        end
+        return false
       end
 
       local function CompileOnSave()
-      local bufname = vim.api.nvim_buf_get_name(0)
-      local filename = bufname:match("^.+/(.+)%..+$")
-      local output_html = filename .. ".html"
+        local bufname = vim.api.nvim_buf_get_name(0)
+        local filename = bufname:match("^.+/(.+)%..+$")
+        local output_html = filename .. ".html"
 
-      if IsRevealJSPresentation(bufname) then
-      os.execute("pandoc -i \"" .. bufname .. "\" -t revealjs -o " .. output_html .. " --slide-level=2 --standalone")
-      else 
-      -- print(bufname)
-      os.execute("compiler \"" .. bufname .. "\"" )
-      end
+        if not AvoidStrings(bufname) then
+          os.execute("compiler \"" .. bufname .. "\"" )
+        end
+
+        if string.find(bufname, "reveal.js%-master/") then
+          os.execute("pandoc -i \"" .. bufname .. "\" -t revealjs -o " .. output_html .. " --slide-level=2 --standalone")
+        end
       end
 
       init=function ()
