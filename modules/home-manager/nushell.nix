@@ -58,6 +58,7 @@
         ##################################################
         #################### Config Files ################
         ##################################################
+        cfb = "nvim ~/nixfiles/modules/home-manager/browsers.nix";
         cfn = "nvim ~/nixfiles/modules/home-manager/nushell.nix";
         cfN = "nvim ~/nixfiles/hosts/default/configuration.nix";
         cfh = "nvim ~/nixfiles/hosts/default/home.nix";
