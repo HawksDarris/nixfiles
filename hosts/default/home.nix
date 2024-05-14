@@ -77,36 +77,45 @@ home.stateVersion = "23.11"; # Please read the comment before changing.
 # environment.
 home.packages = with pkgs; [
   emacs 
-  gh
-  grimblast
-  tldr
-  fdupes
-  nsxiv
-  texliveFull
   bun 
   dart-sass
-  rsync
-  fzf
-  mpv
   yad
-  killall
   keepassxc
   wttrbar
-  zathura
+  taskwarrior3
 
-  # sound
-  pavucontrol
-  pamixer
-  brightnessctl
+  # media
+  grimblast
   mpc-cli
   ncmpcpp
+  nsxiv
   playerctl
 
-  # To sort
-  # lxqt-policykit-agent
-  pokeget-rs
-  dbus
+  # file management
+  jmtpfs # for phone mounting
+
+  # cli things
+  gh
+  fdupes
+  fzf
+  killall
+  mpv
+  rsync
+  tldr
+  pamixer
   pciutils
+
+  # document management
+  texliveFull
+  zathura
+
+  # Candy
+  pokeget-rs
+  
+  # To sort
+  brightnessctl
+  # lxqt-policykit-agent
+  dbus
   libnotify
   ueberzug # for lf previews
   jq
@@ -127,7 +136,6 @@ home.packages = with pkgs; [
   wl-clipboard
   wofi
   wayshot
-  xdotool
 
   # # It is sometimes useful to fine-tune packages, for example, by applying
   # # overrides. You can do that directly here, just don't forget the

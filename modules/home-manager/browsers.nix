@@ -142,6 +142,9 @@ programs.firefox = {
   };
   programs.qutebrowser = {
     enable = true;
+    searchEngines = {
+      DEFAULT = "https://bing.com/search?q={}";
+    };
     settings = {
       colors = {
         webpage.preferred_color_scheme = "${config.colorScheme.variant}";
