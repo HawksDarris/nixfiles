@@ -7,13 +7,12 @@
       enable = true;
       changeHunkIndicators = true;
     };
-    extraConfig =
-      {
-        url = {
-          "https://mirror.ghproxy.com/https://github" = {
-            insteadOf = "https://github";
-          };
-        };
-      };
+    # extraConfig = {
+    #     # url = {
+    #     #   "https://mirror.ghproxy.com/https://github" = {
+    #     #     insteadOf = "https://github";
+    #     #   };
+    #     # };
+    #   };
   };
 }
