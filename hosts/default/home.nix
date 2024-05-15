@@ -25,32 +25,6 @@ imports =
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
 
-    # We have to force the values below to override the ones defined above
-  specialisation.light-theme.configuration = {
-    colorScheme = lib.mkForce { 
-      slug =  "catppuccinLatte";
-      colors = {
-        base00 = "#eff1f5";
-        base01 = "#e6e9ef";
-        base02 = "#ccd0da";
-        base03 = "#bcc0cc";
-        base04 = "#acb0be";
-        base05 = "#4c4f69";
-        base06 = "#dc8a78";
-        base07 = "#7287fd";
-        base08 = "#d20f39";
-        base09 = "#fe640b";
-        base0A = "#df8e1d";
-        base0B = "#40a02b";
-        base0C = "#179299";
-        base0D = "#1e66f5";
-        base0E = "#8839ef";
-        base0F = "#dd7878";
-      };
-    };
-  };
-
-  programs.pywal.enable = true;
   programs.fd = {
     enable = true;
     hidden = true; # Pass --hidden flag by default
@@ -101,18 +75,6 @@ home.stateVersion = "23.11"; # Please read the comment before changing.
 # The home.packages option allows you to install Nix packages into your
 # environment.
 home.packages = with pkgs; [
-  (hiPrio (writeShellApplication {
-      name = "toggle-theme";
-      runtimeInputs = with pkgs; [ home-manager coreutils ripgrep ];
-        # go back two generations
-        # home-manager creates a new generation every time activation script invoked
-        text = ''
-          "$(home-manager generations | head -2 | tail -1 | rg -o '/[^ ]*')"/activate
-          '';
-      }
-    )
-  )
-
   gnucash
   emacs 
   bun 
