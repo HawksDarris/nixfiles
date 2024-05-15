@@ -92,13 +92,13 @@ in {
 #suspend {
   background-image: image(url("${icon_path}/suspend_white.png"), url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
   border-radius: 0px 0px 0px 0px;
-  margin : ${mgn}px 0px ${mgn}px 0px;
+  margin : ${mgn}px ${mgn}px ${mgn}px 0px;
 }
 
 #shutdown {
   background-image: image(url("${icon_path}/shutdown_white.png"), url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
   border-radius: 0px 0px 0px 0px;
-  margin : ${mgn}px 0px ${mgn}px 0px;
+  margin : ${mgn}px ${mgn}px ${mgn}px 0px;
 }
 
 #hibernate {
