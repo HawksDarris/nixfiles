@@ -113,6 +113,7 @@ home.packages = with pkgs; [
   pokeget-rs
   
   # To sort
+  kiwix
   brightnessctl
   # lxqt-policykit-agent
   dbus
