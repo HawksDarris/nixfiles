@@ -6,7 +6,7 @@
     backgroundColor = "#${base00}";
     borderColor = "#${base00}";
     textColor = "#${base05}";
-    defaultTimeout = 10000;
+    defaultTimeout = 5000;
     width = 300; 
     height = 300;
     borderRadius = 5;
@@ -16,7 +16,6 @@
     icons = true;
     iconPath = "./assets/notifier-icons:./assets/notifier-icons/vol"; #colon-delimited string of paths
     layer = "overlay";
-    defaultTimeout = 5000;
     extraConfig = ''
       ignore-timeout=1
       [urgency=low]
