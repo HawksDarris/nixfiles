@@ -24,38 +24,6 @@ imports =
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
 
-  programs.fastfetch = {
-    enable = true;
-    settings = {
-      logo = {
-        source = "nixos_small";
-        padding = {
-          right = 1;
-        };
-      };
-      display = {
-        binaryPrefix = "si";
-        color = "blue";
-        separator = " <U+F178> ";
-      };
-      modules = [
-        {
-          type = "datetime";
-          key = "Date";
-          format = "{1}-{3}-{11}";
-        }
-        {
-          type = "datetime";
-          key = "Time";
-          format = "{14}:{17}:{20}";
-        }
-        "break"
-        "player"
-        "media"
-      ];
-    };
-  };
-
   programs.fd = {
     enable = true;
     hidden = true; # Pass --hidden flag by default
@@ -126,6 +94,7 @@ home.packages = with pkgs; [
   jmtpfs # for phone mounting
 
   # cli things
+  macchina
   gh
   fdupes
   fzf
