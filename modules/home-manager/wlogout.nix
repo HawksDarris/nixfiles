@@ -85,6 +85,7 @@ in {
 
 #suspend {
   background-image: image(url("${icon_path}/suspend_white.png"), url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
+  border-radius: ${button_rad}px ${button_rad}px 0px 0px;
   margin : ${mgn}px ${mgn}px ${mgn}px 0px;
 }
 
