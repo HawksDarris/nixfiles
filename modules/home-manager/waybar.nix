@@ -40,7 +40,6 @@
           "custom/weather"
         ];
         modules-right = [ "network" "cpu" "memory" "battery" "tray" 
-          # "network"  # TODO add this again with an on-click to launch nmtui
           # "pulseaudio" 
           # "custom/powermenu"
         ];

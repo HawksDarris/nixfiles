@@ -37,6 +37,7 @@ in {
     button:focus {
       background-color: #${base0E};
       background-size: 30%;
+      text-shadow: 2px 2px #${base05};
     }
 
     button:hover {
@@ -45,6 +46,7 @@ in {
       border-radius: ${active_rad}px;
       animation: gradient_f 20s ease-in infinite;
       transition: all 0.3s cubic-bezier(.55,0.0,.28,1.682);
+      text-shadow: 2px 2px #${base05};
     }
 
     button:hover#lock {
