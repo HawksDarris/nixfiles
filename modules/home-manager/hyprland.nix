@@ -1,3 +1,4 @@
+# TODO nixify all the `~/` references
 {config, pkgs, file, ... }: 
 {
   imports = [
@@ -50,6 +51,7 @@
 	  "$scrPath/swwwallpaper.sh # start wallpaper daemon"
 	  "$scrPath/batterynotify.sh # battery notification"
           "emacs --daemon"
+          "swww img ~/.config/swww/Dracula/wallpaper/second-collection/leaves/dracula-leaves-bd93f9.png"
       ];
     };
    extraConfig = with config.colorScheme.palette; ''
