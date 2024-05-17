@@ -1,5 +1,7 @@
 { ... }:
 
+# To view all emacs nix packages, 
+# nix-env -f '<nixpkgs>' -qaP -A emacsPackages
 {
   programs.emacs = {
     enable = true;
