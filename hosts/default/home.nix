@@ -15,6 +15,7 @@ imports =
     ../../modules/home-manager/lf.nix
     ../../modules/home-manager/mako.nix
     ../../modules/home-manager/nixvim/nixvim.nix
+    ../../modules/home-manager/emacs.nix
     ../../modules/home-manager/nushell.nix
     ../../modules/home-manager/scripts.nix
     ../../modules/home-manager/waybar.nix
@@ -76,7 +77,6 @@ home.stateVersion = "23.11"; # Please read the comment before changing.
 home.packages = with pkgs; [
   hugo
   gnucash
-  emacs
   bun
   dart-sass
   yad

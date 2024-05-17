@@ -10,10 +10,14 @@
       evil-surround
       evil-numbers
       company
+      company-org-block
+      company-nixos-options
       corfu
       flycheck
       flycheck-popup-tip
       org-re-reveal
+      nix-mode
+      nix-buffer
     ]
   };
 }
