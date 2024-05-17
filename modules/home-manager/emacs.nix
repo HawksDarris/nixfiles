@@ -1,4 +1,4 @@
-{ epkgs, ... }:
+{ ... }:
 
 {
   programs.emacs = {
@@ -18,6 +18,8 @@
       epkgs.org-re-reveal
       epkgs.nix-mode
       epkgs.nix-buffer
+      epkgs.gruvbox-theme
+      epkgs.org-modern
     ];
   };
 }
