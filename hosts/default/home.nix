@@ -1,179 +1,211 @@
 { config, pkgs, lib, inputs, username, ... }:
 
 {
-imports =
-  [
-    inputs.nix-colors.homeManagerModules.default
-    # ../../modules/home-manager/neomutt.nix
-    ../../modules/home-manager/bottom.nix
-    ../../modules/home-manager/browsers.nix
-    ../../modules/home-manager/colors.nix
-    ../../modules/home-manager/fonts.nix
-    ../../modules/home-manager/git.nix
-    ../../modules/home-manager/hyprland.nix
-    ../../modules/home-manager/kitty.nix
-    ../../modules/home-manager/lf.nix
-    ../../modules/home-manager/mako.nix
-    ../../modules/home-manager/nixvim/nixvim.nix
-    ../../modules/home-manager/emacs.nix
-    ../../modules/home-manager/nushell.nix
-    ../../modules/home-manager/scripts.nix
-    ../../modules/home-manager/waybar.nix
-    ../../modules/home-manager/wlogout.nix
-  ];
 
-  home.username = "${username}";
-  home.homeDirectory = "/home/${username}";
+imports = [
 
-  programs.fd = {
-    enable = true;
-    hidden = true; # Pass --hidden flag by default
-    ignores = [ # globally ignore given paths
+../../modules/home-manager/scripts.nix
+
+#../../modules/home-manager/neomutt.nix
+
+../../modules/home-manager/nushell.nix
+
+../../modules/home-manager/nixvim.nix
+../../modules/home-manager/emacs.nix
+
+../../modules/home-manager/bottom.nix
+../../modules/home-manager/git.nix
+
+../../modules/home-manager/hyprland.nix
+../../modules/home-manager/mako.nix
+../../modules/home-manager/waybar.nix
+../../modules/home-manager/wlogout.nix
+
+../../modules/home-manager/browsers.nix
+
+../../modules/home-manager/kitty.nix
+../../modules/home-manager/lf.nix
+
+inputs.nix-colors.homeManagerModules.default
+../../modules/home-manager/colors.nix
+
+../../modules/home-manager/fonts.nix
+
+];
+
+home.username = "${username}";
+home.homeDirectory = "/home/${username}";
+
+programs.fd = {
+  enable = true;
+  hidden = true; # Pass --hidden flag by default
+  ignores = [ # globally ignore given paths
     ".git/"
     "*.bak"
   ];
 };
 
-  # thefuck
-  programs.thefuck = {
-    enable = true;
-    enableNushellIntegration = true;
-  };
+programs.thefuck = {
+  enable = true;
+  enableNushellIntegration = true;
+};
 
-  # ripgrep
-  programs.ripgrep = {
-    enable = true;
-    arguments = [
-      "--max-columns-preview"
-      "--colors=line:style:bold"
-    ];
-  };
-
-  # pandoc
-  programs.pandoc = {
-    enable = true;
-    citationStyles = [ # list of paths to .csl files
-    ];
-    defaults = {
-      metadata = {
-        revealjs-url = "..";
-      };
-      pdf-engine = "xelatex";
-      citeproc = true; # What is citeproc? I forget.
+programs.pandoc = {
+  enable = true;
+  citationStyles = [ # list of paths to .csl files
+  ];
+  defaults = {
+    metadata = {
+      revealjs-url = "..";
     };
+    pdf-engine = "xelatex";
+    citeproc = true; # Generates citations and bibliography from CSL
   };
+};
 
-# This value determines the Home Manager release that your configuration is
-# compatible with. This helps avoid breakage when a new Home Manager release
-# introduces backwards incompatible changes.
-#
-# You should not change this value, even if you update Home Manager. If you do
-# want to update the value, then make sure to first check the Home Manager
-# release notes.
-home.stateVersion = "23.11"; # Please read the comment before changing.
+programs.ripgrep = {
+  enable = true;
+  arguments = [
+    "--max-columns-preview"
+    "--colors=line:style:bold"
+  ];
+};
 
-# The home.packages option allows you to install Nix packages into your
-# environment.
 home.packages = with pkgs; [
-  hugo
-  gnucash
-  bun
-  dart-sass
-  yad
-  keepassxc
-  wttrbar
-  taskwarrior3
 
-  # media
-  grimblast
-  mpc-cli
-  ncmpcpp
-  nsxiv
-  playerctl
+# lxqt-policykit-agent
+bat
+brightnessctl
+brightnessctl
+bun
+dart-sass
+dbus
+eww
+glib
+gnucash
+hugo
+jmtpfs
+jq
+keepassxc
+kitty
+kiwix
+libnotify
+ncdu
+rofi-wayland
+rofimoji
+slurp
+swappy
+swaylock
+swww
+taskwarrior3
+wayshot
+wf-recorder
+wl-clipboard
+wl-gammactl
+wofi
+wttrbar
+yad
 
-  # file management
-  jmtpfs # for phone mounting
+pokeget-rs
+macchina
 
-  # cli things
-  macchina
-  gh
-  fdupes
-  fzf
-  killall
-  mpv
-  rsync
-  tldr
-  pamixer
-  pciutils
+texliveFull
+zathura
 
-  # document management
-  texliveFull
-  zathura
+gh
+fdupes
+fzf
+killall
+mpv
+rsync
+tldr
+pamixer
+pciutils
 
-  # Candy
-  pokeget-rs
+grimblast
+mpc-cli
+ncmpcpp
+nsxiv
+playerctl
 
-  # To sort
-  kiwix
-  brightnessctl
-  # lxqt-policykit-agent
-  dbus
-  libnotify
-  ueberzug # for lf previews
-  jq
-  glib
-  bat
-  ncdu
-  kitty
-  swww
-  eww
-  brightnessctl
-  rofi-wayland
-  rofimoji
-  slurp
-  swappy
-  swaylock
-  wf-recorder
-  wl-gammactl
-  wl-clipboard
-  wofi
-  wayshot
+# (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-  # # It is sometimes useful to fine-tune packages, for example, by applying
-  # # overrides. You can do that directly here, just don't forget the
-  # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-  # # fonts?
-  # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+(pkgs.writeShellScriptBin "compiler"
+  ''
+#!/bin/sh
 
-  # # You can also create simple shell scripts directly inside your
-  # # configuration. For example, this adds a command 'my-hello' to your
-  # # environment:
-  # (pkgs.writeShellScriptBin "my-hello" ''
-  #   echo "Hello, ${config.home.username}!"
-  # '')
+file=$(readlink -f "$1")
+dir=''${file%/*}
+base="''${file%.*}"
+ext="''${file##*.}"
+
+cd "$dir" || exit 1
+
+textype() { \
+textarget="$(getcomproot "$file" || echo "$file")"
+echo "$textarget"
+command="pdflatex"
+( head -n5 "$textarget" | grep -qi 'xelatex' ) && command="xelatex"
+$command --output-directory="''${textarget%/*}" "''${textarget%.*}"
+grep -qi addbibresource "$textarget" &&
+biber --input-directory "''${textarget%/*}" "''${textarget%.*}" &&
+$command --output-directory="''${textarget%/*}" "''${textarget%.*}" &&
+$command --output-directory="''${textarget%/*}" "''${textarget%.*}"
+}
+
+case "$ext" in
+        # Try to keep these cases in alphabetical order.
+        [0-9]) preconv "$file" | refer -S -e | groff -mandoc -T pdf > "$base".pdf ;;
+        c) cc "$file" -o "$base" && "$base" ;;
+        cpp) g++ "$file" -o "$base" && "$base" ;;
+        cs) mcs "$file" && mono "$base".exe ;;
+        go) go run "$file" ;;
+        h) sudo make install ;;
+        java) javac -d classes "$file" && java -cp classes "''${1%.*}" ;;
+        m) octave "$file" ;;
+        md)	if  [ -x "$(command -v lowdown)" ]; then
+        lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf > "$base".pdf
+        elif [ -x "$(command -v groffdown)" ]; then
+        groffdown -i "$file" | groff -T pdf > "$base".pdf
+        else
+        pandoc -t ms --highlight-style=kate -s -o "$base".pdf "$file"
+        fi ; ;;
+        mom) preconv "$file" | refer -S -e | groff -mom -kept -T pdf > "$base".pdf ;;
+        ms) preconv "$file" | refer -S -e | groff -me -ms -kept -T pdf > "$base".pdf ;;
+        org) emacs "$file" --batch -u "$USER" -f org-latex-export-to-pdf ;;
+        py) python "$file" ;;
+        [rR]md) Rscript -e "rmarkdown::render('$file', quiet=TRUE)" ;;
+        rs) cargo build ;;
+        sass) sassc -a "$file" "$base".css ;;
+        scad) openscad -o "$base".stl "$file" ;;
+        sent) setsid -f sent "$file" 2>/dev/null ;;
+        tex) textype "$file" ;;
+        typ) typst compile "$file" ;;
+        *) sed -n '/^#!/s/^#!//p; q' "$file" | xargs -r -I % "$file" ;;
+        esac
+        '')
 
 ];
 
-# Home Manager is pretty good at managing dotfiles. The primary way to manage
-# plain files is through 'home.file'.
+home.stateVersion = "23.11";
+
 home.file = {
-# # Building this configuration will create a copy of 'dotfiles/screenrc' in
-# # the Nix store. Activating the configuration will then make '~/.screenrc' a
-# # symlink to the Nix store copy.
-# ".screenrc".source = dotfiles/screenrc;
+  # Building this configuration will create a copy of 'dotfiles/screenrc' in
+  # the Nix store. Activating the configuration will then make '~/.screenrc' a
+  # symlink to the Nix store copy.
+  # ".screenrc".source = dotfiles/screenrc;
 
-# # You can also set the file content immediately.
-# ".gradle/gradle.properties".text = ''
-#   org.gradle.console=verbose
-#   org.gradle.daemon.idletimeout=3600000
-# '';
-  };
+  # You can also set the file content immediately.
+  # ".gradle/gradle.properties".text = ''
+  #   org.gradle.console=verbose
+  #   org.gradle.daemon.idletimeout=3600000
+  # '';
+};
 
-  home.sessionVariables = {
-# Didn't work for some reason. Will move to nushell.nix and see.
-# EDITOR = "nvim";
-  };
+home.sessionVariables = {
+  EDITOR = "nvim";
+};
 
-# Let Home Manager install and manage itself.
 programs.home-manager.enable = true;
+
 }

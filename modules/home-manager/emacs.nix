@@ -26,9 +26,16 @@
       epkgs.flycheck
       epkgs.flycheck-popup-tip
       epkgs.gruvbox-theme
+      epkgs.ligature
+      epkgs.lsp-dart
+      epkgs.lsp-latex
+      epkgs.lsp-mode
+      epkgs.lsp-scheme
+      epkgs.lsp-ui
       epkgs.nix-buffer
       epkgs.nix-mode
       epkgs.org-auto-tangle
+      epkgs.org-make-toc
       epkgs.org-modern
       epkgs.org-re-reveal
     ];
