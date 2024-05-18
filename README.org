@@ -1,0 +1,1377 @@
+#+TITLE: Literate NixOS Configuration
+#+AUTHOR: Darris Hawks
+#+STARTUP: overview
+#+OPTIONS: toc:2
+#+PROPERTIES: header-args :tangle ~/nixfiles/hosts/default/home.nix
+#+auto_tangle: t
+
+* Table of Contents
+:PROPERTIES:
+:TOC: :include siblings :depth 2
+:END:
+:CONTENTS:
+- [[#table-of-contents][Table of Contents]]
+- [[#fix-some-hardware-errors][Fix Some Hardware Errors]]
+  - [[#journalctl][journalctl]]
+  - [[#dmesg][dmesg]]
+  - [[#lspci][lspci]]
+  - [[#modinfo][modinfo]]
+- [[#home-manager][Home Manager]]
+  - [[#main-file-homenix][Main File: home.nix]]
+- [[#nixos][NixOS]]
+  - [[#main-file-configurationnix][Main File: configuration.nix]]
+  - [[#secrets][Secrets]]
+  - [[#also-important-hardware-configurationnix][Also Important: hardware-configuration.nix]]
+:END:
+* TODO Fix Some Hardware Errors
+
+Computer froze, requiring hard power off. The errors indicate that it may be related to iwlwifi.
+
+** journalctl
+~sudo journalctl -b -1 --priority=3~ produces this output.
+#+BEGIN_SRC
+May 17 08:27:52 nixos kernel: cros-usbpd-charger cros-usbpd-charger.2.auto: Unexpected number of charge port count
+May 17 08:27:52 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 17 08:27:52 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 17 08:27:52 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: Microcode SW error detected. Restarting 0x0.
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: Start IWL Error Log Dump:
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: Transport status: 0x0000004A, valid: 6
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: Loaded firmware version: 83.e8f84e98.0 ty-a0-gf-a0-83.ucode
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000071 | NMI_INTERRUPT_UMAC_FATAL
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x000000F3 | trm_hw_status0
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | trm_hw_status1
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x004DC410 | branchlink2
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00008C84 | interruptlink1
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00008C84 | interruptlink2
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x0000C266 | data1
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000010 | data2
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | data3
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x0037F847 | beacon time
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x0009D9AA | tsf low
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | tsf hi
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | time gp1
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x000B2749 | time gp2
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000001 | uCode revision type
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000053 | uCode version major
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0xE8F84E98 | uCode version minor
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000420 | hw version
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00C80002 | board version
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x0000001C | hcmd
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x42F20000 | isr0
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00004000 | isr1
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x48F00002 | isr2
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00C1000C | isr3
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | isr4
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x001D0103 | last cmd Id
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x0000C266 | wait_event
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000850 | l2p_control
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00009C22 | l2p_duration
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000007 | l2p_mhvalid
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x0081004C | l2p_addr_match
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x0000000B | lmpm_pmg_sel
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | timestamp
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00003058 | flow_handler
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: Start IWL Error Log Dump:
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: Transport status: 0x0000004A, valid: 7
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x2010190E | ADVANCED_SYSASSERT
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | umac branchlink1
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x8046DA58 | umac branchlink2
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0xC00814E0 | umac interruptlink1
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | umac interruptlink2
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x0101F71C | umac data1
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0xDEADBEEF | umac data2
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0xDEADBEEF | umac data3
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000053 | umac major
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0xE8F84E98 | umac minor
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x000B2743 | frame pointer
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0xC0886BE0 | stack pointer
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x0025010D | last host cmd
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | isr status reg
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: IML/ROM dump:
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000B03 | IML/ROM error/state
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x000086E0 | IML/ROM data1
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000090 | IML/ROM WFPM_AUTH_KEY_0
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: Fseq Registers:
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x60000000 | FSEQ_ERROR_CODE
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_TOP_INIT_VERSION
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00080009 | FSEQ_CNVIO_INIT_VERSION
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x0000A652 | FSEQ_OTP_VERSION
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000002 | FSEQ_TOP_CONTENT_VERSION
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x4552414E | FSEQ_ALIVE_TOKEN
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | FSEQ_CNVI_ID
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | FSEQ_CNVR_ID
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | CNVI_AUX_MISC_CHIP
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | CNVR_AUX_MISC_CHIP
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00009061 | CNVR_SCU_SD_REGS_SD_REG_DIG_DCDC_VTRIM
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000061 | CNVR_SCU_SD_REGS_SD_REG_ACTIVE_VDIG_MIRROR
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00080009 | FSEQ_PREV_CNVIO_INIT_VERSION
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_WIFI_FSEQ_VERSION
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_BT_FSEQ_VERSION
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: 0x000000DC | FSEQ_CLASS_TP_VERSION
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: UMAC CURRENT PC: 0x8048da0c
+May 17 08:27:53 nixos kernel: iwlwifi 0000:a6:00.0: LMAC1 CURRENT PC: 0xd0
+May 17 08:27:53 nixos bluetoothd[1031]: Failed to set mode: Failed (0x03)
+May 17 08:27:54 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 17 12:38:30 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 17 12:38:30 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 17 16:15:41 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 17 16:15:41 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: Microcode SW error detected. Restarting 0x0.
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: Start IWL Error Log Dump:
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: Transport status: 0x0000004A, valid: 6
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: Loaded firmware version: 83.e8f84e98.0 ty-a0-gf-a0-83.ucode
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000071 | NMI_INTERRUPT_UMAC_FATAL
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x000002F0 | trm_hw_status0
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000001 | trm_hw_status1
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x004DC410 | branchlink2
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x004D233E | interruptlink1
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x004D233E | interruptlink2
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00016DBE | data1
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000010 | data2
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | data3
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x001EC179 | beacon time
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x0021C9FC | tsf low
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | tsf hi
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | time gp1
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00231663 | time gp2
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000001 | uCode revision type
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000053 | uCode version major
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0xE8F84E98 | uCode version minor
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000420 | hw version
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00C80002 | board version
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x8027F500 | hcmd
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00020000 | isr0
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | isr1
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x48F00002 | isr2
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00C3000C | isr3
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | isr4
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x001D0103 | last cmd Id
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00016DBE | wait_event
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | l2p_control
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000020 | l2p_duration
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | l2p_mhvalid
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00001800 | l2p_addr_match
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000009 | lmpm_pmg_sel
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | timestamp
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00002850 | flow_handler
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: Start IWL Error Log Dump:
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: Transport status: 0x0000004A, valid: 7
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x2010190E | ADVANCED_SYSASSERT
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | umac branchlink1
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x8046DA58 | umac branchlink2
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0xC00814E0 | umac interruptlink1
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | umac interruptlink2
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x0101F71C | umac data1
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0xDEADBEEF | umac data2
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0xDEADBEEF | umac data3
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000053 | umac major
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0xE8F84E98 | umac minor
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x0023165D | frame pointer
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0xC0886BE0 | stack pointer
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x0025010D | last host cmd
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | isr status reg
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: IML/ROM dump:
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000B03 | IML/ROM error/state
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x000086CA | IML/ROM data1
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000090 | IML/ROM WFPM_AUTH_KEY_0
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: Fseq Registers:
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x60000000 | FSEQ_ERROR_CODE
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_TOP_INIT_VERSION
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00080009 | FSEQ_CNVIO_INIT_VERSION
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x0000A652 | FSEQ_OTP_VERSION
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000002 | FSEQ_TOP_CONTENT_VERSION
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x4552414E | FSEQ_ALIVE_TOKEN
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | FSEQ_CNVI_ID
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | FSEQ_CNVR_ID
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | CNVI_AUX_MISC_CHIP
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | CNVR_AUX_MISC_CHIP
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00009061 | CNVR_SCU_SD_REGS_SD_REG_DIG_DCDC_VTRIM
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000061 | CNVR_SCU_SD_REGS_SD_REG_ACTIVE_VDIG_MIRROR
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00080009 | FSEQ_PREV_CNVIO_INIT_VERSION
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_WIFI_FSEQ_VERSION
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_BT_FSEQ_VERSION
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: 0x000000DC | FSEQ_CLASS_TP_VERSION
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: UMAC CURRENT PC: 0x8048da0c
+May 17 16:15:43 nixos kernel: iwlwifi 0000:a6:00.0: LMAC1 CURRENT PC: 0xd0
+May 17 16:15:44 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 17 16:15:44 nixos bluetoothd[1031]: Failed to set mode: Failed (0x03)
+May 17 17:36:53 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 17 17:36:53 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: Microcode SW error detected. Restarting 0x0.
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: Start IWL Error Log Dump:
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: Transport status: 0x0000004A, valid: 6
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: Loaded firmware version: 83.e8f84e98.0 ty-a0-gf-a0-83.ucode
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000071 | NMI_INTERRUPT_UMAC_FATAL
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x000002F0 | trm_hw_status0
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000001 | trm_hw_status1
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x004DC410 | branchlink2
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x004D233E | interruptlink1
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x004D233E | interruptlink2
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00016DBE | data1
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000010 | data2
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | data3
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x001E65F3 | beacon time
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x002275B8 | tsf low
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | tsf hi
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | time gp1
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x0023C2FA | time gp2
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000001 | uCode revision type
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000053 | uCode version major
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0xE8F84E98 | uCode version minor
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000420 | hw version
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00C80002 | board version
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x8028F500 | hcmd
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00020000 | isr0
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | isr1
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x48F00002 | isr2
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00C3000C | isr3
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | isr4
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x001E0103 | last cmd Id
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00016DBE | wait_event
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000080 | l2p_control
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000020 | l2p_duration
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x0000003F | l2p_mhvalid
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00001800 | l2p_addr_match
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000009 | lmpm_pmg_sel
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | timestamp
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00003050 | flow_handler
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: Start IWL Error Log Dump:
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: Transport status: 0x0000004A, valid: 7
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x2010190E | ADVANCED_SYSASSERT
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | umac branchlink1
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x8046DA58 | umac branchlink2
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0xC00814E0 | umac interruptlink1
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | umac interruptlink2
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x0101F71C | umac data1
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0xDEADBEEF | umac data2
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0xDEADBEEF | umac data3
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000053 | umac major
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0xE8F84E98 | umac minor
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x0023C2F4 | frame pointer
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0xC0886BE0 | stack pointer
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x0026010D | last host cmd
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | isr status reg
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: IML/ROM dump:
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000B03 | IML/ROM error/state
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x000086CB | IML/ROM data1
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000090 | IML/ROM WFPM_AUTH_KEY_0
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: Fseq Registers:
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x60000000 | FSEQ_ERROR_CODE
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_TOP_INIT_VERSION
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00080009 | FSEQ_CNVIO_INIT_VERSION
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x0000A652 | FSEQ_OTP_VERSION
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000002 | FSEQ_TOP_CONTENT_VERSION
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x4552414E | FSEQ_ALIVE_TOKEN
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | FSEQ_CNVI_ID
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | FSEQ_CNVR_ID
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | CNVI_AUX_MISC_CHIP
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | CNVR_AUX_MISC_CHIP
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00009061 | CNVR_SCU_SD_REGS_SD_REG_DIG_DCDC_VTRIM
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000061 | CNVR_SCU_SD_REGS_SD_REG_ACTIVE_VDIG_MIRROR
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00080009 | FSEQ_PREV_CNVIO_INIT_VERSION
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_WIFI_FSEQ_VERSION
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_BT_FSEQ_VERSION
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: 0x000000DC | FSEQ_CLASS_TP_VERSION
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: UMAC CURRENT PC: 0x8048da0c
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: LMAC1 CURRENT PC: 0xd0
+May 17 17:36:56 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 17 17:36:56 nixos bluetoothd[1031]: Failed to set mode: Failed (0x03)
+May 18 04:57:16 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 18 04:57:16 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: Microcode SW error detected. Restarting 0x0.
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: Start IWL Error Log Dump:
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: Transport status: 0x0000004A, valid: 6
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: Loaded firmware version: 83.e8f84e98.0 ty-a0-gf-a0-83.ucode
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000071 | NMI_INTERRUPT_UMAC_FATAL
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x000002F0 | trm_hw_status0
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | trm_hw_status1
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x004DC410 | branchlink2
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x004D233E | interruptlink1
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x004D233E | interruptlink2
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00016DBE | data1
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000010 | data2
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | data3
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x001F7432 | beacon time
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00214994 | tsf low
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | tsf hi
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | time gp1
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00229671 | time gp2
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000001 | uCode revision type
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000053 | uCode version major
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0xE8F84E98 | uCode version minor
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000420 | hw version
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00C80002 | board version
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x8027FC04 | hcmd
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00020000 | isr0
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | isr1
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x48F80002 | isr2
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00C3001C | isr3
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | isr4
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x001D0103 | last cmd Id
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00016DBE | wait_event
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000080 | l2p_control
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000020 | l2p_duration
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x0000003F | l2p_mhvalid
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00001800 | l2p_addr_match
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000009 | lmpm_pmg_sel
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | timestamp
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x0000385C | flow_handler
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: Start IWL Error Log Dump:
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: Transport status: 0x0000004A, valid: 7
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x2010190E | ADVANCED_SYSASSERT
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | umac branchlink1
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x8046DA58 | umac branchlink2
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0xC00814E0 | umac interruptlink1
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | umac interruptlink2
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x0101F71C | umac data1
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0xDEADBEEF | umac data2
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0xDEADBEEF | umac data3
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000053 | umac major
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0xE8F84E98 | umac minor
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x0022966B | frame pointer
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0xC0886BE0 | stack pointer
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x0025010D | last host cmd
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000000 | isr status reg
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: IML/ROM dump:
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000B03 | IML/ROM error/state
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x000086D3 | IML/ROM data1
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000090 | IML/ROM WFPM_AUTH_KEY_0
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: Fseq Registers:
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x60000000 | FSEQ_ERROR_CODE
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_TOP_INIT_VERSION
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00080009 | FSEQ_CNVIO_INIT_VERSION
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x0000A652 | FSEQ_OTP_VERSION
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000002 | FSEQ_TOP_CONTENT_VERSION
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x4552414E | FSEQ_ALIVE_TOKEN
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | FSEQ_CNVI_ID
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | FSEQ_CNVR_ID
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | CNVI_AUX_MISC_CHIP
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00400410 | CNVR_AUX_MISC_CHIP
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00009061 | CNVR_SCU_SD_REGS_SD_REG_DIG_DCDC_VTRIM
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00000061 | CNVR_SCU_SD_REGS_SD_REG_ACTIVE_VDIG_MIRROR
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00080009 | FSEQ_PREV_CNVIO_INIT_VERSION
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_WIFI_FSEQ_VERSION
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_BT_FSEQ_VERSION
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: 0x000000DC | FSEQ_CLASS_TP_VERSION
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: UMAC CURRENT PC: 0x8048da0c
+May 18 04:57:18 nixos kernel: iwlwifi 0000:a6:00.0: LMAC1 CURRENT PC: 0xd0
+May 18 04:57:19 nixos kernel: iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+May 18 04:57:19 nixos bluetoothd[1031]: Failed to set mode: Failed (0x03)
+May 18 04:57:27 nixos systemd[1]: Failed to start NixOS Upgrade.
+#+END_SRC
+
+
+
+** dmesg
+~dmesg --level err~ produces
+#+BEGIN_SRC
+[    5.245809] cros-usbpd-charger cros-usbpd-charger.2.auto: Unexpected number of charge port count
+[    5.545381] iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+[    5.860140] iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+[    6.173050] iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+[    6.896252] iwlwifi 0000:a6:00.0: Microcode SW error detected. Restarting 0x0.
+[    6.896612] iwlwifi 0000:a6:00.0: Start IWL Error Log Dump:
+[    6.896688] iwlwifi 0000:a6:00.0: Transport status: 0x0000004A, valid: 6
+[    6.896778] iwlwifi 0000:a6:00.0: Loaded firmware version: 83.e8f84e98.0 ty-a0-gf-a0-83.ucode
+[    6.896886] iwlwifi 0000:a6:00.0: 0x00000071 | NMI_INTERRUPT_UMAC_FATAL
+[    6.896969] iwlwifi 0000:a6:00.0: 0x000002F0 | trm_hw_status0
+[    6.897038] iwlwifi 0000:a6:00.0: 0x00000000 | trm_hw_status1
+[    6.897118] iwlwifi 0000:a6:00.0: 0x004DC410 | branchlink2
+[    6.897184] iwlwifi 0000:a6:00.0: 0x004D233E | interruptlink1
+[    6.897254] iwlwifi 0000:a6:00.0: 0x004D233E | interruptlink2
+[    6.897322] iwlwifi 0000:a6:00.0: 0x000068E2 | data1
+[    6.897381] iwlwifi 0000:a6:00.0: 0x00000010 | data2
+[    6.897441] iwlwifi 0000:a6:00.0: 0x00000000 | data3
+[    6.897501] iwlwifi 0000:a6:00.0: 0x003752BC | beacon time
+[    6.897566] iwlwifi 0000:a6:00.0: 0x0009B7B6 | tsf low
+[    6.897627] iwlwifi 0000:a6:00.0: 0x00000000 | tsf hi
+[    6.897690] iwlwifi 0000:a6:00.0: 0x00000000 | time gp1
+[    6.897692] iwlwifi 0000:a6:00.0: 0x000B04CC | time gp2
+[    6.897694] iwlwifi 0000:a6:00.0: 0x00000001 | uCode revision type
+[    6.897695] iwlwifi 0000:a6:00.0: 0x00000053 | uCode version major
+[    6.897698] iwlwifi 0000:a6:00.0: 0xE8F84E98 | uCode version minor
+[    6.897700] iwlwifi 0000:a6:00.0: 0x00000420 | hw version
+[    6.902364] iwlwifi 0000:a6:00.0: 0x00C80002 | board version
+[    6.902366] iwlwifi 0000:a6:00.0: 0x8024F500 | hcmd
+[    6.902367] iwlwifi 0000:a6:00.0: 0x00020000 | isr0
+[    6.902368] iwlwifi 0000:a6:00.0: 0x00000000 | isr1
+[    6.902369] iwlwifi 0000:a6:00.0: 0x48F80002 | isr2
+[    6.902370] iwlwifi 0000:a6:00.0: 0x00C3001C | isr3
+[    6.902371] iwlwifi 0000:a6:00.0: 0x00000000 | isr4
+[    6.902372] iwlwifi 0000:a6:00.0: 0x001D0103 | last cmd Id
+[    6.902374] iwlwifi 0000:a6:00.0: 0x000068E2 | wait_event
+[    6.902375] iwlwifi 0000:a6:00.0: 0x00000080 | l2p_control
+[    6.902376] iwlwifi 0000:a6:00.0: 0x00000020 | l2p_duration
+[    6.902377] iwlwifi 0000:a6:00.0: 0x0000003F | l2p_mhvalid
+[    6.902378] iwlwifi 0000:a6:00.0: 0x00001800 | l2p_addr_match
+[    6.902379] iwlwifi 0000:a6:00.0: 0x00000009 | lmpm_pmg_sel
+[    6.902380] iwlwifi 0000:a6:00.0: 0x00000000 | timestamp
+[    6.902381] iwlwifi 0000:a6:00.0: 0x00002850 | flow_handler
+[    6.902710] iwlwifi 0000:a6:00.0: Start IWL Error Log Dump:
+[    6.915476] iwlwifi 0000:a6:00.0: Transport status: 0x0000004A, valid: 7
+[    6.915477] iwlwifi 0000:a6:00.0: 0x2010190E | ADVANCED_SYSASSERT
+[    6.915478] iwlwifi 0000:a6:00.0: 0x00000000 | umac branchlink1
+[    6.915479] iwlwifi 0000:a6:00.0: 0x8046DA58 | umac branchlink2
+[    6.915479] iwlwifi 0000:a6:00.0: 0xC00814E0 | umac interruptlink1
+[    6.915480] iwlwifi 0000:a6:00.0: 0x00000000 | umac interruptlink2
+[    6.915480] iwlwifi 0000:a6:00.0: 0x0101F71C | umac data1
+[    6.915481] iwlwifi 0000:a6:00.0: 0xDEADBEEF | umac data2
+[    6.915482] iwlwifi 0000:a6:00.0: 0xDEADBEEF | umac data3
+[    6.915482] iwlwifi 0000:a6:00.0: 0x00000053 | umac major
+[    6.915483] iwlwifi 0000:a6:00.0: 0xE8F84E98 | umac minor
+[    6.915483] iwlwifi 0000:a6:00.0: 0x000B04C6 | frame pointer
+[    6.915484] iwlwifi 0000:a6:00.0: 0xC0886BE0 | stack pointer
+[    6.915484] iwlwifi 0000:a6:00.0: 0x0025010D | last host cmd
+[    6.915485] iwlwifi 0000:a6:00.0: 0x00000000 | isr status reg
+[    6.915851] iwlwifi 0000:a6:00.0: IML/ROM dump:
+[    6.925963] iwlwifi 0000:a6:00.0: 0x00000B03 | IML/ROM error/state
+[    6.926413] iwlwifi 0000:a6:00.0: 0x000086D3 | IML/ROM data1
+[    6.927511] iwlwifi 0000:a6:00.0: 0x00000090 | IML/ROM WFPM_AUTH_KEY_0
+[    6.927638] iwlwifi 0000:a6:00.0: Fseq Registers:
+[    6.927761] iwlwifi 0000:a6:00.0: 0x60000000 | FSEQ_ERROR_CODE
+[    6.927910] iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_TOP_INIT_VERSION
+[    6.930581] iwlwifi 0000:a6:00.0: 0x00080009 | FSEQ_CNVIO_INIT_VERSION
+[    6.931386] iwlwifi 0000:a6:00.0: 0x0000A652 | FSEQ_OTP_VERSION
+[    6.932187] iwlwifi 0000:a6:00.0: 0x00000002 | FSEQ_TOP_CONTENT_VERSION
+[    6.932983] iwlwifi 0000:a6:00.0: 0x4552414E | FSEQ_ALIVE_TOKEN
+[    6.933800] iwlwifi 0000:a6:00.0: 0x00400410 | FSEQ_CNVI_ID
+[    6.934595] iwlwifi 0000:a6:00.0: 0x00400410 | FSEQ_CNVR_ID
+[    6.935390] iwlwifi 0000:a6:00.0: 0x00400410 | CNVI_AUX_MISC_CHIP
+[    6.936189] iwlwifi 0000:a6:00.0: 0x00400410 | CNVR_AUX_MISC_CHIP
+[    6.936985] iwlwifi 0000:a6:00.0: 0x00009061 | CNVR_SCU_SD_REGS_SD_REG_DIG_DCDC_VTRIM
+[    6.937816] iwlwifi 0000:a6:00.0: 0x00000061 | CNVR_SCU_SD_REGS_SD_REG_ACTIVE_VDIG_MIRROR
+[    6.938642] iwlwifi 0000:a6:00.0: 0x00080009 | FSEQ_PREV_CNVIO_INIT_VERSION
+[    6.939461] iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_WIFI_FSEQ_VERSION
+[    6.940296] iwlwifi 0000:a6:00.0: 0x00440007 | FSEQ_BT_FSEQ_VERSION
+[    6.941124] iwlwifi 0000:a6:00.0: 0x000000DC | FSEQ_CLASS_TP_VERSION
+[    6.942014] iwlwifi 0000:a6:00.0: UMAC CURRENT PC: 0x8048da0c
+[    6.942861] iwlwifi 0000:a6:00.0: LMAC1 CURRENT PC: 0xd0
+[    7.667662] iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
+#+END_SRC
+
+** lspci
+~lspci~ produces
+#+BEGIN_SRC
+00:00.0 Host bridge: Intel Corporation Device 4621 (rev 02)
+00:02.0 VGA compatible controller: Intel Corporation Alder Lake-P GT2 [Iris Xe Graphics] (rev 0c)
+00:04.0 Signal processing controller: Intel Corporation Alder Lake Innovation Platform Framework Processor Participant (rev 02)
+00:06.0 PCI bridge: Intel Corporation 12th Gen Core Processor PCI Express x4 Controller #0 (rev 02)
+00:07.0 PCI bridge: Intel Corporation Alder Lake-P Thunderbolt 4 PCI Express Root Port #0 (rev 02)
+00:07.1 PCI bridge: Intel Corporation Alder Lake-P Thunderbolt 4 PCI Express Root Port #1 (rev 02)
+00:07.2 PCI bridge: Intel Corporation Alder Lake-P Thunderbolt 4 PCI Express Root Port #2 (rev 02)
+00:07.3 PCI bridge: Intel Corporation Alder Lake-P Thunderbolt 4 PCI Express Root Port #3 (rev 02)
+00:08.0 System peripheral: Intel Corporation 12th Gen Core Processor Gaussian & Neural Accelerator (rev 02)
+00:0a.0 Signal processing controller: Intel Corporation Platform Monitoring Technology (rev 01)
+00:0d.0 USB controller: Intel Corporation Alder Lake-P Thunderbolt 4 USB Controller (rev 02)
+00:0d.2 USB controller: Intel Corporation Alder Lake-P Thunderbolt 4 NHI #0 (rev 02)
+00:0d.3 USB controller: Intel Corporation Alder Lake-P Thunderbolt 4 NHI #1 (rev 02)
+00:14.0 USB controller: Intel Corporation Alder Lake PCH USB 3.2 xHCI Host Controller (rev 01)
+00:14.2 RAM memory: Intel Corporation Alder Lake PCH Shared SRAM (rev 01)
+00:15.0 Serial bus controller: Intel Corporation Alder Lake PCH Serial IO I2C Controller #0 (rev 01)
+00:15.1 Serial bus controller: Intel Corporation Alder Lake PCH Serial IO I2C Controller #1 (rev 01)
+00:15.3 Serial bus controller: Intel Corporation Alder Lake PCH Serial IO I2C Controller #3 (rev 01)
+00:16.0 Communication controller: Intel Corporation Alder Lake PCH HECI Controller (rev 01)
+00:16.3 Serial controller: Intel Corporation Alder Lake AMT SOL Redirection (rev 01)
+00:1d.0 PCI bridge: Intel Corporation Alder Lake PCI Express Root Port #9 (rev 01)
+00:1f.0 ISA bridge: Intel Corporation Alder Lake PCH eSPI Controller (rev 01)
+00:1f.3 Audio device: Intel Corporation Alder Lake PCH-P High Definition Audio Controller (rev 01)
+00:1f.4 SMBus: Intel Corporation Alder Lake PCH-P SMBus Host Controller (rev 01)
+00:1f.5 Serial bus controller: Intel Corporation Alder Lake-P PCH SPI Controller (rev 01)
+01:00.0 Non-Volatile memory controller: Intel Corporation SSD 660P Series (rev 03)
+a6:00.0 Network controller: Intel Corporation Wi-Fi 6E(802.11ax) AX210/AX1675* 2x2 [Typhoon Peak] (rev 1a)
+#+END_SRC
+
+** modinfo
+#+BEGIN_SRC
+filename:       /run/booted-system/kernel-modules/lib/modules/6.6.30/kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko.xz
+license:        GPL
+description:    Intel(R) Wireless WiFi driver for Linux
+firmware:       iwlwifi-100-5.ucode
+firmware:       iwlwifi-1000-5.ucode
+firmware:       iwlwifi-135-6.ucode
+firmware:       iwlwifi-105-6.ucode
+firmware:       iwlwifi-2030-6.ucode
+firmware:       iwlwifi-2000-6.ucode
+firmware:       iwlwifi-5150-2.ucode
+firmware:       iwlwifi-5000-5.ucode
+firmware:       iwlwifi-6000g2b-6.ucode
+firmware:       iwlwifi-6000g2a-6.ucode
+firmware:       iwlwifi-6050-5.ucode
+firmware:       iwlwifi-6000-6.ucode
+firmware:       iwlwifi-7265D-29.ucode
+firmware:       iwlwifi-7265-17.ucode
+firmware:       iwlwifi-3168-29.ucode
+firmware:       iwlwifi-3160-17.ucode
+firmware:       iwlwifi-7260-17.ucode
+firmware:       iwlwifi-8265-36.ucode
+firmware:       iwlwifi-8000C-36.ucode
+firmware:       iwlwifi-9260-th-b0-jf-b0-46.ucode
+firmware:       iwlwifi-9000-pu-b0-jf-b0-46.ucode
+firmware:       iwlwifi-cc-a0-77.ucode
+firmware:       iwlwifi-QuZ-a0-jf-b0-77.ucode
+firmware:       iwlwifi-QuZ-a0-hr-b0-77.ucode
+firmware:       iwlwifi-Qu-b0-jf-b0-77.ucode
+firmware:       iwlwifi-Qu-c0-hr-b0-77.ucode
+firmware:       iwlwifi-Qu-b0-hr-b0-77.ucode
+firmware:       iwlwifi-ma-b0-gf4-a0.pnvm
+firmware:       iwlwifi-ma-b0-gf-a0.pnvm
+firmware:       iwlwifi-ty-a0-gf-a0.pnvm
+firmware:       iwlwifi-so-a0-gf4-a0.pnvm
+firmware:       iwlwifi-so-a0-gf-a0.pnvm
+firmware:       iwlwifi-ma-b0-mr-a0-83.ucode
+firmware:       iwlwifi-ma-b0-gf4-a0-83.ucode
+firmware:       iwlwifi-ma-b0-gf-a0-83.ucode
+firmware:       iwlwifi-ma-b0-hr-b0-83.ucode
+firmware:       iwlwifi-ma-a0-mr-a0-83.ucode
+firmware:       iwlwifi-ma-a0-gf4-a0-83.ucode
+firmware:       iwlwifi-ma-a0-gf-a0-83.ucode
+firmware:       iwlwifi-ma-a0-hr-b0-83.ucode
+firmware:       iwlwifi-ty-a0-gf-a0-83.ucode
+firmware:       iwlwifi-so-a0-gf-a0-83.ucode
+firmware:       iwlwifi-so-a0-hr-b0-83.ucode
+firmware:       iwlwifi-so-a0-jf-b0-83.ucode
+firmware:       iwlwifi-gl-c0-fm-c0.pnvm
+firmware:       iwlwifi-gl-c0-fm-c0-83.ucode
+firmware:       iwlwifi-gl-b0-fm-b0-83.ucode
+firmware:       iwlwifi-bz-a0-fm4-b0-83.ucode
+firmware:       iwlwifi-bz-a0-fm-c0-83.ucode
+firmware:       iwlwifi-bz-a0-fm-b0-83.ucode
+firmware:       iwlwifi-bz-a0-gf4-a0-83.ucode
+firmware:       iwlwifi-bz-a0-gf-a0-83.ucode
+firmware:       iwlwifi-bz-a0-hr-b0-83.ucode
+firmware:       iwlwifi-sc-a0-wh-a0-83.ucode
+firmware:       iwlwifi-sc-a0-gf4-a0-83.ucode
+firmware:       iwlwifi-sc-a0-gf-a0-83.ucode
+firmware:       iwlwifi-sc-a0-hr-b0-83.ucode
+firmware:       iwlwifi-sc-a0-hr-b0-83.ucode
+firmware:       iwlwifi-sc-a0-fm-c0-83.ucode
+firmware:       iwlwifi-sc-a0-fm-b0-83.ucode
+alias:          pci:v00008086d0000E440sv*sd*bc*sc*i*
+alias:          pci:v00008086d00007740sv*sd*bc*sc*i*
+alias:          pci:v00008086d0000A840sv*sd*bc*sc*i*
+alias:          pci:v00008086d0000272Bsv*sd*bc*sc*i*
+alias:          pci:v00008086d0000272Dsv*sd*bc*sc*i*
+alias:          pci:v00008086d00002727sv*sd*bc*sc*i*
+alias:          pci:v00008086d00007E40sv*sd*bc*sc*i*
+alias:          pci:v00008086d00002729sv*sd*bc*sc*i*
+alias:          pci:v00008086d00007F70sv*sd*bc*sc*i*
+alias:          pci:v00008086d000054F0sv*sd*bc*sc*i*
+alias:          pci:v00008086d000051F1sv*sd*bc*sc*i*
+alias:          pci:v00008086d000051F1sv*sd*bc*sc*i*
+alias:          pci:v00008086d000051F0sv*sd*bc*sc*i*
+alias:          pci:v00008086d00007AF0sv*sd*bc*sc*i*
+alias:          pci:v00008086d00007A70sv*sd*bc*sc*i*
+alias:          pci:v00008086d00002725sv*sd*bc*sc*i*
+alias:          pci:v00008086d00002723sv*sd*bc*sc*i*
+alias:          pci:v00008086d0000A0F0sv*sd*bc*sc*i*
+alias:          pci:v00008086d000043F0sv*sd*bc*sc*i*
+alias:          pci:v00008086d00004DF0sv*sd*bc*sc*i*
+alias:          pci:v00008086d00003DF0sv*sd*bc*sc*i*
+alias:          pci:v00008086d000034F0sv*sd*bc*sc*i*
+alias:          pci:v00008086d000006F0sv*sd*bc*sc*i*
+alias:          pci:v00008086d000002F0sv*sd*bc*sc*i*
+alias:          pci:v00008086d0000A370sv*sd*bc*sc*i*
+alias:          pci:v00008086d00009DF0sv*sd*bc*sc*i*
+alias:          pci:v00008086d000031DCsv*sd*bc*sc*i*
+alias:          pci:v00008086d000030DCsv*sd*bc*sc*i*
+alias:          pci:v00008086d0000271Csv*sd*bc*sc*i*
+alias:          pci:v00008086d0000271Bsv*sd*bc*sc*i*
+alias:          pci:v00008086d00002526sv*sd*bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00009074bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00000014bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00000012bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00001012bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00003E01bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00003E02bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00001014bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00000850bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00000950bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00000930bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00000910bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00008130bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00009110bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00000810bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00008010bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00008050bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00008110bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00009010bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00000150bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00000050bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd000010D0bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00001010bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00000130bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00001130bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00001110bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00000110bc*sc*i*
+alias:          pci:v00008086d000024FDsv*sd00000010bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00004010bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000000bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000930bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000950bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000850bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000910bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000810bc*sc*i*
+alias:          pci:v00008086d000024F6sv*sd00000030bc*sc*i*
+alias:          pci:v00008086d000024F5sv*sd00000010bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000044bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000004bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00009150bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00009050bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00008150bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00008050bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00009132bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00008132bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00009130bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00008130bc*sc*i*
+alias:          pci:v00008086d000024F4sv*sd0000D030bc*sc*i*
+alias:          pci:v00008086d000024F4sv*sd0000C030bc*sc*i*
+alias:          pci:v00008086d000024F4sv*sd00009030bc*sc*i*
+alias:          pci:v00008086d000024F4sv*sd00008030bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00009110bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00009010bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00008110bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00008010bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd0000B0B0bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd0000D0B0bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd0000D050bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd0000C050bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd0000D010bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd0000C110bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd0000C010bc*sc*i*
+alias:          pci:v00008086d000024F4sv*sd00001030bc*sc*i*
+alias:          pci:v00008086d000024F4sv*sd00000030bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00001150bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000150bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00001050bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000250bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000050bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00001110bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00001012bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000012bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd000001F0bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000110bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00001132bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000132bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00001130bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000130bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd000010B0bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00001010bc*sc*i*
+alias:          pci:v00008086d000024F3sv*sd00000010bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00009E10bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00009400bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00009000bc*sc*i*
+alias:          pci:v00008086d0000095Bsv*sd0000520Abc*sc*i*
+alias:          pci:v00008086d0000095Bsv*sd00005212bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005F10bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005490bc*sc*i*
+alias:          pci:v00008086d0000095Bsv*sd00005290bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005590bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005190bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005090bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005420bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd0000502Abc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005020bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00009410bc*sc*i*
+alias:          pci:v00008086d0000095Bsv*sd00009310bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00009510bc*sc*i*
+alias:          pci:v00008086d0000095Bsv*sd00009200bc*sc*i*
+alias:          pci:v00008086d0000095Bsv*sd00009210bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00009112bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00009110bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd0000900Abc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00009012bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00009010bc*sc*i*
+alias:          pci:v00008086d0000095Bsv*sd00005202bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005102bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005002bc*sc*i*
+alias:          pci:v00008086d0000095Bsv*sd00005200bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd0000500Abc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005000bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00001010bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005400bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005510bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005410bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005412bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005012bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005C10bc*sc*i*
+alias:          pci:v00008086d0000095Bsv*sd00005210bc*sc*i*
+alias:          pci:v00008086d0000095Bsv*sd00005302bc*sc*i*
+alias:          pci:v00008086d0000095Bsv*sd00005310bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005100bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005110bc*sc*i*
+alias:          pci:v00008086d0000095Asv*sd00005010bc*sc*i*
+alias:          pci:v00008086d000024FBsv*sd00000000bc*sc*i*
+alias:          pci:v00008086d000024FBsv*sd00002150bc*sc*i*
+alias:          pci:v00008086d000024FBsv*sd00002050bc*sc*i*
+alias:          pci:v00008086d000024FBsv*sd00002110bc*sc*i*
+alias:          pci:v00008086d000024FBsv*sd00002010bc*sc*i*
+alias:          pci:v00008086d00003165sv*sd00008110bc*sc*i*
+alias:          pci:v00008086d00003165sv*sd00008010bc*sc*i*
+alias:          pci:v00008086d00003166sv*sd00004210bc*sc*i*
+alias:          pci:v00008086d00003166sv*sd00004310bc*sc*i*
+alias:          pci:v00008086d00003165sv*sd00004110bc*sc*i*
+alias:          pci:v00008086d00003165sv*sd00004510bc*sc*i*
+alias:          pci:v00008086d00003165sv*sd00004410bc*sc*i*
+alias:          pci:v00008086d00003166sv*sd00004212bc*sc*i*
+alias:          pci:v00008086d00003165sv*sd00004012bc*sc*i*
+alias:          pci:v00008086d00003165sv*sd00004010bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00001170bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00001070bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00008570bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00008470bc*sc*i*
+alias:          pci:v00008086d000008B4sv*sd00008272bc*sc*i*
+alias:          pci:v00008086d000008B4sv*sd00008370bc*sc*i*
+alias:          pci:v00008086d000008B4sv*sd00008270bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00008062bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00008060bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00008172bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00008170bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00008072bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00008070bc*sc*i*
+alias:          pci:v00008086d000008B4sv*sd00000370bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00000472bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00000470bc*sc*i*
+alias:          pci:v00008086d000008B4sv*sd00000272bc*sc*i*
+alias:          pci:v00008086d000008B4sv*sd00000270bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00000062bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00000060bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00000172bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00000170bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00000072bc*sc*i*
+alias:          pci:v00008086d000008B3sv*sd00000070bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C420bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd0000C220bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C02Abc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C020bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C360bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd0000C370bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C560bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C570bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C462bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C460bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C472bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C470bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd0000C262bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd0000C26Abc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd0000C260bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd0000C272bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000CC60bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000CC70bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd0000C270bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C760bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C770bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C162bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C062bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C160bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C06Abc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C060bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C170bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C072bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000C070bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004420bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd00004220bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000402Abc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004020bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00005770bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00005170bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00005072bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00005070bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd00004360bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd00004370bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004560bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004570bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004A6Cbc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004A6Ebc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004A70bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000486Ebc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004870bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004462bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000446Abc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004460bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004472bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004470bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd00004262bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd0000426Abc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd00004260bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd00004272bc*sc*i*
+alias:          pci:v00008086d000008B2sv*sd00004270bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004162bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004062bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004160bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd0000406Abc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004060bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004C70bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004C60bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004170bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004072bc*sc*i*
+alias:          pci:v00008086d000008B1sv*sd00004070bc*sc*i*
+alias:          pci:v00008086d00000892sv*sd00000462bc*sc*i*
+alias:          pci:v00008086d00000893sv*sd00000262bc*sc*i*
+alias:          pci:v00008086d00000892sv*sd00000062bc*sc*i*
+alias:          pci:v00008086d00000894sv*sd00000822bc*sc*i*
+alias:          pci:v00008086d00000894sv*sd00000422bc*sc*i*
+alias:          pci:v00008086d00000895sv*sd00000222bc*sc*i*
+alias:          pci:v00008086d00000894sv*sd00000022bc*sc*i*
+alias:          pci:v00008086d0000088Fsv*sd00005260bc*sc*i*
+alias:          pci:v00008086d0000088Esv*sd00004860bc*sc*i*
+alias:          pci:v00008086d0000088Esv*sd0000446Abc*sc*i*
+alias:          pci:v00008086d0000088Esv*sd00004460bc*sc*i*
+alias:          pci:v00008086d0000088Fsv*sd0000426Abc*sc*i*
+alias:          pci:v00008086d0000088Fsv*sd00004260bc*sc*i*
+alias:          pci:v00008086d0000088Esv*sd0000406Abc*sc*i*
+alias:          pci:v00008086d0000088Esv*sd00004060bc*sc*i*
+alias:          pci:v00008086d00000887sv*sd00004462bc*sc*i*
+alias:          pci:v00008086d00000888sv*sd00004262bc*sc*i*
+alias:          pci:v00008086d00000887sv*sd00004062bc*sc*i*
+alias:          pci:v00008086d00000890sv*sd00004822bc*sc*i*
+alias:          pci:v00008086d00000890sv*sd00004422bc*sc*i*
+alias:          pci:v00008086d00000891sv*sd00004222bc*sc*i*
+alias:          pci:v00008086d00000890sv*sd00004022bc*sc*i*
+alias:          pci:v00008086d00000896sv*sd00005027bc*sc*i*
+alias:          pci:v00008086d00000896sv*sd00005025bc*sc*i*
+alias:          pci:v00008086d00000897sv*sd00005017bc*sc*i*
+alias:          pci:v00008086d00000897sv*sd00005015bc*sc*i*
+alias:          pci:v00008086d00000896sv*sd00005007bc*sc*i*
+alias:          pci:v00008086d00000896sv*sd00005005bc*sc*i*
+alias:          pci:v00008086d000008AEsv*sd00001027bc*sc*i*
+alias:          pci:v00008086d000008AEsv*sd00001025bc*sc*i*
+alias:          pci:v00008086d000008AFsv*sd00001017bc*sc*i*
+alias:          pci:v00008086d000008AFsv*sd00001015bc*sc*i*
+alias:          pci:v00008086d000008AEsv*sd00001007bc*sc*i*
+alias:          pci:v00008086d000008AEsv*sd00001005bc*sc*i*
+alias:          pci:v00008086d00000084sv*sd00001316bc*sc*i*
+alias:          pci:v00008086d00000084sv*sd00001216bc*sc*i*
+alias:          pci:v00008086d00000083sv*sd00001326bc*sc*i*
+alias:          pci:v00008086d00000083sv*sd00001226bc*sc*i*
+alias:          pci:v00008086d00000083sv*sd00001306bc*sc*i*
+alias:          pci:v00008086d00000083sv*sd00001206bc*sc*i*
+alias:          pci:v00008086d00000084sv*sd00001315bc*sc*i*
+alias:          pci:v00008086d00000084sv*sd00001215bc*sc*i*
+alias:          pci:v00008086d00000083sv*sd00001325bc*sc*i*
+alias:          pci:v00008086d00000083sv*sd00001225bc*sc*i*
+alias:          pci:v00008086d00000083sv*sd00001305bc*sc*i*
+alias:          pci:v00008086d00000083sv*sd00001205bc*sc*i*
+alias:          pci:v00008086d00000886sv*sd00001317bc*sc*i*
+alias:          pci:v00008086d00000886sv*sd00001315bc*sc*i*
+alias:          pci:v00008086d00000885sv*sd00001327bc*sc*i*
+alias:          pci:v00008086d00000885sv*sd00001325bc*sc*i*
+alias:          pci:v00008086d00000885sv*sd00001307bc*sc*i*
+alias:          pci:v00008086d00000885sv*sd00001305bc*sc*i*
+alias:          pci:v00008086d00000089sv*sd00001316bc*sc*i*
+alias:          pci:v00008086d00000089sv*sd00001311bc*sc*i*
+alias:          pci:v00008086d00000087sv*sd00001326bc*sc*i*
+alias:          pci:v00008086d00000087sv*sd00001321bc*sc*i*
+alias:          pci:v00008086d00000087sv*sd00001306bc*sc*i*
+alias:          pci:v00008086d00000087sv*sd00001301bc*sc*i*
+alias:          pci:v00008086d00000091sv*sd00005226bc*sc*i*
+alias:          pci:v00008086d00000091sv*sd00005225bc*sc*i*
+alias:          pci:v00008086d00000091sv*sd00005221bc*sc*i*
+alias:          pci:v00008086d00000091sv*sd00005207bc*sc*i*
+alias:          pci:v00008086d00000091sv*sd00005206bc*sc*i*
+alias:          pci:v00008086d00000091sv*sd00005205bc*sc*i*
+alias:          pci:v00008086d00000091sv*sd00005201bc*sc*i*
+alias:          pci:v00008086d00000090sv*sd00005216bc*sc*i*
+alias:          pci:v00008086d00000090sv*sd00005215bc*sc*i*
+alias:          pci:v00008086d00000090sv*sd00005211bc*sc*i*
+alias:          pci:v00008086d0000008Bsv*sd00005317bc*sc*i*
+alias:          pci:v00008086d0000008Bsv*sd00005315bc*sc*i*
+alias:          pci:v00008086d0000008Asv*sd00005327bc*sc*i*
+alias:          pci:v00008086d0000008Asv*sd00005325bc*sc*i*
+alias:          pci:v00008086d0000008Asv*sd00005307bc*sc*i*
+alias:          pci:v00008086d0000008Asv*sd00005305bc*sc*i*
+alias:          pci:v00008086d00000082sv*sd00001305bc*sc*i*
+alias:          pci:v00008086d00000082sv*sd00001304bc*sc*i*
+alias:          pci:v00008086d00000082sv*sd00004820bc*sc*i*
+alias:          pci:v00008086d00000085sv*sd0000C228bc*sc*i*
+alias:          pci:v00008086d00000085sv*sd0000C220bc*sc*i*
+alias:          pci:v00008086d00000082sv*sd0000C020bc*sc*i*
+alias:          pci:v00008086d00000085sv*sd00001316bc*sc*i*
+alias:          pci:v00008086d00000085sv*sd00001318bc*sc*i*
+alias:          pci:v00008086d00000085sv*sd00001311bc*sc*i*
+alias:          pci:v00008086d00000082sv*sd00001328bc*sc*i*
+alias:          pci:v00008086d00000082sv*sd00001326bc*sc*i*
+alias:          pci:v00008086d00000082sv*sd00001321bc*sc*i*
+alias:          pci:v00008086d00000082sv*sd00001308bc*sc*i*
+alias:          pci:v00008086d00000082sv*sd00001307bc*sc*i*
+alias:          pci:v00008086d00000082sv*sd00001306bc*sc*i*
+alias:          pci:v00008086d00000082sv*sd00001301bc*sc*i*
+alias:          pci:v00008086d00004239sv*sd00001316bc*sc*i*
+alias:          pci:v00008086d00004239sv*sd00001311bc*sc*i*
+alias:          pci:v00008086d00004238sv*sd00001118bc*sc*i*
+alias:          pci:v00008086d00004238sv*sd00001111bc*sc*i*
+alias:          pci:v00008086d0000422Csv*sd00001326bc*sc*i*
+alias:          pci:v00008086d0000422Csv*sd00001321bc*sc*i*
+alias:          pci:v00008086d0000422Csv*sd00001307bc*sc*i*
+alias:          pci:v00008086d0000422Csv*sd00001306bc*sc*i*
+alias:          pci:v00008086d0000422Csv*sd00001301bc*sc*i*
+alias:          pci:v00008086d0000422Bsv*sd00001128bc*sc*i*
+alias:          pci:v00008086d0000422Bsv*sd00001121bc*sc*i*
+alias:          pci:v00008086d0000422Bsv*sd00001108bc*sc*i*
+alias:          pci:v00008086d0000422Bsv*sd00001101bc*sc*i*
+alias:          pci:v00008086d0000423Dsv*sd00001316bc*sc*i*
+alias:          pci:v00008086d0000423Dsv*sd00001216bc*sc*i*
+alias:          pci:v00008086d0000423Dsv*sd00001311bc*sc*i*
+alias:          pci:v00008086d0000423Dsv*sd00001211bc*sc*i*
+alias:          pci:v00008086d0000423Csv*sd00001326bc*sc*i*
+alias:          pci:v00008086d0000423Csv*sd00001321bc*sc*i*
+alias:          pci:v00008086d0000423Csv*sd00001221bc*sc*i*
+alias:          pci:v00008086d0000423Csv*sd00001306bc*sc*i*
+alias:          pci:v00008086d0000423Csv*sd00001206bc*sc*i*
+alias:          pci:v00008086d0000423Csv*sd00001301bc*sc*i*
+alias:          pci:v00008086d0000423Csv*sd00001201bc*sc*i*
+alias:          pci:v00008086d0000423Bsv*sd00001011bc*sc*i*
+alias:          pci:v00008086d0000423Asv*sd00001021bc*sc*i*
+alias:          pci:v00008086d0000423Asv*sd00001001bc*sc*i*
+alias:          pci:v00008086d00004236sv*sd00001114bc*sc*i*
+alias:          pci:v00008086d00004236sv*sd00001014bc*sc*i*
+alias:          pci:v00008086d00004236sv*sd00001111bc*sc*i*
+alias:          pci:v00008086d00004236sv*sd00001011bc*sc*i*
+alias:          pci:v00008086d00004235sv*sd00001104bc*sc*i*
+alias:          pci:v00008086d00004235sv*sd00001004bc*sc*i*
+alias:          pci:v00008086d00004235sv*sd00001101bc*sc*i*
+alias:          pci:v00008086d00004235sv*sd00001001bc*sc*i*
+alias:          pci:v00008086d00004235sv*sd00001124bc*sc*i*
+alias:          pci:v00008086d00004235sv*sd00001024bc*sc*i*
+alias:          pci:v00008086d00004235sv*sd00001121bc*sc*i*
+alias:          pci:v00008086d00004235sv*sd00001021bc*sc*i*
+alias:          pci:v00008086d00004237sv*sd00001316bc*sc*i*
+alias:          pci:v00008086d00004237sv*sd00001216bc*sc*i*
+alias:          pci:v00008086d00004237sv*sd00001315bc*sc*i*
+alias:          pci:v00008086d00004237sv*sd00001215bc*sc*i*
+alias:          pci:v00008086d00004237sv*sd00001314bc*sc*i*
+alias:          pci:v00008086d00004237sv*sd00001214bc*sc*i*
+alias:          pci:v00008086d00004237sv*sd00001311bc*sc*i*
+alias:          pci:v00008086d00004237sv*sd00001211bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001326bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001226bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001325bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001225bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001324bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001224bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001321bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001221bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001306bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001206bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001305bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001205bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001304bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001204bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001301bc*sc*i*
+alias:          pci:v00008086d00004232sv*sd00001201bc*sc*i*
+depends:        firmware_class,cfg80211
+retpoline:      Y
+intree:         Y
+name:           iwlwifi
+vermagic:       6.6.30 SMP preempt mod_unload
+parm:           swcrypto:using crypto in software (default 0 [hardware]) (int)
+parm:           11n_disable:disable 11n functionality, bitmap: 1: full, 2: disable agg TX, 4: disable agg RX, 8 enable agg TX (uint)
+parm:           amsdu_size:amsdu size 0: 12K for multi Rx queue devices, 2K for AX210 devices, 4K for other devices 1:4K 2:8K 3:12K (16K buffers) 4: 2K (default 0) (int)
+parm:           fw_restart:restart firmware in case of error (default true) (bool)
+parm:           nvm_file:NVM file name (charp)
+parm:           uapsd_disable:disable U-APSD functionality bitmap 1: BSS 2: P2P Client (default: 3) (uint)
+parm:           enable_ini:0:disable, 1-15:FW_DBG_PRESET Values, 16:enabled without preset value defined,Debug INI TLV FW debug infrastructure (default: 16) (uint)
+parm:           bt_coex_active:enable wifi/bt co-exist (default: enable) (bool)
+parm:           led_mode:0=system default, 1=On(RF On)/Off(RF Off), 2=blinking, 3=Off (default: 0) (int)
+parm:           power_save:enable WiFi power management (default: disable) (bool)
+parm:           power_level:default power save level (range from 1 - 5, default: 1) (int)
+parm:           disable_11ac:Disable VHT capabilities (default: false) (bool)
+parm:           remove_when_gone:Remove dev from PCIe bus if it is deemed inaccessible (default: false) (bool)
+parm:           disable_11ax:Disable HE capabilities (default: false) (bool)
+parm:           disable_11be:Disable EHT capabilities (default: false) (bool)
+#+END_SRC
+* Home Manager
+** Main File: home.nix
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+{ config, pkgs, lib, inputs, username, ... }:
+{
+#+END_SRC
+You can also create simple shell scripts directly inside your configuration. For example, this adds a command 'my-hello' to your environment:
+
+*** Imports
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  imports = [
+#+END_SRC
+**** TODO Move other scripts here.
+This module was created for organization. With org mode tangling, it is not currently necessary. Use mkOption, etc., for it.
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+../../modules/home-manager/scripts.nix
+#+END_SRC
+**** Neomutt :issue:
+Need to set this up with secrets
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#../../modules/home-manager/neomutt.nix
+#+END_SRC
+****
+**** Shell
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+../../modules/home-manager/nushell.nix
+#+END_SRC
+**** Editors
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+../../modules/home-manager/nixvim.nix
+../../modules/home-manager/emacs.nix
+#+END_SRC
+***** TODO Editor Changes
+- Set them to persist cursor location on close
+- Set them to persist undo on close
+
+**** CLI Utilities
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+../../modules/home-manager/bottom.nix
+../../modules/home-manager/git.nix
+#+END_SRC
+**** Desktop
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+../../modules/home-manager/hyprland.nix
+../../modules/home-manager/mako.nix
+../../modules/home-manager/waybar.nix
+../../modules/home-manager/wlogout.nix
+#+END_SRC
+***** Browsers :issue:
+Separate the browsers into individual modules instead of having one module of all browsers.
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+../../modules/home-manager/browsers.nix
+#+END_SRC
+***** Terminal
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+../../modules/home-manager/kitty.nix
+../../modules/home-manager/lf.nix
+#+END_SRC
+***** Nix Colors
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+inputs.nix-colors.homeManagerModules.default
+../../modules/home-manager/colors.nix
+#+END_SRC
+***** Fonts
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+../../modules/home-manager/fonts.nix
+#+END_SRC
+**** Closing Bracket
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+];
+#+END_SRC
+*** Services
+#+BEGIN_SRC nix :tangle ~/nixfiles/modules/home-manager/services.nix
+    { ... }:
+  {
+#+END_SRC
+
+**** Emacs
+#+BEGIN_SRC nix :tangle ~/nixfiles/modules/home-manager/services.nix
+      services.emacs.client.enable = true;
+#+END_SRC
+**** Closing
+#+BEGIN_SRC nix :tangle ~/nixfiles/modules/home-manager/services.nix
+    }
+#+END_SRC
+*** Home Manager Variables
+The ~username~ variable is declared in ~~/nixfiles/hosts/default/configuration.nix~
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  home.username = "${username}";
+  home.homeDirectory = "/home/${username}";
+#+END_SRC
+
+*** To Modularize :issue:
+These need to be put in their own nix files to be imported, above in the import section.
+**** fd
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  programs.fd = {
+    enable = true;
+    hidden = true; # Pass --hidden flag by default
+    ignores = [ # globally ignore given paths
+      ".git/"
+      "*.bak"
+    ];
+  };
+#+END_SRC
+**** thefuck
+Type ~fuck~ after typing a command wrong to get suggestions for how to fix it.
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  programs.thefuck = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
+#+END_SRC
+**** pandoc :issue:
+Add ~.csl~ files for citation.
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  programs.pandoc = {
+    enable = true;
+    citationStyles = [ # list of paths to .csl files
+    ];
+    defaults = {
+      metadata = {
+        revealjs-url = "..";
+      };
+      pdf-engine = "xelatex";
+      citeproc = true; # Generates citations and bibliography from CSL
+    };
+  };
+#+END_SRC
+
+**** ripgrep
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  programs.ripgrep = {
+    enable = true;
+    arguments = [
+      "--max-columns-preview"
+      "--colors=line:style:bold"
+    ];
+  };
+#+END_SRC
+
+*** Packages
+lxqt-policykit-agent may be needed
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  home.packages = with pkgs; [
+#+END_SRC
+**** Still to Sort
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  # lxqt-policykit-agent
+  bat
+  brightnessctl
+  brightnessctl
+  bun
+  dart-sass
+  dbus
+  eww
+  glib
+  gnucash
+  hugo
+  jmtpfs
+  jq
+  keepassxc
+  kitty
+  kiwix
+  libnotify
+  ncdu
+  rofi-wayland
+  rofimoji
+  slurp
+  swappy
+  swaylock
+  swww
+  taskwarrior3
+  wayshot
+  wf-recorder
+  wl-clipboard
+  wl-gammactl
+  wofi
+  wttrbar
+  yad
+#+END_SRC
+
+**** Candy
+Packages that are just for funsies
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  pokeget-rs
+  macchina
+#+END_SRC
+**** Document Management
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  texliveFull
+  zathura
+#+END_SRC
+**** CLI Utilities
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  gh
+  fdupes
+  fzf
+  killall
+  mpv
+  rsync
+  tldr
+  pamixer
+  pciutils
+#+END_SRC
+**** Media :issue:
+~mpc-cli~ and ~ncmpcpp~ are both music players. Probably don't need both. Music system not set up yet.
+
+~playerctl~ controls MPRIS (D-Bus interface standard for controlling media players) media players. It should work for mpc-cli. Not sure if it will work for ncmpcpp.
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  grimblast
+  mpc-cli
+  ncmpcpp
+  nsxiv
+  playerctl
+#+END_SRC
+
+**** Overrides
+It is sometimes useful to fine-tune packages, for example, by applying overrides.
+
+For example, this would install the Nerd Fonts package but with only the FantasqueSansMono font.
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+#+END_SRC
+
+**** Closing bracket
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+    ];
+#+END_SRC
+
+*** Shell Scripts
+#+BEGIN_SRC nix :tangle ~/nixfiles/modules/home-manager/scripts.nix
+  { pkgs, ... }:
+  {
+    home.packages = with pkgs; [
+#+END_SRC
+**** compiler script
+#+BEGIN_SRC nix :tangle ~/nixfiles/modules/home-manager/scripts.nix
+(pkgs.writeShellScriptBin "compiler"
+  ''
+#!/bin/sh
+
+file=$(readlink -f "$1")
+dir=''${file%/*}
+base="''${file%.*}"
+ext="''${file##*.}"
+
+cd "$dir" || exit 1
+
+textype() { \
+textarget="$(getcomproot "$file" || echo "$file")"
+echo "$textarget"
+command="pdflatex"
+( head -n5 "$textarget" | grep -qi 'xelatex' ) && command="xelatex"
+$command --output-directory="''${textarget%/*}" "''${textarget%.*}"
+grep -qi addbibresource "$textarget" &&
+biber --input-directory "''${textarget%/*}" "''${textarget%.*}" &&
+$command --output-directory="''${textarget%/*}" "''${textarget%.*}" &&
+$command --output-directory="''${textarget%/*}" "''${textarget%.*}"
+}
+
+case "$ext" in
+        # Try to keep these cases in alphabetical order.
+        [0-9]) preconv "$file" | refer -S -e | groff -mandoc -T pdf > "$base".pdf ;;
+        c) cc "$file" -o "$base" && "$base" ;;
+        cpp) g++ "$file" -o "$base" && "$base" ;;
+        cs) mcs "$file" && mono "$base".exe ;;
+        go) go run "$file" ;;
+        h) sudo make install ;;
+        java) javac -d classes "$file" && java -cp classes "''${1%.*}" ;;
+        m) octave "$file" ;;
+        md)	if  [ -x "$(command -v lowdown)" ]; then
+        lowdown --parse-no-intraemph "$file" -Tms | groff -mpdfmark -ms -kept -T pdf > "$base".pdf
+        elif [ -x "$(command -v groffdown)" ]; then
+        groffdown -i "$file" | groff -T pdf > "$base".pdf
+        else
+        pandoc -t ms --highlight-style=kate -s -o "$base".pdf "$file"
+        fi ; ;;
+        mom) preconv "$file" | refer -S -e | groff -mom -kept -T pdf > "$base".pdf ;;
+        ms) preconv "$file" | refer -S -e | groff -me -ms -kept -T pdf > "$base".pdf ;;
+        org) emacs "$file" --batch -u "$USER" -f org-latex-export-to-pdf ;;
+        py) python "$file" ;;
+        [rR]md) Rscript -e "rmarkdown::render('$file', quiet=TRUE)" ;;
+        rs) cargo build ;;
+        sass) sassc -a "$file" "$base".css ;;
+        scad) openscad -o "$base".stl "$file" ;;
+        sent) setsid -f sent "$file" 2>/dev/null ;;
+        tex) textype "$file" ;;
+        typ) typst compile "$file" ;;
+        ,*) sed -n '/^#!/s/^#!//p; q' "$file" | xargs -r -I % "$file" ;;
+        esac
+        '')
+#+END_SRC
+**** Closing
+#+BEGIN_SRC nix :tangle ~/nixfiles/modules/home-manager/scripts.nix
+  ];
+}
+#+END_SRC
+*** State Version
+This value determines the Home Manager release that your configuration is compatible with.
+
+This helps avoid breakage when a new Home Manager release introduces backwards incompatible changes.
+
+You should not change this value, even if you update Home Manager.
+
+If you do want to update the value, then make sure to first check the Home Manager release notes.
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  home.stateVersion = "23.11";
+#+END_SRC
+*** Config Files Created by home.nix
+Leave the comments until you need to use it.
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  home.file = {
+    # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
+
+    # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #   org.gradle.console=verbose
+    #   org.gradle.daemon.idletimeout=3600000
+    # '';
+  };
+#+END_SRC
+
+*** Session Variables :issue:
+This does not seem to work for some reason.
+It does work from within nushell.nix and see.
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
+#+END_SRC
+
+*** Let Home Manager install and manage itself
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  programs.home-manager.enable = true;
+#+END_SRC
+
+*** Closing
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+  }
+#+END_SRC
+* NixOS
+** Main File: configuration.nix
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+
+#+END_SRC
+
+** Also Important: hardware-configuration.nix
+#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/hardware-configuration.nix
+{ config, lib, pkgs, modulesPath, ... }:
+
+{
+  imports =
+    [ (modulesPath + "/installer/scan/not-detected.nix")
+    ];
+
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
+
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/e6a22d0b-0c4f-4b3c-92c2-f56bab77b37d";
+      fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/53DC-FF2D";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/c32b4036-c9ae-4f26-819d-7c4e1689ed2d"; }
+    ];
+
+  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+  # (the default) this is the recommended approach. When using systemd-networkd it's
+  # still possible to use this option, but it's recommended to use it in conjunction
+  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+  networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp166s0.useDHCP = lib.mkDefault true;
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+}
+#+END_SRC
+* TODO Secrets :issue:
+Need to learn how to do secrets. Maybe keep them here.
+#+BEGIN_SRC nix
+
+#+END_SRC
