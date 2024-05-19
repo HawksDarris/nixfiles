@@ -24,12 +24,15 @@
 - [[#secrets][Secrets]]
 :END:
 
-* TODO TODO: Features to Add
+* Issues to Address
+1. Hardware
+* TODO Features to Add
 1. Set up wallpaper picker
 2. Some way to change between themes
 3. Add some candy to terminal launches. Maybe pacman chasing ghosts and a print of the color palette.
+4. Espanso
 
-* TODO TODO: Structural Changes for Configuration
+* TODO Structural Changes for Configuration
 1. Use ~lib.mkOption~ and ~lib.mkDefault~
 2. Use a ~default.nix~ file for all of the defaults so there can be fewer import statements in the ~home.nix~.
 
@@ -45,12 +48,12 @@ You can also create simple shell scripts directly inside your configuration. For
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
   imports = [
 #+END_SRC
-**** TODO TODO: Move other scripts here.
+**** TODO Move other scripts here.
 This module was created for organization. With org mode tangling, it is not currently necessary. Use mkOption, etc., for it.
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
 ../../modules/home-manager/scripts.nix
 #+END_SRC
-**** TODO TODO: Neomutt :issue:
+**** TODO Neomutt :issue:
 Need to set this up with secrets
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
 #../../modules/home-manager/neomutt.nix
@@ -65,7 +68,7 @@ Need to set this up with secrets
 ../../modules/home-manager/nixvim.nix
 ../../modules/home-manager/emacs.nix
 #+END_SRC
-***** TODO TODO: Editor Changes
+***** TODO Editor Changes
 - Set them to persist cursor location on close
 - Set them to persist undo on close
 
@@ -589,16 +592,15 @@ main-user.userName = "sour";
     # networking.interfaces.wlp166s0.useDHCP = lib.mkDefault true;
 
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-    # hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    hardware.cpu.intel.updateMicrocode = true;
+    hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   }
 #+END_SRC
-* TODO TODO: Secrets :issue:
+* TODO Secrets :issue:
 Need to learn how to do secrets. Maybe keep them here.
 #+BEGIN_SRC nix
 
 #+END_SRC
-* TODO TODO: Fix Some Hardware Errors
+* TODO Fix Some Hardware Errors
 
 Computer froze, requiring hard power off. The errors indicate that it may be related to iwlwifi.
 
@@ -1558,8 +1560,13 @@ parm:           disable_11ax:Disable HE capabilities (default: false) (bool)
 parm:           disable_11be:Disable EHT capabilities (default: false) (bool)
 #+END_SRC
 
-** First Attempt at Fixing It
+** Attempts to fix it
+*** First Attempt
 Add this to hardware-configuration.nix
 #+BEGIN_SRC nix
 hardware.cpu.intel.updateMicrocode = true;
 #+END_SRC
+
+This did not work. I suspect the code that was already there, ~hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;~, was already resolving to true, so I do not think I changed anything. I therefore changed it back. I am also not sure if CPU microcode would ever have been the issue, it is just something that resolved some issues on a former system, so it was worth a shot.
+*** Second Attempt
+I am not sure what to do for a second attempt because I am not sure what is causing this. Some online research makes me think it may be solved with some instructions about the module to the kernel, but I do not know enough about that to get my hands dirty alone.
