@@ -51,7 +51,7 @@ This module was created for organization. With org mode tangling, it is not curr
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
 ../../modules/home-manager/scripts.nix
 #+END_SRC
-**** Neomutt :issue:
+**** TODO TODO: Neomutt :issue:
 Need to set this up with secrets
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
 #../../modules/home-manager/neomutt.nix
@@ -381,48 +381,219 @@ It does work from within nushell.nix and see.
 * NixOS
 ** Main File: configuration.nix
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+# Run sudo nixos-rebuild switch --flake .#default
+# Then run home-manager switch --flake .#sour
+# TODO:
+# Figure out how to use disko
+# 1. Impermanence
+# 2. LUKS
 
+{ config, pkgs, inputs, ... }:
+
+{
+  imports =
+    [
+      ./hardware-configuration.nix
+      ./../../modules/nixos/locale.nix
+      #<home-manager/nixos>
+      ../../modules/main-user.nix
+    ];
+main-user.enable = true;
+main-user.userName = "sour";
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  programs.hyprland.enable = true;
+  xdg.portal = {
+  	enable = true;
+	configPackages = with pkgs; [
+		xdg-desktop-portal-gtk
+	];
+	extraPortals = with pkgs; [
+	  xdg-desktop-portal-gtk
+	];
+  };
+
+  users.defaultUserShell = pkgs.nushell;
+
+
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
+
+  # networking.hostName = "${hostname}";
+  networking.hostName = "nixos"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant. Cannot use with networkmanager.
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+  # services.blueman.enable = true;
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
+
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  # users.users.sour = {
+  #   isNormalUser = true;
+  #   description = "sour";
+  #   extraGroups = [ "networkmanager" "wheel" ];
+  #   packages = with pkgs; [
+  #   ];
+  # };
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    kitty
+    swww
+  ];
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+  programs.neovim.enable = true;
+  programs.nano.enable = false;
+
+
+  security = {
+  	polkit.enable = true;
+	pam.services.swaylock = {};
+	rtkit.enable = true;
+  };
+
+  services = {
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
+  	gvfs.enable = true;
+	devmon.enable = true;
+	udisks2.enable = true;
+	upower.enable = true;
+	power-profiles-daemon.enable = true;
+	#displayManager = {
+	#	sddm = {
+	#	  enable = true;
+	#	  wayland = {
+	#	    enable = true;
+	#	    compositor = "weston";
+	#	  };
+	#	};
+	#};
+	gnome = {
+		glib-networking.enable = true; # TODO probably delete
+	};
+	mpd = {
+	  enable = true;
+	  musicDirectory = "/home/sour/Music"; # TODO make this a variable
+	  extraConfig = ''
+	    # must specify one or more outputs in order to play audio
+	    # e.g., PipeWire
+	    audio_output {
+	      type "pipewire"
+	      name "My PipeWire Output"
+	    }
+	  '';
+	  user = "sour"; # TODO make this a variable
+
+	  startWhenNeeded = true;
+	};
+  };
+
+#  services.mpd = {
+#    XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.sour.uid}";
+#  };
+
+  system = {
+    autoUpgrade.enable  = true;
+    stateVersion = "23.11"; # Did you read the comment?
+  };
+
+# TODO either figure this out (and delete firefox files on close, since the errors are caused mostly by firefox files existing during home-manager rebuilds)
+#  home-manager.backupFileExtension = "backup";
+}
 #+END_SRC
 
 ** Also Important: hardware-configuration.nix
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/hardware-configuration.nix
-{ config, lib, pkgs, modulesPath, ... }:
+  { config, lib, pkgs, modulesPath, ... }:
 
-{
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  {
+    imports =
+      [ (modulesPath + "/installer/scan/not-detected.nix")
+      ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+    boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+    boot.initrd.kernelModules = [ ];
+    boot.kernelModules = [ "kvm-intel" ];
+    boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/e6a22d0b-0c4f-4b3c-92c2-f56bab77b37d";
-      fsType = "ext4";
-    };
+    fileSystems."/" =
+      { device = "/dev/disk/by-uuid/e6a22d0b-0c4f-4b3c-92c2-f56bab77b37d";
+        fsType = "ext4";
+      };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/53DC-FF2D";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
+    fileSystems."/boot" =
+      { device = "/dev/disk/by-uuid/53DC-FF2D";
+        fsType = "vfat";
+        options = [ "fmask=0022" "dmask=0022" ];
+      };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/c32b4036-c9ae-4f26-819d-7c4e1689ed2d"; }
-    ];
+    swapDevices =
+      [ { device = "/dev/disk/by-uuid/c32b4036-c9ae-4f26-819d-7c4e1689ed2d"; }
+      ];
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp166s0.useDHCP = lib.mkDefault true;
+    # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+    # (the default) this is the recommended approach. When using systemd-networkd it's
+    # still possible to use this option, but it's recommended to use it in conjunction
+    # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+    networking.useDHCP = lib.mkDefault true;
+    # networking.interfaces.wlp166s0.useDHCP = lib.mkDefault true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-}
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    # hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+    hardware.cpu.intel.updateMicrocode = true;
+  }
 #+END_SRC
 * TODO TODO: Secrets :issue:
 Need to learn how to do secrets. Maybe keep them here.
@@ -433,7 +604,9 @@ Need to learn how to do secrets. Maybe keep them here.
 
 Computer froze, requiring hard power off. The errors indicate that it may be related to iwlwifi.
 
-** journalctl
+
+** Error logs
+*** journalctl
 ~sudo journalctl -b -1 --priority=3~ produces this output.
 #+BEGIN_SRC
 May 17 08:27:52 nixos kernel: cros-usbpd-charger cros-usbpd-charger.2.auto: Unexpected number of charge port count
@@ -769,7 +942,7 @@ May 18 04:57:27 nixos systemd[1]: Failed to start NixOS Upgrade.
 
 
 
-** dmesg
+*** dmesg
 ~dmesg --level err~ produces
 #+BEGIN_SRC
 [    5.245809] cros-usbpd-charger cros-usbpd-charger.2.auto: Unexpected number of charge port count
@@ -856,7 +1029,7 @@ May 18 04:57:27 nixos systemd[1]: Failed to start NixOS Upgrade.
 [    7.667662] iwlwifi 0000:a6:00.0: WRT: Invalid buffer destination
 #+END_SRC
 
-** lspci
+*** lspci
 ~lspci~ produces
 #+BEGIN_SRC
 00:00.0 Host bridge: Intel Corporation Device 4621 (rev 02)
@@ -888,7 +1061,7 @@ May 18 04:57:27 nixos systemd[1]: Failed to start NixOS Upgrade.
 a6:00.0 Network controller: Intel Corporation Wi-Fi 6E(802.11ax) AX210/AX1675* 2x2 [Typhoon Peak] (rev 1a)
 #+END_SRC
 
-** modinfo
+*** modinfo
 #+BEGIN_SRC
 filename:       /run/booted-system/kernel-modules/lib/modules/6.6.30/kernel/drivers/net/wireless/intel/iwlwifi/iwlwifi.ko.xz
 license:        GPL
@@ -1385,4 +1558,10 @@ parm:           disable_11ac:Disable VHT capabilities (default: false) (bool)
 parm:           remove_when_gone:Remove dev from PCIe bus if it is deemed inaccessible (default: false) (bool)
 parm:           disable_11ax:Disable HE capabilities (default: false) (bool)
 parm:           disable_11be:Disable EHT capabilities (default: false) (bool)
+#+END_SRC
+
+** First Attempt at Fixing It
+Add this to hardware-configuration.nix
+#+BEGIN_SRC nix
+hardware.cpu.intel.updateMicrocode = true;
 #+END_SRC
