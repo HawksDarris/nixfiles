@@ -25,12 +25,12 @@
 - [[#secrets][Secrets]]
 :END:
 
-* TODO Features to Add
+* TODO TODO: Features to Add
 1. Set up wallpaper picker
 2. Some way to change between themes
 3. Add some candy to terminal launches. Maybe pacman chasing ghosts and a print of the color palette.
 
-* TODO Structural Changes for Configuration
+* TODO TODO: Structural Changes for Configuration
 1. Use ~lib.mkOption~ and ~lib.mkDefault~
 2. Use a ~default.nix~ file for all of the defaults so there can be fewer import statements in the ~home.nix~.
 
@@ -46,7 +46,7 @@ You can also create simple shell scripts directly inside your configuration. For
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
   imports = [
 #+END_SRC
-**** TODO Move other scripts here.
+**** TODO TODO: Move other scripts here.
 This module was created for organization. With org mode tangling, it is not currently necessary. Use mkOption, etc., for it.
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
 ../../modules/home-manager/scripts.nix
@@ -66,7 +66,7 @@ Need to set this up with secrets
 ../../modules/home-manager/nixvim.nix
 ../../modules/home-manager/emacs.nix
 #+END_SRC
-***** TODO Editor Changes
+***** TODO TODO: Editor Changes
 - Set them to persist cursor location on close
 - Set them to persist undo on close
 
@@ -424,12 +424,12 @@ It does work from within nushell.nix and see.
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
 #+END_SRC
-* TODO Secrets :issue:
+* TODO TODO: Secrets :issue:
 Need to learn how to do secrets. Maybe keep them here.
 #+BEGIN_SRC nix
 
 #+END_SRC
-* TODO Fix Some Hardware Errors
+* TODO TODO: Fix Some Hardware Errors
 
 Computer froze, requiring hard power off. The errors indicate that it may be related to iwlwifi.
 
