@@ -40,14 +40,15 @@
       epkgs.org-re-reveal
     ];
   };
+
   programs.emacs.extraConfig = ''
     (setq org-auto-tangle-default t)
   '';
 
   services.emacs = {
-	  client.enable = true;
-	  socketActivation.enable = true;
-	  # startWithUserSession = "graphical";
-	  startWithUserSession = "graphical";
+    enable = true;
+    client.enable = true;
+    socketActivation.enable = true;
+    startWithUserSession = "graphical";
   };
 }
