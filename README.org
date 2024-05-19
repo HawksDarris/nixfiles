@@ -56,7 +56,7 @@ Need to set this up with secrets
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
 #../../modules/home-manager/neomutt.nix
 #+END_SRC
-****
+
 **** Shell
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
 ../../modules/home-manager/nushell.nix
