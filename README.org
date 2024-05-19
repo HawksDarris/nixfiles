@@ -2,7 +2,6 @@
 #+AUTHOR: Darris Hawks
 #+STARTUP: overview
 #+OPTIONS: toc:2
-#+PROPERTIES: header-args :tangle ~/nixfiles/hosts/default/home.nix
 #+auto_tangle: t
 
 * Table of Contents

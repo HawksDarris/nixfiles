@@ -44,5 +44,10 @@
     (setq org-auto-tangle-default t)
   '';
 
-  services.emacs.client.enable = true;
+  services.emacs = {
+	  client.enable = true;
+	  socketActivation.enable = true;
+	  # startWithUserSession = "graphical";
+	  startWithUserSession = "graphical";
+  };
 }
