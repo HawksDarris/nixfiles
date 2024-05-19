@@ -43,4 +43,6 @@
   programs.emacs.extraConfig = ''
     (setq org-auto-tangle-default t)
   '';
+
+  services.emacs.client.enable = true;
 }

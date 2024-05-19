@@ -11,6 +11,7 @@
 :END:
 :CONTENTS:
 - [[#table-of-contents][Table of Contents]]
+- [[#features-to-add][Features to Add]]
 - [[#fix-some-hardware-errors][Fix Some Hardware Errors]]
   - [[#journalctl][journalctl]]
   - [[#dmesg][dmesg]]
@@ -20,9 +21,19 @@
   - [[#main-file-homenix][Main File: home.nix]]
 - [[#nixos][NixOS]]
   - [[#main-file-configurationnix][Main File: configuration.nix]]
-  - [[#secrets][Secrets]]
   - [[#also-important-hardware-configurationnix][Also Important: hardware-configuration.nix]]
+- [[#secrets][Secrets]]
 :END:
+
+* TODO Features to Add
+1. Set up wallpaper picker
+2. Some way to change between themes
+3. Add some candy to terminal launches. Maybe pacman chasing ghosts and a print of the color palette.
+
+* TODO Structural Changes for Configuration
+1. Use ~lib.mkOption~ and ~lib.mkDefault~
+2. Use a ~default.nix~ file for all of the defaults so there can be fewer import statements in the ~home.nix~.
+
 * TODO Fix Some Hardware Errors
 
 Computer froze, requiring hard power off. The errors indicate that it may be related to iwlwifi.
