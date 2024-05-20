@@ -83,7 +83,6 @@
           };
           nushell.enable = true;
           tsserver.enable = true;
-
           rust-analyzer = {
             enable = true;
             installRustc = true;
