@@ -20,9 +20,9 @@
         "~/.config/hypr/animations.conf"
         "~/.config/hypr/keybindings.conf"
         "~/.config/hypr/windowrules.conf"
-        "~/.config/hypr/themes/common.conf # shared theme settings"
-        "~/.config/hypr/themes/colors.conf # wallbash color override"
-        "~/.config/hypr/monitors.conf # initially empty, to be configured by user and remains static"
+        "~/.config/hypr/themes/common.conf" # shared theme settings
+        "~/.config/hypr/themes/colors.conf" # wallbash color override
+        "~/.config/hypr/monitors.conf" # initially empty, to be configured by user and remains static
       ];
 
       env = [
@@ -38,10 +38,10 @@
 
       exec-once = [
 	      # "lxqt-policykit-agent"
+	      # "/usr/lib/polkit-kde-authentication-agent-1 # authentication dialogue for GUI apps"
 	      "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP # for XDPH"
 	      "dbus-update-activation-environment --systemd --all # for XDPH"
 	      "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP # for XDPH"
-	      # "/usr/lib/polkit-kde-authentication-agent-1 # authentication dialogue for GUI apps"
 	      "waybar # launch the system panel"
 	      "blueman-applet # systray app for BT"
 	      "nm-applet --indicator # systray app for Network/Wifi"

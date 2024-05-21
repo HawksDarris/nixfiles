@@ -17,7 +17,7 @@
       isNormalUser = true;
       extraGroups = [ "networkmanager" "wheel" ];
       initialPassword = "12345";
-      description = "main user";
+      description = "${config.main-user.userName}";
       shell = pkgs.nushell;
     };
   };
