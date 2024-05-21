@@ -106,17 +106,20 @@
         "ALT SHIFT, bracketright, exec, mpc seek +60"
         "ALT, bracketleft, exec, mpc seek -10"
         "ALT, bracketright, exec, mpc seek +10"
+        ", switch:on:Lid Switch, exec, swaylock && systemctl suspend"
       ];
 
       binde = [
         "SUPER SHIFT, down, resizeactive, 0 30"
         "SUPER SHIFT, left, resizeactive, -30 0"
         "SUPER SHIFT, right, resizeactive, 30 0"
+        "SUPER SHIFT, up, resizeactive, 0 -30"
       ];
 
       bindm = [
         "SUPER, mouse:272, movewindow"
-        "SUPER, mouse:273, resizewindow"
+        # "SUPER, mouse:273, resizewindow"
+        "SUPER SHIFT, mouse:272, resizewindow"
       ];
 
       env = [
