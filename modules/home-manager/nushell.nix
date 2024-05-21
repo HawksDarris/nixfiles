@@ -12,7 +12,7 @@
         cat = "bat";
         # cpt = "rsync -rtDvzP --update ~/share/Teaching/* /run/media/sour/Teaching/";
         cpt = "rsync -auv --update ~/share/Teaching/* /run/media/sour/Teaching/";
-        e = "emacs";
+        e = "emacsclient";
         g = "git";
         ka = "killall";
         sxiv = "nsxiv";
