@@ -51,8 +51,7 @@ You can also create simple shell scripts directly inside your configuration. For
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
   imports = [
 #+END_SRC
-**** TODO Move other scripts here.
-This module was created for organization. With org mode tangling, it is not currently necessary. Use mkOption, etc., for it.
+**** Scripts
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
 ../../modules/home-manager/scripts.nix
 #+END_SRC
