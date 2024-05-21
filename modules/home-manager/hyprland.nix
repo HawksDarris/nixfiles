@@ -1,5 +1,5 @@
 # TODO nixify all the `~/` references
-{config, pkgs, file, ... }: 
+{config, pkgs, file, ... }:
 {
   imports = [
 	# ./hyprland-keybindings.nix
@@ -24,6 +24,20 @@
 	  "~/.config/hypr/themes/colors.conf # wallbash color override"
 	  "~/.config/hypr/monitors.conf # initially empty, to be configured by user and remains static"
      ];
+
+      bind = [
+        "ALT, Tab, movefocus, d"
+        "SUPER SHIFT, 0, movetoworkspacesilent, 10"
+        "SUPER SHIFT, 1, movetoworkspacesilent, 1"
+        "SUPER SHIFT, 2, movetoworkspacesilent, 2"
+        "SUPER SHIFT, 3, movetoworkspacesilent, 3"
+        "SUPER SHIFT, 4, movetoworkspacesilent, 4"
+        "SUPER SHIFT, 5, movetoworkspacesilent, 5"
+        "SUPER SHIFT, 6, movetoworkspacesilent, 6"
+        "SUPER SHIFT, 7, movetoworkspacesilent, 7"
+        "SUPER SHIFT, 8, movetoworkspacesilent, 8"
+        "SUPER SHIFT, 9, movetoworkspacesilent, 9"
+      ];
 
       env = [
 	  "XDG_CURRENT_DESKTOP,Hyprland"
@@ -76,8 +90,8 @@
     }
 
     dwindle {
-	    pseudotile = yes 
-		    preserve_split = yes 
+	    pseudotile = yes
+		    preserve_split = yes
     }
 
     misc {
