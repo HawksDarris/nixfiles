@@ -186,8 +186,9 @@ lxqt-policykit-agent may be needed
 #+END_SRC
 **** Still to Sort
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
-  # lxqt-policykit-agent
+    # lxqt-policykit-agent
 bat
+bc
 brightnessctl
 brightnessctl
 bun

@@ -74,6 +74,7 @@ home.packages = with pkgs; [
 
 # lxqt-policykit-agent
 bat
+bc
 brightnessctl
 brightnessctl
 bun
