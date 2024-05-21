@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    sops-nix.url = "github:Mic92/sops-nix";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,7 +27,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, hyprland, sops-nix, ... }@inputs:
   let
     /* ---- SYSTEM SETTINGS ---- */
     system = "x86_64-linux";
@@ -40,6 +42,7 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/default/configuration.nix
+        sops-nix.nixosModules.sops
           #./modules/nixos/locale.nix
           #./hosts/default/home.nix
           #inputs.home-manager.nixosModules.default
@@ -50,7 +53,7 @@
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
-        modules = [ 
+        modules = [
           ./hosts/default/home.nix
           hyprland.homeManagerModules.default
           {wayland.windowManager.hyprland.enable = true;}
