@@ -31,6 +31,9 @@
 2. Some way to change between themes
 3. Add some candy to terminal launches. Maybe pacman chasing ghosts and a print of the color palette.
 4. Espanso
+5. Figure out how to use disko
+   1. Set up impermanence (after all config files have been nixified)
+   2. Set up LUKS
 
 * TODO Structural Changes for Configuration
 1. Use ~lib.mkOption~ and ~lib.mkDefault~
@@ -185,37 +188,38 @@ lxqt-policykit-agent may be needed
 **** Still to Sort
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
   # lxqt-policykit-agent
-  bat
-  brightnessctl
-  brightnessctl
-  bun
-  dart-sass
-  dbus
-  eww
-  glib
-  gnucash
-  hugo
-  jmtpfs
-  jq
-  keepassxc
-  kitty
-  kiwix
-  libnotify
-  ncdu
-  rofi-wayland
-  rofimoji
-  slurp
-  swappy
-  swaylock
-  swww
-  taskwarrior3
-  wayshot
-  wf-recorder
-  wl-clipboard
-  wl-gammactl
-  wofi
-  wttrbar
-  yad
+bat
+brightnessctl
+brightnessctl
+bun
+dart-sass
+dbus
+exfat
+eww
+glib
+gnucash
+hugo
+jmtpfs
+jq
+keepassxc
+kitty
+kiwix
+libnotify
+ncdu
+rofi-wayland
+rofimoji
+slurp
+swappy
+swaylock
+swww
+taskwarrior3
+wayshot
+wf-recorder
+wl-clipboard
+wl-gammactl
+wofi
+wttrbar
+yad
 #+END_SRC
 
 **** Candy
@@ -385,10 +389,6 @@ It does work from within nushell.nix and see.
 #+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
 # Run sudo nixos-rebuild switch --flake .#default
 # Then run home-manager switch --flake .#sour
-# TODO:
-# Figure out how to use disko
-# 1. Impermanence
-# 2. LUKS
 
 { config, pkgs, inputs, ... }:
 

@@ -1,9 +1,5 @@
 # Run sudo nixos-rebuild switch --flake .#default
 # Then run home-manager switch --flake .#sour
-# TODO:
-# Figure out how to use disko
-# 1. Impermanence
-# 2. LUKS
 
 { config, pkgs, inputs, ... }:
 

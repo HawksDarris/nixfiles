@@ -79,6 +79,7 @@ brightnessctl
 bun
 dart-sass
 dbus
+exfat
 eww
 glib
 gnucash
