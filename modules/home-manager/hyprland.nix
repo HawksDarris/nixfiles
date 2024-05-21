@@ -90,6 +90,7 @@
         "SUPER, up, movefocus, u"
         "SUPER SHIFT, K, exec, keepassxc"
         "SUPER SHIFT, N, exec, emacsclient --create-frame"
+        "SUPER, grave, exec, rofimoji --action type copy --selector rofi"
       ];
 
       bindl = [
@@ -105,6 +106,17 @@
         "ALT SHIFT, bracketright, exec, mpc seek +60"
         "ALT, bracketleft, exec, mpc seek -10"
         "ALT, bracketright, exec, mpc seek +10"
+      ];
+
+      binde = [
+        "SUPER SHIFT, down, resizeactive, 0 30"
+        "SUPER SHIFT, left, resizeactive, -30 0"
+        "SUPER SHIFT, right, resizeactive, 30 0"
+      ];
+
+      bindm = [
+        "SUPER, mouse:272, movewindow"
+        "SUPER, mouse:273, resizewindow"
       ];
 
       env = [
