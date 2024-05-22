@@ -1,4 +1,5 @@
 { ... }:
+
 {
   wayland.windowManager.hyprland.settings = {
     bind = [
@@ -69,6 +70,13 @@
       "SUPER, grave, exec, rofimoji --action type copy --selector rofi"
     ];
 
+    binde = [
+      "SUPER SHIFT, down, resizeactive, 0 30"
+      "SUPER SHIFT, left, resizeactive, -30 0"
+      "SUPER SHIFT, right, resizeactive, 30 0"
+      "SUPER SHIFT, up, resizeactive, 0 -30"
+    ];
+
     bindl = [
       ", XF86AudioNext, exec, playerctl next"
       ", XF86AudioPause, exec, playerctl play-pause"
@@ -83,13 +91,6 @@
       "ALT, bracketleft, exec, mpc seek -10"
       "ALT, bracketright, exec, mpc seek +10"
       ", switch:on:Lid Switch, exec, swaylock && systemctl suspend"
-    ];
-
-    binde = [
-      "SUPER SHIFT, down, resizeactive, 0 30"
-      "SUPER SHIFT, left, resizeactive, -30 0"
-      "SUPER SHIFT, right, resizeactive, 30 0"
-      "SUPER SHIFT, up, resizeactive, 0 -30"
     ];
 
     bindm = [

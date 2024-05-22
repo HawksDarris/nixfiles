@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, username, ... }:
+{ config, pkgs, lib, inputs, username, defaultEditor, ... }:
 {
 
 imports = [
@@ -72,7 +72,6 @@ programs.ripgrep = {
 
 home.packages = with pkgs; [
 
-# lxqt-policykit-agent
 bat
 bc
 brightnessctl
@@ -149,7 +148,7 @@ home.file = {
 };
 
 home.sessionVariables = {
-  EDITOR = "nvim";
+  EDITOR = "${defaultEditor}";
 };
 
 programs.home-manager.enable = true;

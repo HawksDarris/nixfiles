@@ -36,7 +36,10 @@
 
     /* ---- USER SETTINGS ---- */
     username = "sour";
-
+    term = "kitty";
+    defaultWebBrowser = "qutebrowser";
+    defaultFileBrowser = "lf";
+    defaultEditor = "nvim";
   in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
