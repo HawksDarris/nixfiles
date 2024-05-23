@@ -62,7 +62,15 @@
           {wayland.windowManager.hyprland.enable = true;}
         ];
 
-        extraSpecialArgs = { inherit inputs username; };
+        extraSpecialArgs = { 
+          inherit 
+          inputs 
+          username
+          term 
+          defaultWebBrowser 
+          defaultFileBrowser 
+          defaultEditor 
+        ; };
       };
     };
   }

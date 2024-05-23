@@ -1,6 +1,6 @@
 { ... }:
 
-# To view all emacs nix packages, 
+# To view all emacs nix packages,
 # nix-env -f '<nixpkgs>' -qaP -A emacsPackages
 {
   imports = [
@@ -38,6 +38,7 @@
       epkgs.org-make-toc
       epkgs.org-modern
       epkgs.org-re-reveal
+      epkgs.org-roam
     ];
   };
 

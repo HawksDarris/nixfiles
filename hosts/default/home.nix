@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, username, defaultEditor, ... }:
+{ config, pkgs, lib, inputs, username, ... }:
 {
 
 imports = [
@@ -148,7 +148,7 @@ home.file = {
 };
 
 home.sessionVariables = {
-  EDITOR = "${defaultEditor}";
+  EDITOR = "nvim";
 };
 
 programs.home-manager.enable = true;

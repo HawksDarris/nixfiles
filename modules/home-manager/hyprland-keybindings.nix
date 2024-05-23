@@ -1,5 +1,10 @@
-{ ... }:
+{ term, defaultBrowser, defaultEditor, ... }:
 
+# bind = SUPER, W, exec, $browser # open browser
+# bind = SUPER, N, exec, $editor +'VimwikiIndex'
+# bind = SUPER, R, exec, $file
+# bindl  = SUPER ALT, M, exec, ${term} -e ncmpcpp
+# bind = SUPER, c, exec, $calc
 {
   wayland.windowManager.hyprland.settings = {
     bind = [
@@ -46,12 +51,13 @@
       "SHIFT ALT, K, movewindow, u"
       "SHIFT ALT, H, movewindow, l"
       "SHIFT ALT, L, movewindow, r"
-      "SUPER SHIFT, W, exec, $term nmtui"
+      "SUPER SHIFT, W, exec, ${term} nmtui"
+      "SUPER, return, exec, ${term}"  # open terminal
       "SUPER SHIFT, apostrophe, movetoworkspacesilent, special"
       "SUPER SHIFT, semicolon, workspace, r-1"
       "SUPER, semicolon, workspace, r+1"
       "SUPER, B, exec, pkill .waybar-wrapped || waybar "
-      "SUPER, E, exec, mailsync & $term -e neomutt"
+      "SUPER, E, exec, mailsync & ${term} -e neomutt"
       "SUPER, F, fullscreen, 2 "
       "SUPER, P, pseudo"
       "SUPER, space, togglefloating,"
