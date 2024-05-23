@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, username, ... }:
+{ config, pkgs, lib, inputs, username, defaultEditor, ... }:
 {
 
 imports = [
@@ -104,6 +104,7 @@ wl-clipboard
 wl-gammactl
 wofi
 wttrbar
+xdotool
 yad
 
 pokeget-rs
@@ -148,7 +149,7 @@ home.file = {
 };
 
 home.sessionVariables = {
-  EDITOR = "nvim";
+  EDITOR = "${defaultEditor}";
 };
 
 programs.home-manager.enable = true;
