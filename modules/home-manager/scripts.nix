@@ -1,7 +1,10 @@
+# [[file:../../README.org::*Shell Scripts][Shell Scripts:1]]
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+# Shell Scripts:1 ends here
 
+# [[file:../../README.org::*compiler script][compiler script:1]]
 (pkgs.writeShellScriptBin "compiler"
   ''
 #!/bin/sh
@@ -56,6 +59,9 @@ case "$ext" in
         *) sed -n '/^#!/s/^#!//p; q' "$file" | xargs -r -I % "$file" ;;
         esac
         '')
+# compiler script:1 ends here
 
+# [[file:../../README.org::*Closing][Closing:1]]
 ];
 }
+# Closing:1 ends here

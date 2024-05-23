@@ -1,8 +1,11 @@
+# [[file:../../README.org::*Main File: configuration.nix][Main File: configuration.nix:1]]
 { config, pkgs, inputs, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
+# Main File: configuration.nix:1 ends here
 
+# [[file:../../README.org::*Imports][Imports:1]]
 imports =
   [
     ./hardware-configuration.nix
@@ -10,29 +13,45 @@ imports =
     #<home-manager/nixos>
     ../../modules/main-user.nix
   ];
+# Imports:1 ends here
 
+# [[file:../../README.org::*User Set-up][User Set-up:1]]
 main-user.enable = true;
 main-user.userName = "sour";
 users.defaultUserShell = pkgs.nushell;
+# User Set-up:1 ends here
 
+# [[file:../../README.org::*Flake Set-up][Flake Set-up:1]]
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
+# Flake Set-up:1 ends here
 
+# [[file:../../README.org::*Hyprland][Hyprland:1]]
 programs.hyprland.enable = true;
+# Hyprland:1 ends here
 
+# [[file:../../README.org::*Opening][Opening:1]]
 networking = {
   hostName = "nixos";
   # hostName = "${hostname}";
   networkmanager.enable = true;
+# Opening:1 ends here
 
+# [[file:../../README.org::*Firewall][Firewall:1]]
 # firewall.allowedTCPPorts = [ ... ];
 # firewall.allowedUDPPorts = [ ... ];
+# Firewall:1 ends here
 
+# [[file:../../README.org::*Proxy][Proxy:1]]
 # Configure network proxy if necessary
 # proxy.default = "http://user:password@proxy:port/";
 # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+# Proxy:1 ends here
 
+# [[file:../../README.org::*Closing][Closing:1]]
 };
+# Closing:1 ends here
 
+# [[file:../../README.org::*XDG Portal][XDG Portal:1]]
 xdg.portal = {
         enable = true;
         configPackages = with pkgs; [
@@ -42,11 +61,15 @@ xdg.portal = {
           xdg-desktop-portal-gtk
         ];
   };
+# XDG Portal:1 ends here
 
+# [[file:../../README.org::*Bootloader][Bootloader:1]]
 boot.loader.systemd-boot.enable = true;
 boot.loader.efi.canTouchEfiVariables = true;
 boot.supportedFilesystems = [ "ntfs" ];
+# Bootloader:1 ends here
 
+# [[file:../../README.org::*Services][Services:1]]
 services = {
   printing.enable = true;
   pipewire = {
@@ -100,7 +123,9 @@ services = {
 #	  };
 #	};
 #};
+# Services:1 ends here
 
+# [[file:../../README.org::*Sound][Sound:1]]
 sound.enable = true;
 hardware = {
   pulseaudio.enable = false;
@@ -109,11 +134,15 @@ hardware = {
     powerOnBoot = true;
   };
 };
+# Sound:1 ends here
 
+# [[file:../../README.org::*System Packages][System Packages:1]]
 environment.systemPackages = with pkgs; [
   kitty
 ];
+# System Packages:1 ends here
 
+# [[file:../../README.org::*Programs][Programs:1]]
 programs = {
   neovim.enable = true;
   nano.enable = false;
@@ -123,21 +152,72 @@ programs = {
 #   enable = true;
 #   enableSSHSupport = true;
 # };
+# Programs:1 ends here
 
+# [[file:../../README.org::*Security][Security:1]]
 security = {
   polkit.enable = true;
   pam.services.swaylock = {};
   rtkit.enable = true;
 };
+# Security:1 ends here
 
+# [[file:../../README.org::*System][System:1]]
 system = {
   autoUpgrade.enable  = true;
   stateVersion = "23.11";
 };
+# System:1 ends here
 
+# [[file:../../README.org::*Virtual Machine Configuration][Virtual Machine Configuration:1]]
 virtualisation.libvirtd.enable = true;
 programs.virt-manager.enable = true;
+# Virtual Machine Configuration:1 ends here
 
+# [[file:../../README.org::*Home-Manager][Home-Manager:1]]
 # home-manager.backupFileExtension = "backup";
+# Home-Manager:1 ends here
 
+# [[file:../../README.org::*Closing][Closing:1]]
 }
+# Closing:1 ends here
+
+# [[file:../../README.org::*Also Important: hardware-configuration.nix][Also Important: hardware-configuration.nix:1]]
+{ config, lib, pkgs, modulesPath, ... }:
+
+{
+  imports =
+    [ (modulesPath + "/installer/scan/not-detected.nix")
+    ];
+
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
+  boot.initrd.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
+  boot.extraModulePackages = [ ];
+
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/e6a22d0b-0c4f-4b3c-92c2-f56bab77b37d";
+      fsType = "ext4";
+    };
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/53DC-FF2D";
+      fsType = "vfat";
+      options = [ "fmask=0022" "dmask=0022" ];
+    };
+
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/c32b4036-c9ae-4f26-819d-7c4e1689ed2d"; }
+    ];
+
+  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+  # (the default) this is the recommended approach. When using systemd-networkd it's
+  # still possible to use this option, but it's recommended to use it in conjunction
+  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+  networking.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp166s0.useDHCP = lib.mkDefault true;
+
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+}
+# Also Important: hardware-configuration.nix:1 ends here

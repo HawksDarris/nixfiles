@@ -41,32 +41,35 @@
 
 * Home Manager
 ** Main File: home.nix
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+:PROPERTIES:
+:header-args: :comments link :tangle ~/nixfiles/hosts/default/home.nix
+:END:
+#+BEGIN_SRC nix
 { config, pkgs, lib, inputs, username, defaultEditor, ... }:
 {
 #+END_SRC
 You can also create simple shell scripts directly inside your configuration. For example, this adds a command 'my-hello' to your environment:
 
 *** Imports
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   imports = [
 #+END_SRC
 **** Scripts
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
 ../../modules/home-manager/scripts.nix
 #+END_SRC
 **** TODO Neomutt :issue:
 Need to set this up with secrets
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
 #../../modules/home-manager/neomutt.nix
 #+END_SRC
 
 **** Shell
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
 ../../modules/home-manager/nushell.nix
 #+END_SRC
 **** Editors
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
 ../../modules/home-manager/nixvim.nix
 ../../modules/home-manager/emacs.nix
 #+END_SRC
@@ -75,12 +78,12 @@ Need to set this up with secrets
 - Set them to persist undo on close
 
 **** CLI Utilities
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
 ../../modules/home-manager/bottom.nix
 ../../modules/home-manager/git.nix
 #+END_SRC
 **** Desktop
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
 ../../modules/home-manager/hyprland.nix
 ../../modules/home-manager/mako.nix
 ../../modules/home-manager/waybar.nix
@@ -88,44 +91,44 @@ Need to set this up with secrets
 #+END_SRC
 ***** Browsers :issue:
 Separate the browsers into individual modules instead of having one module of all browsers.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
 ../../modules/home-manager/browsers.nix
 #+END_SRC
 ***** Terminal
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
 ../../modules/home-manager/kitty.nix
 ../../modules/home-manager/lf.nix
 #+END_SRC
 ***** Nix Colors
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
 inputs.nix-colors.homeManagerModules.default
 ../../modules/home-manager/colors.nix
 #+END_SRC
 ***** Fonts
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
 ../../modules/home-manager/fonts.nix
 #+END_SRC
 **** Closing Bracket
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
 ];
 #+END_SRC
 *** Services
-#+BEGIN_SRC nix :tangle ~/nixfiles/modules/home-manager/services.nix
+#+BEGIN_SRC nix
     { ... }:
   {
 #+END_SRC
 
 **** Emacs
-#+BEGIN_SRC nix :tangle ~/nixfiles/modules/home-manager/services.nix
+#+BEGIN_SRC nix
       services.emacs.client.enable = true;
 #+END_SRC
 **** Closing
-#+BEGIN_SRC nix :tangle ~/nixfiles/modules/home-manager/services.nix
+#+BEGIN_SRC nix
     }
 #+END_SRC
 *** Home Manager Variables
 The ~username~ variable is declared in ~~/nixfiles/hosts/default/configuration.nix~
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
 #+END_SRC
@@ -133,7 +136,7 @@ The ~username~ variable is declared in ~~/nixfiles/hosts/default/configuration.n
 *** To Modularize :issue:
 These need to be put in their own nix files to be imported, above in the import section.
 **** fd
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   programs.fd = {
     enable = true;
     hidden = true; # Pass --hidden flag by default
@@ -145,7 +148,7 @@ These need to be put in their own nix files to be imported, above in the import 
 #+END_SRC
 **** thefuck
 Type ~fuck~ after typing a command wrong to get suggestions for how to fix it.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   programs.thefuck = {
     enable = true;
     enableNushellIntegration = true;
@@ -153,7 +156,7 @@ Type ~fuck~ after typing a command wrong to get suggestions for how to fix it.
 #+END_SRC
 **** pandoc :issue:
 Add ~.csl~ files for citation.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   programs.pandoc = {
     enable = true;
     citationStyles = [ # list of paths to .csl files
@@ -169,7 +172,7 @@ Add ~.csl~ files for citation.
 #+END_SRC
 
 **** ripgrep
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   programs.ripgrep = {
     enable = true;
     arguments = [
@@ -181,13 +184,13 @@ Add ~.csl~ files for citation.
 
 *** Packages
 lxqt-policykit-agent may be needed
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   home.packages = with pkgs; [
 #+END_SRC
 **** Still to Sort
 lxqt-policykit-agent may be necessary for virtio, etc.
 
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
 bat
 bc
 brightnessctl
@@ -226,17 +229,17 @@ yad
 
 **** Candy
 Packages that are just for funsies
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   pokeget-rs
   macchina
 #+END_SRC
 **** Document Management
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   texliveFull
   zathura
 #+END_SRC
 **** CLI Utilities
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   gh
   fdupes
   fzf
@@ -251,7 +254,7 @@ Packages that are just for funsies
 ~mpc-cli~ and ~ncmpcpp~ are both music players. Probably don't need both. Music system not set up yet.
 
 ~playerctl~ controls MPRIS (D-Bus interface standard for controlling media players) media players. It should work for mpc-cli. Not sure if it will work for ncmpcpp.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   grimblast
   mpc-cli
   ncmpcpp
@@ -263,23 +266,23 @@ Packages that are just for funsies
 It is sometimes useful to fine-tune packages, for example, by applying overrides.
 
 For example, this would install the Nerd Fonts package but with only the FantasqueSansMono font.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 #+END_SRC
 
 **** Closing bracket
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
     ];
 #+END_SRC
 
 *** Shell Scripts
-#+BEGIN_SRC nix :tangle ~/nixfiles/modules/home-manager/scripts.nix
+#+BEGIN_SRC nix
   { pkgs, ... }:
   {
     home.packages = with pkgs; [
 #+END_SRC
 **** compiler script
-#+BEGIN_SRC nix :tangle ~/nixfiles/modules/home-manager/scripts.nix
+#+BEGIN_SRC nix
 (pkgs.writeShellScriptBin "compiler"
   ''
 #!/bin/sh
@@ -336,7 +339,7 @@ case "$ext" in
         '')
 #+END_SRC
 **** Closing
-#+BEGIN_SRC nix :tangle ~/nixfiles/modules/home-manager/scripts.nix
+#+BEGIN_SRC nix
   ];
 }
 #+END_SRC
@@ -348,12 +351,12 @@ This helps avoid breakage when a new Home Manager release introduces backwards i
 You should not change this value, even if you update Home Manager.
 
 If you do want to update the value, then make sure to first check the Home Manager release notes.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   home.stateVersion = "23.11";
 #+END_SRC
 *** Config Files Created by home.nix
 Leave the comments until you need to use it.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   home.file = {
     # Building this configuration will create a copy of 'dotfiles/screenrc' in
     # the Nix store. Activating the configuration will then make '~/.screenrc' a
@@ -371,35 +374,37 @@ Leave the comments until you need to use it.
 *** Session Variables :issue:
 This does not seem to work for some reason.
 It does work from within nushell.nix and see.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   home.sessionVariables = {
     EDITOR = "${defaultEditor}";
   };
 #+END_SRC
 
 *** Let Home Manager install and manage itself
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   programs.home-manager.enable = true;
 #+END_SRC
 
 *** Closing
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/home.nix
+#+BEGIN_SRC nix
   }
 #+END_SRC
 * NixOS
 ** Main File: configuration.nix
+:PROPERTIES:
+:header-args: :comments link :tangle ~/nixfiles/hosts/default/configuration.nix
+:END:
 From scratch set up:
 1. ~sudo nixos-rebuild switch --flake .#default~ from directory with ~flake.nix~
 2. ~home-manager switch --flake .#sour~ from directory with ~flake.nix~
-*** Opening
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   { config, pkgs, inputs, ... }:
 
   {
     nixpkgs.config.allowUnfree = true;
 #+END_SRC
 **** Imports
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
     imports =
       [
         ./hardware-configuration.nix
@@ -409,25 +414,25 @@ From scratch set up:
       ];
 #+END_SRC
 **** User Set-up
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   main-user.enable = true;
   main-user.userName = "sour";
   users.defaultUserShell = pkgs.nushell;
 #+END_SRC
 **** Flake Set-up
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #+END_SRC
 **** TODO Hyprland
 Low priority: This should work using only home-manager, but currently does not.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   programs.hyprland.enable = true;
 #+END_SRC
 **** Networking
 
 ***** TODO Opening
 Low priority: use variable for hostname.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   networking = {
     hostName = "nixos";
     # hostName = "${hostname}";
@@ -435,23 +440,23 @@ Low priority: use variable for hostname.
 #+END_SRC
 
 ******* Firewall
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   # firewall.allowedTCPPorts = [ ... ];
   # firewall.allowedUDPPorts = [ ... ];
 #+END_SRC
 ******* Proxy
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   # Configure network proxy if necessary
   # proxy.default = "http://user:password@proxy:port/";
   # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 #+END_SRC
 ***** Closing
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   };
 #+END_SRC
 **** TODO XDG Portal
 This may be handleable by home-manager.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   xdg.portal = {
           enable = true;
           configPackages = with pkgs; [
@@ -463,13 +468,13 @@ This may be handleable by home-manager.
     };
 #+END_SRC
 **** Bootloader
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "ntfs" ];
 #+END_SRC
 **** Services
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   services = {
     printing.enable = true;
     pipewire = {
@@ -525,7 +530,7 @@ This may be handleable by home-manager.
   #};
 #+END_SRC
 **** Sound
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   sound.enable = true;
   hardware = {
     pulseaudio.enable = false;
@@ -537,14 +542,14 @@ This may be handleable by home-manager.
 #+END_SRC
 **** System Packages
 To search, ~$ nix search wget~
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   environment.systemPackages = with pkgs; [
     kitty
   ];
 #+END_SRC
 **** Programs
 Some programs need SUID wrappers, can be configured further or are started in user sessions.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   programs = {
     neovim.enable = true;
     nano.enable = false;
@@ -556,7 +561,7 @@ Some programs need SUID wrappers, can be configured further or are started in us
   # };
 #+END_SRC
 **** Security
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   security = {
     polkit.enable = true;
     pam.services.swaylock = {};
@@ -565,7 +570,7 @@ Some programs need SUID wrappers, can be configured further or are started in us
 #+END_SRC
 **** System
 Do not change stateVersion.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   system = {
     autoUpgrade.enable  = true;
     stateVersion = "23.11";
@@ -573,22 +578,25 @@ Do not change stateVersion.
 #+END_SRC
 
 **** Virtual Machine Configuration
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
 #+END_SRC
 
 **** TODO Home-Manager
 Medium priority: firefox creates search file that prevents home-manager rebuilds after being backed up until it is manually removed. Annoying.
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
   # home-manager.backupFileExtension = "backup";
 #+END_SRC
 *** Closing
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/configuration.nix
+#+BEGIN_SRC nix
 }
 #+END_SRC
 ** Also Important: hardware-configuration.nix
-#+BEGIN_SRC nix :tangle ~/nixfiles/hosts/default/hardware-configuration.nix
+:PROPERTIES:
+:header-args: :comments link :tangle ~/nixfiles/hosts/default/configuration.nix
+:END:
+#+BEGIN_SRC nix
   { config, lib, pkgs, modulesPath, ... }:
 
   {

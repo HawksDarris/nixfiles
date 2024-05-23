@@ -1,3 +1,4 @@
+# [[file:../../README.org::*Also Important: hardware-configuration.nix][Also Important: hardware-configuration.nix:1]]
 { config, lib, pkgs, modulesPath, ... }:
 
 {
@@ -35,3 +36,4 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
+# Also Important: hardware-configuration.nix:1 ends here
