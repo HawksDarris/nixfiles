@@ -2,12 +2,12 @@
 
 # bind = SUPER, W, exec, $browser # open browser
 # bind = SUPER, N, exec, $editor +'VimwikiIndex'
-# bind = SUPER, R, exec, $file
 # bindl  = SUPER ALT, M, exec, ${term} -e ncmpcpp
 # bind = SUPER, c, exec, $calc
 {
   wayland.windowManager.hyprland.settings = {
     bind = [
+      "SUPER, R, exec, $file"
       "ALT, Tab, movefocus, d"
       "SUPER, J, togglesplit" # dwindle
       "SUPER ALT, 0, movetoworkspace, 10"
