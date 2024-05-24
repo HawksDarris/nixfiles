@@ -10,18 +10,18 @@
 :END:
 :CONTENTS:
 - [[#table-of-contents][Table of Contents]]
+- [[#issues-to-address][Issues to Address]]
 - [[#features-to-add][Features to Add]]
-- [[#fix-some-hardware-errors][Fix Some Hardware Errors]]
-  - [[#journalctl][journalctl]]
-  - [[#dmesg][dmesg]]
-  - [[#lspci][lspci]]
-  - [[#modinfo][modinfo]]
+- [[#structural-changes-for-configuration][Structural Changes for Configuration]]
 - [[#home-manager][Home Manager]]
   - [[#main-file-homenix][Main File: home.nix]]
 - [[#nixos][NixOS]]
   - [[#main-file-configurationnix][Main File: configuration.nix]]
   - [[#also-important-hardware-configurationnix][Also Important: hardware-configuration.nix]]
 - [[#secrets][Secrets]]
+- [[#fix-some-hardware-errors][Fix Some Hardware Errors]]
+  - [[#error-logs][Error logs]]
+  - [[#attempts-to-fix-it][Attempts to fix it]]
 :END:
 
 * Issues to Address
@@ -38,7 +38,6 @@
 * TODO Structural Changes for Configuration
 1. Use ~lib.mkOption~ and ~lib.mkDefault~
 2. Use a ~default.nix~ file for all of the defaults so there can be fewer import statements in the ~home.nix~.
-
 * Home Manager
 ** Main File: home.nix
 :PROPERTIES:
@@ -111,20 +110,6 @@ inputs.nix-colors.homeManagerModules.default
 **** Closing Bracket
 #+BEGIN_SRC nix
 ];
-#+END_SRC
-*** Services
-#+BEGIN_SRC nix
-    { ... }:
-  {
-#+END_SRC
-
-**** Emacs
-#+BEGIN_SRC nix
-      services.emacs.client.enable = true;
-#+END_SRC
-**** Closing
-#+BEGIN_SRC nix
-    }
 #+END_SRC
 *** Home Manager Variables
 The ~username~ variable is declared in ~~/nixfiles/hosts/default/configuration.nix~
@@ -275,7 +260,73 @@ For example, this would install the Nerd Fonts package but with only the Fantasq
     ];
 #+END_SRC
 
-*** Shell Scripts
+*** State Version
+This value determines the Home Manager release that your configuration is compatible with.
+
+This helps avoid breakage when a new Home Manager release introduces backwards incompatible changes.
+
+You should not change this value, even if you update Home Manager.
+
+If you do want to update the value, then make sure to first check the Home Manager release notes.
+#+BEGIN_SRC nix
+  home.stateVersion = "23.11";
+#+END_SRC
+*** Config Files Created by home.nix
+Leave the comments until you need to use it.
+#+BEGIN_SRC nix
+  home.file = {
+    # Building this configuration will create a copy of 'dotfiles/screenrc' in
+    # the Nix store. Activating the configuration will then make '~/.screenrc' a
+    # symlink to the Nix store copy.
+    # ".screenrc".source = dotfiles/screenrc;
+
+    # You can also set the file content immediately.
+    # ".gradle/gradle.properties".text = ''
+    #   org.gradle.console=verbose
+    #   org.gradle.daemon.idletimeout=3600000
+    # '';
+  };
+#+END_SRC
+
+*** Session Variables :issue:
+This does not seem to work for some reason.
+It does work from within nushell.nix and see.
+#+BEGIN_SRC nix
+  home.sessionVariables = {
+    EDITOR = "${defaultEditor}";
+  };
+#+END_SRC
+
+*** Let Home Manager install and manage itself
+#+BEGIN_SRC nix
+  programs.home-manager.enable = true;
+#+END_SRC
+
+*** Closing
+#+BEGIN_SRC nix
+  }
+#+END_SRC
+** Services
+:PROPERTIES:
+:header-args: :comments link :tangle ~/nixfiles/modules/home-manager/services.nix
+:END:
+#+BEGIN_SRC nix
+  { ... }:
+  {
+#+END_SRC
+
+**** Emacs
+#+BEGIN_SRC nix
+      services.emacs.client.enable = true;
+#+END_SRC
+**** Closing
+#+BEGIN_SRC nix
+    }
+#+END_SRC
+** Shell Scripts
+:PROPERTIES:
+:header-args: :comments link :tangle ~/nixfiles/modules/home-manager/scripts.nix
+:END:
 #+BEGIN_SRC nix
   { pkgs, ... }:
   {
@@ -342,52 +393,6 @@ case "$ext" in
 #+BEGIN_SRC nix
   ];
 }
-#+END_SRC
-*** State Version
-This value determines the Home Manager release that your configuration is compatible with.
-
-This helps avoid breakage when a new Home Manager release introduces backwards incompatible changes.
-
-You should not change this value, even if you update Home Manager.
-
-If you do want to update the value, then make sure to first check the Home Manager release notes.
-#+BEGIN_SRC nix
-  home.stateVersion = "23.11";
-#+END_SRC
-*** Config Files Created by home.nix
-Leave the comments until you need to use it.
-#+BEGIN_SRC nix
-  home.file = {
-    # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
-#+END_SRC
-
-*** Session Variables :issue:
-This does not seem to work for some reason.
-It does work from within nushell.nix and see.
-#+BEGIN_SRC nix
-  home.sessionVariables = {
-    EDITOR = "${defaultEditor}";
-  };
-#+END_SRC
-
-*** Let Home Manager install and manage itself
-#+BEGIN_SRC nix
-  programs.home-manager.enable = true;
-#+END_SRC
-
-*** Closing
-#+BEGIN_SRC nix
-  }
 #+END_SRC
 * NixOS
 ** Main File: configuration.nix
