@@ -689,6 +689,11 @@
         def cpu [] {ps | where cpu > 0 | sort-by cpu | reverse | first 10 }
         def ram [] {ps | where mem != '0 B' | sort-by mem | reverse | first 10 }
 
+        def Backup [destinationPath] {
+          rsync -auv --size-only ~/Pictures ~/Documents ~/share ~/nixfiles "$destinationPath"
+        }
+        
+
         def h [message] { 
           cd ~/nixfiles;
           try {
