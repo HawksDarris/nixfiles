@@ -132,7 +132,6 @@ libnotify
 ncdu
 rofi-wayland
 rofimoji
-sops
 slurp
 swappy
 swaylock

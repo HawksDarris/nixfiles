@@ -197,7 +197,6 @@ lxqt-policykit-agent may be necessary for virtio, etc.
   ncdu
   rofi-wayland
   rofimoji
-  sops
   slurp
   swappy
   swaylock
