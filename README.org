@@ -176,40 +176,41 @@ lxqt-policykit-agent may be needed
 lxqt-policykit-agent may be necessary for virtio, etc.
 
 #+BEGIN_SRC nix
-bat
-bc
-brightnessctl
-brightnessctl
-bun
-dart-sass
-dbus
-exfat
-eww
-glib
-gnucash
-hugo
-jmtpfs
-jq
-keepassxc
-kitty
-kiwix
-libnotify
-ncdu
-rofi-wayland
-rofimoji
-slurp
-swappy
-swaylock
-swww
-taskwarrior3
-wayshot
-wf-recorder
-wl-clipboard
-wl-gammactl
-wofi
-wttrbar
-xdotool
-yad
+  bat
+  bc
+  brightnessctl
+  brightnessctl
+  bun
+  dart-sass
+  dbus
+  exfat
+  eww
+  glib
+  gnucash
+  hugo
+  jmtpfs
+  jq
+  keepassxc
+  kitty
+  kiwix
+  libnotify
+  ncdu
+  rofi-wayland
+  rofimoji
+  sops
+  slurp
+  swappy
+  swaylock
+  swww
+  taskwarrior3
+  wayshot
+  wf-recorder
+  wl-clipboard
+  wl-gammactl
+  wofi
+  wttrbar
+  xdotool
+  yad
 #+END_SRC
 
 **** Candy
