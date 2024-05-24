@@ -599,7 +599,7 @@ Medium priority: firefox creates search file that prevents home-manager rebuilds
 #+END_SRC
 ** Also Important: hardware-configuration.nix
 :PROPERTIES:
-:header-args: :comments link :tangle ~/nixfiles/hosts/default/configuration.nix
+:header-args: :comments link :tangle ~/nixfiles/hosts/default/hardware-configuration.nix
 :END:
 #+BEGIN_SRC nix
   { config, lib, pkgs, modulesPath, ... }:
