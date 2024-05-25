@@ -176,6 +176,8 @@ lxqt-policykit-agent may be needed
 lxqt-policykit-agent may be necessary for virtio, etc.
 
 #+BEGIN_SRC nix
+  wpsoffice-cn
+  libreoffice
   bat
   bc
   brightnessctl
