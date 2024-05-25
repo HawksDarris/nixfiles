@@ -40,6 +40,10 @@
     defaultWebBrowser = "qutebrowser";
     defaultFileBrowser = "lf";
     defaultEditor = "nvim";
+
+    allowed-unfree-packages = [
+      "wpsoffice"
+    ];
   in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
@@ -62,14 +66,15 @@
           {wayland.windowManager.hyprland.enable = true;}
         ];
 
-        extraSpecialArgs = { 
-          inherit 
-          inputs 
+        extraSpecialArgs = {
+          inherit
+          inputs
           username
-          term 
-          defaultWebBrowser 
-          defaultFileBrowser 
-          defaultEditor 
+          term
+          defaultWebBrowser
+          defaultFileBrowser
+          defaultEditor
+          allowed-unfree-packages
         ; };
       };
     };

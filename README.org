@@ -176,7 +176,7 @@ lxqt-policykit-agent may be needed
 lxqt-policykit-agent may be necessary for virtio, etc.
 
 #+BEGIN_SRC nix
-  wpsoffice-cn
+  wpsoffice
   libreoffice
   bat
   bc
@@ -404,11 +404,13 @@ case "$ext" in
 From scratch set up:
 1. ~sudo nixos-rebuild switch --flake .#default~ from directory with ~flake.nix~
 2. ~home-manager switch --flake .#sour~ from directory with ~flake.nix~
+
 #+BEGIN_SRC nix
   { config, pkgs, inputs, ... }:
 
   {
     nixpkgs.config.allowUnfree = true;
+
 #+END_SRC
 **** Imports
 #+BEGIN_SRC nix
