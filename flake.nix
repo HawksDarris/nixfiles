@@ -40,10 +40,6 @@
     defaultWebBrowser = "qutebrowser";
     defaultFileBrowser = "lf";
     defaultEditor = "nvim";
-
-    allowed-unfree-packages = [
-      "wpsoffice"
-    ];
   in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
@@ -74,7 +70,6 @@
           defaultWebBrowser
           defaultFileBrowser
           defaultEditor
-          allowed-unfree-packages
         ; };
       };
     };
