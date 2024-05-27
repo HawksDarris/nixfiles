@@ -34,6 +34,7 @@
       epkgs.lsp-ui
       epkgs.nix-buffer
       epkgs.nix-mode
+      epkgs.no-littering
       epkgs.org-auto-tangle
       epkgs.org-make-toc
       epkgs.org-modern
