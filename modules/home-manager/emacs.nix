@@ -40,6 +40,7 @@
       epkgs.org-modern
       epkgs.org-re-reveal
       epkgs.org-roam
+      epkgs.prettier
     ];
   };
 
