@@ -324,9 +324,14 @@ It does work from within nushell.nix and see.
 #+BEGIN_SRC nix
       services.emacs.client.enable = true;
 #+END_SRC
+
 **** Syncthing
 #+BEGIN_SRC nix
-  services.syncthing.enable = true;
+  services.syncthing = {
+    enable = true;
+    # extraOptions = [
+    # ];
+  };
 #+END_SRC
 **** Closing
 #+BEGIN_SRC nix
