@@ -117,7 +117,8 @@ bc
 brightnessctl
 brightnessctl
 bun
-csslint
+# csslint
+stylelint
 dart-sass
 dbus
 exfat

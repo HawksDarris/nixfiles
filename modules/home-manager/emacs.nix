@@ -25,7 +25,8 @@
       epkgs.corfu
       epkgs.flycheck
       epkgs.flycheck-popup-tip
-      epkgs.flymake-css
+      # epkgs.flymake-css
+      epkgs.flymake-eglot
       epkgs.gruvbox-theme
       epkgs.ligature
       epkgs.lsp-dart

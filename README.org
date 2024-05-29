@@ -182,7 +182,8 @@ lxqt-policykit-agent may be necessary for virtio, etc.
   brightnessctl
   brightnessctl
   bun
-  csslint
+  # csslint
+  stylelint
   dart-sass
   dbus
   exfat
