@@ -182,6 +182,7 @@ lxqt-policykit-agent may be necessary for virtio, etc.
   brightnessctl
   brightnessctl
   bun
+  csslint
   dart-sass
   dbus
   exfat
@@ -199,6 +200,7 @@ lxqt-policykit-agent may be necessary for virtio, etc.
   rofi-wayland
   rofimoji
   p7zip
+  pylint
   slurp
   swappy
   swaylock

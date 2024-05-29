@@ -117,6 +117,7 @@ bc
 brightnessctl
 brightnessctl
 bun
+csslint
 dart-sass
 dbus
 exfat
@@ -134,6 +135,7 @@ ncdu
 rofi-wayland
 rofimoji
 p7zip
+pylint
 slurp
 swappy
 swaylock
