@@ -1,5 +1,10 @@
-{ lib, config, ... }:
+{ pkgs, lib, config, ... }:
 {
+  home.shellAliases = {
+    "..." = "cd ../..";
+    # TODO why does this not work? Reboot to double check
+    cfN = "${pkgs.nvim}/bin/nvim ~/nixfiles/hosts/default/configuration.nix"; 
+  };
   programs = {
     nushell = { 
       enable = true;
@@ -22,8 +27,6 @@
         copy = "xsel --clipboard";
         copyp = "xsel --primary";
         lf = "^lf";
-        magit = "nvim -c MagitOnly";
-        mount = "sudo mount -o uid=1000";
         weath = "less -S ~/.cache/weatherreport";
         vim = "nvim";
         v = "nvim";
