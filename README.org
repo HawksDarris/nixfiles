@@ -329,8 +329,9 @@ It does work from within nushell.nix and see.
 #+BEGIN_SRC nix
   services.syncthing = {
     enable = true;
-    # extraOptions = [
-    # ];
+    extraOptions = [
+      "--gui-user=${username}"
+    ];
   };
 #+END_SRC
 **** Closing

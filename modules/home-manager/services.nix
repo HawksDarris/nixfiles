@@ -10,8 +10,9 @@ services.emacs.client.enable = true;
 # [[file:../../README.org::*Syncthing][Syncthing:1]]
 services.syncthing = {
   enable = true;
-  # extraOptions = [
-  # ];
+  extraOptions = [
+    "--gui-user=${username}"
+  ];
 };
 # Syncthing:1 ends here
 
