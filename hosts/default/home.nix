@@ -111,6 +111,7 @@ home.packages = with pkgs; [
 # Packages:1 ends here
 
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
+syncthing
 libreoffice
 bat
 bc
@@ -141,6 +142,7 @@ slurp
 swappy
 swaylock
 swww
+syncthing
 taskwarrior3
 wayshot
 wf-recorder

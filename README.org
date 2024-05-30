@@ -57,6 +57,7 @@ You can also create simple shell scripts directly inside your configuration. For
 #+BEGIN_SRC nix
 ../../modules/home-manager/scripts.nix
 #+END_SRC
+
 **** TODO Neomutt :issue:
 Need to set this up with secrets
 #+BEGIN_SRC nix
@@ -175,7 +176,10 @@ lxqt-policykit-agent may be needed
 **** Still to Sort
 lxqt-policykit-agent may be necessary for virtio, etc.
 
+Syncthing is not provided as a package for the syncthing service. I will do a pull request about it.
+
 #+BEGIN_SRC nix
+  syncthing
   libreoffice
   bat
   bc
@@ -206,6 +210,7 @@ lxqt-policykit-agent may be necessary for virtio, etc.
   swappy
   swaylock
   swww
+  syncthing
   taskwarrior3
   wayshot
   wf-recorder
@@ -1632,3 +1637,8 @@ hardware.cpu.intel.updateMicrocode = true;
 This did not work. I suspect the code that was already there, ~hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;~, was already resolving to true, so I do not think I changed anything. I therefore changed it back. I am also not sure if CPU microcode would ever have been the issue, it is just something that resolved some issues on a former system, so it was worth a shot.
 *** Second Attempt
 I am not sure what to do for a second attempt because I am not sure what is causing this. Some online research makes me think it may be solved with some instructions about the module to the kernel, but I do not know enough about that to get my hands dirty alone.
+
+* Setup                                                     :noexport:
+# Local variables:
+# after-save-hook: org-babel-tangle
+# end:
