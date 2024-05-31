@@ -53,6 +53,12 @@ You can also create simple shell scripts directly inside your configuration. For
 #+BEGIN_SRC nix
   imports = [
 #+END_SRC
+
+**** TODO Syncthing Changed; test
+#+BEGIN_SRC nix
+../../modules/home-manager/syncthing-package-definition.nix
+#+END_SRC
+
 **** Scripts
 #+BEGIN_SRC nix
 ../../modules/home-manager/scripts.nix
@@ -112,6 +118,7 @@ inputs.nix-colors.homeManagerModules.default
 #+BEGIN_SRC nix
 ];
 #+END_SRC
+
 *** Home Manager Variables
 The ~username~ variable is declared in ~~/nixfiles/hosts/default/configuration.nix~
 #+BEGIN_SRC nix
