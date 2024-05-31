@@ -16,5 +16,7 @@
       "alt+c" = "copy_to_clipboard";
       "alt+v" = "paste_from_clipboard";
     };
+    extraConfig = ''
+    '';
   };
 }
