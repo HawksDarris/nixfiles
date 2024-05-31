@@ -1,6 +1,6 @@
-{ config, inputs, pkgs, ... }:
+{ config, inputs, pkgs, username, ... }:
 {
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     chromium
 ];
   programs.qutebrowser = {
@@ -25,7 +25,21 @@
 programs.firefox = {
   enable = true;
   policies = {
+    SearchSuggestEnabled = false;
+    SanitizeOnShutdown = {
+      Cache = true;
+      Cookies = false;
+      Downloads = true;
+      FormData = false;
+      History = true;
+      Sessions = true;
+      SiteSettings = true;
+      OfflineApps = true;
+      Locked = true;
+    };
+    DefaultDownloadDirectory = "\${home}/Downloads";
     DisableTelemetry = true;
+    DisableFormHistory = true;
     DisableFirefoxStudies = true;
     EnableTrackingProtection = {
       Value= true;
@@ -49,7 +63,7 @@ programs.firefox = {
          install_url = "./assets/ublock_origin-1.57.2.xpi";
          installation_mode = "force_installed";
        };
-       #  Seems to slow things down. TODO; double check 
+       #  Seems to slow things down. TODO; double check
        # Privacy Badger:
        # "jid1-MnnxcxisBPnSXQ@jetpack" = {
        #    install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
@@ -57,7 +71,7 @@ programs.firefox = {
        #  };
      };
 
-     Preferences = { 
+     Preferences = {
        "browser.urlbar.suggest.engines" = false;
        "browser.search.region" = "US";
        "browser.contentblocking.category" = { Value = "strict"; Status = "locked"; };
@@ -81,7 +95,7 @@ programs.firefox = {
      };
   };
 
-  profiles.sour = {
+  profiles.${username} = {
     search.default = "Bing";
     bookmarks = [
       {
@@ -122,13 +136,13 @@ programs.firefox = {
             name = "Grade 7 Lesson Plans";
             tags = [ "TEFL" ];
             keyword = "G7";
-            url = "file:///home/sour/share/Teaching/TEFL/Lesson%20Plans/Grade%207%20Lesson%20Plans.html";
+            url = "file:///home/${username}/share/Teaching/TEFL/Lesson%20Plans/Grade%207%20Lesson%20Plans.html";
           }
           {
             name = "Grade 6 Lesson Plans";
             tags = [ "TEFL" ];
             keyword = "G6";
-            url = "file:///home/sour/share/Teaching/TEFL/Lesson%20Plans/Grade%206%20Lesson%20Plans.html";
+            url = "file:///home/${username}/share/Teaching/TEFL/Lesson%20Plans/Grade%206%20Lesson%20Plans.html";
           }
 	];
       }
@@ -140,10 +154,10 @@ programs.firefox = {
       "identity.fx.accounts.enabled" = false;
       # allow local, unsigned extensions
       # "xpinstall.signatures.required" = false
-      # remember 
+      # remember
       # "signon.rememberSignons" = false;
     };
-    
+
     extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
     ];
   };

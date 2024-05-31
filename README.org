@@ -56,7 +56,7 @@ You can also create simple shell scripts directly inside your configuration. For
 
 **** TODO Syncthing Changed; test
 #+BEGIN_SRC nix
-../../modules/home-manager/syncthing-package-definition.nix
+# ../../modules/home-manager/syncthing-package-definition.nix
 #+END_SRC
 
 **** Scripts
