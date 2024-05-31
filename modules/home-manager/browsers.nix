@@ -3,66 +3,68 @@
   home.packages = with pkgs; [
     chromium
 ];
-  programs.qutebrowser = {
-    enable = true;
-    searchEngines = {
-      DEFAULT = "https://bing.com/search?q={}";
-      ew = "https://bing.com/search?q=site:emacswiki.org%20{}";
-    };
-    settings = {
-      colors = {
-        webpage.preferred_color_scheme = "${config.colorScheme.variant}";
-        tabs.bar.bg = "#${config.colorScheme.palette.base00}";
-        keyhint.fg = "#${config.colorScheme.palette.base05}";
-        hints = {
-          fg = "#${config.colorScheme.palette.base05}";
-          bg = "#${config.colorScheme.palette.base00}";
-        };
+
+programs.qutebrowser = {
+  enable = true;
+  searchEngines = {
+    DEFAULT = "https://bing.com/search?q={}";
+    ew = "https://bing.com/search?q=site:emacswiki.org%20{}";
+  };
+  settings = {
+    colors = {
+      webpage.preferred_color_scheme = "${config.colorScheme.variant}";
+      tabs.bar.bg = "#${config.colorScheme.palette.base00}";
+      keyhint.fg = "#${config.colorScheme.palette.base05}";
+      hints = {
+        fg = "#${config.colorScheme.palette.base05}";
+        bg = "#${config.colorScheme.palette.base00}";
       };
+    };
       # tabs.bar.bg = "#000000";
     };
   };
-programs.firefox = {
-  enable = true;
-  policies = {
-    SearchSuggestEnabled = false;
-    SanitizeOnShutdown = {
-      Cache = true;
-      Cookies = false;
-      Downloads = true;
-      FormData = false;
-      History = true;
-      Sessions = true;
-      SiteSettings = true;
-      OfflineApps = true;
-      Locked = true;
-    };
-    DefaultDownloadDirectory = "\${home}/Downloads";
-    DisableTelemetry = true;
-    DisableFormHistory = true;
-    DisableFirefoxStudies = true;
-    EnableTrackingProtection = {
-      Value= true;
-         Locked = true;
-         Cryptomining = true;
-         Fingerprinting = true;
-       };
-     DisablePocket = true;
-     DisableFirefoxAccounts = true;
-     DisableAccounts = true;
-     DisableFirefoxScreenshots = true;
-     OverrideFirstRunPage = "";
-     OverridePostUpdatePage = "";
-     DontCheckDefaultBrowser = true;
-     DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
-     DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
-     SearchBar = "unified"; # alternative: "separate"
-     ExtensionSettings = {
-       "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
-       "uBlock0@raymondhill.net" = {
-         install_url = "./assets/ublock_origin-1.57.2.xpi";
-         installation_mode = "force_installed";
-       };
+
+  programs.firefox = {
+    enable = true;
+    policies = {
+      SearchSuggestEnabled = false;
+      SanitizeOnShutdown = {
+        Cache = true;
+        Cookies = false;
+        Downloads = true;
+        FormData = false;
+        History = true;
+        Sessions = true;
+        SiteSettings = true;
+        OfflineApps = true;
+        Locked = true;
+      };
+      DefaultDownloadDirectory = "\${home}/Downloads";
+      DisableTelemetry = true;
+      DisableFormHistory = true;
+      DisableFirefoxStudies = true;
+      EnableTrackingProtection = {
+        Value= true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
+      DisablePocket = true;
+      DisableFirefoxAccounts = true;
+      DisableAccounts = true;
+      DisableFirefoxScreenshots = true;
+      OverrideFirstRunPage = "";
+      OverridePostUpdatePage = "";
+      DontCheckDefaultBrowser = true;
+      DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
+      DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
+      SearchBar = "unified"; # alternative: "separate"
+      ExtensionSettings = {
+        "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
+        "uBlock0@raymondhill.net" = {
+          install_url = "./assets/ublock_origin-1.57.2.xpi";
+          installation_mode = "force_installed";
+        };
        #  Seems to slow things down. TODO; double check
        # Privacy Badger:
        # "jid1-MnnxcxisBPnSXQ@jetpack" = {
@@ -93,65 +95,65 @@ programs.firefox = {
        "browser.newtabpage.activity-stream.system.showSponsored" = false;
        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
      };
-  };
+   };
 
-  profiles.${username} = {
-    search.default = "Bing";
-    bookmarks = [
-      {
-        name= "Nix Sites";
-	toolbar = true;
-	bookmarks = [
-	  {
-            name = "NixOS Wiki";
-            tags = [ "nix" "options" ];
-            keyword = "nixwiki";
-            url = "https://nixos.wiki/wiki/";
-	  }
-          {
-            name = "Home-Manager Options";
-            tags = [ "nix" "options" ];
-            keyword = "ho";
-            url = "https://home-manager-options.extranix.com/";
-          }
-	];
-      }
-      {
-        name= "Teaching";
-	toolbar = true;
-	bookmarks = [
-          {
-            name = "kehua";
-            tags = [ "TEFL" "repo" "github" "git" ];
-            keyword = "kehua";
-            url = "https://github.com/HawksDarris/Kehua";
-          }
-          {
-            name = "toPhonetics";
-            tags = [ "TEFL" ];
-            keyword = "phonetics";
-            url = "https://tophonetics.com/";
-          }
-          {
-            name = "Grade 7 Lesson Plans";
-            tags = [ "TEFL" ];
-            keyword = "G7";
-            url = "file:///home/${username}/share/Teaching/TEFL/Lesson%20Plans/Grade%207%20Lesson%20Plans.html";
-          }
-          {
-            name = "Grade 6 Lesson Plans";
-            tags = [ "TEFL" ];
-            keyword = "G6";
-            url = "file:///home/${username}/share/Teaching/TEFL/Lesson%20Plans/Grade%206%20Lesson%20Plans.html";
-          }
-	];
-      }
-    ];
+   profiles.${username} = {
+     search.default = "Bing";
+     bookmarks = [
+       {
+         name= "Nix Sites";
+         toolbar = true;
+         bookmarks = [
+           {
+             name = "NixOS Wiki";
+             tags = [ "nix" "options" ];
+             keyword = "nixwiki";
+             url = "https://nixos.wiki/wiki/";
+           }
+           {
+             name = "Home-Manager Options";
+             tags = [ "nix" "options" ];
+             keyword = "ho";
+             url = "https://home-manager-options.extranix.com/";
+           }
+         ];
+       }
+       {
+         name= "Teaching";
+         toolbar = true;
+         bookmarks = [
+           {
+             name = "kehua";
+             tags = [ "TEFL" "repo" "github" "git" ];
+             keyword = "kehua";
+             url = "https://github.com/HawksDarris/Kehua";
+           }
+           {
+             name = "toPhonetics";
+             tags = [ "TEFL" ];
+             keyword = "phonetics";
+             url = "https://tophonetics.com/";
+           }
+           {
+             name = "Grade 7 Lesson Plans";
+             tags = [ "TEFL" ];
+             keyword = "G7";
+             url = "file:///home/${username}/share/Teaching/TEFL/Lesson%20Plans/Grade%207%20Lesson%20Plans.html";
+           }
+           {
+             name = "Grade 6 Lesson Plans";
+             tags = [ "TEFL" ];
+             keyword = "G6";
+             url = "file:///home/${username}/share/Teaching/TEFL/Lesson%20Plans/Grade%206%20Lesson%20Plans.html";
+           }
+         ];
+       }
+     ];
 
-    settings = {
-      "dom.security.https_only_mode" = true;
-      "browser.download.panel.shown" = true;
-      "identity.fx.accounts.enabled" = false;
+     settings = {
+       "dom.security.https_only_mode" = true;
+       "browser.download.panel.shown" = true;
+       "identity.fx.accounts.enabled" = false;
       # allow local, unsigned extensions
       # "xpinstall.signatures.required" = false
       # remember
@@ -162,8 +164,8 @@ programs.firefox = {
     ];
   };
 };
-  programs.librewolf = {
-    enable = true;
+programs.librewolf = {
+  enable = true;
     # Enable WebGL, cookies and history
     settings = {
       "webgl.disabled" = false;

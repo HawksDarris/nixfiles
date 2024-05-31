@@ -1,4 +1,4 @@
-{ term, defaultBrowser, defaultEditor, ... }:
+{ defaultBrowser, defaultEditor, term, ... }:
 
 # bind = SUPER, W, exec, $browser # open browser
 # bind = SUPER, N, exec, $editor +'VimwikiIndex'
