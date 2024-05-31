@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, username, ... }:
 {
   home.shellAliases = {
     "..." = "cd ../..";
@@ -15,8 +15,8 @@
 
       shellAliases = {
         cat = "bat";
-        # cpt = "rsync -rtDvzP --update ~/share/Teaching/* /run/media/sour/Teaching/";
-        cpt = "rsync -auv --update ~/share/Teaching/* /run/media/sour/Teaching/";
+        # cpt = "rsync -rtDvzP --update ~/share/Teaching/* /run/media/${username}/Teaching/";
+        cpt = "rsync -auv --update ~/share/Teaching/* /run/media/${username}/Teaching/";
         e = "emacsclient";
         g = "git";
         ka = "killall";
@@ -701,7 +701,7 @@
           cd ~/nixfiles;
           try {
             git add ~/nixfiles; 
-            home-manager switch --flake ~/nixfiles#sour;
+            home-manager switch --flake ~/nixfiles#${username};
             git commit ~/nixfiles -m "$message"; 
           }
           cd -
