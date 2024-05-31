@@ -1,5 +1,5 @@
 # TODO nixify all the `~/` references
-{config, pkgs, file, ... }:
+{config, pkgs, file, inputs, ... }:
 {
   imports = [
 	./hyprland-keybindings.nix
@@ -17,12 +17,12 @@
 
     settings = {
       source = [
-        "~/.config/hypr/animations.conf"
-        "~/.config/hypr/keybindings.conf"
-        "~/.config/hypr/windowrules.conf"
-        "~/.config/hypr/themes/common.conf" # shared theme settings
-        "~/.config/hypr/themes/colors.conf" # wallbash color override
-        "~/.config/hypr/monitors.conf" # initially empty, to be configured by user and remains static
+        "${home}/.config/hypr/animations.conf"
+        "${home}/.config/hypr/keybindings.conf"
+        "${home}/.config/hypr/windowrules.conf"
+        "${home}/.config/hypr/themes/common.conf" # shared theme settings
+        "${home}/.config/hypr/themes/colors.conf" # wallbash color override
+        "${home}/.config/hypr/monitors.conf" # initially empty, to be configured by user and remains static
       ];
 
       env = [
@@ -55,7 +55,7 @@
     extraConfig = with config.colorScheme.palette; ''
    general:col.inactive_border = rgb(${base08}) rgb(${base09}) 45deg
    general:col.active_border = rgb(${base0A}) rgb(${base0F}) 45deg
-   $scrPath=~/.config/hypr/scripts
+   $scrPath=${home}/.config/hypr/scripts
 
    input {
      kb_layout = us, latam

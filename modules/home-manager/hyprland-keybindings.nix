@@ -52,7 +52,7 @@
       "SHIFT ALT, H, movewindow, l"
       "SHIFT ALT, L, movewindow, r"
       "SUPER SHIFT, W, exec, ${term} nmtui"
-      "SUPER, return, exec, ${term}"  # open terminal
+      "SUPER, return, exec, ${term} pokeget --hide-name bulbasaur"  # open terminal with bulbasaur
       "SUPER SHIFT, apostrophe, movetoworkspacesilent, special"
       "SUPER SHIFT, semicolon, workspace, r-1"
       "SUPER, semicolon, workspace, r+1"
