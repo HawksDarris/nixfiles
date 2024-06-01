@@ -138,13 +138,13 @@ programs.qutebrowser = {
              name = "Grade 7 Lesson Plans";
              tags = [ "TEFL" ];
              keyword = "G7";
-             url = "file:///home/${username}/share/Teaching/TEFL/Lesson%20Plans/Grade%207%20Lesson%20Plans.html";
+             url = "file:///home/${username}/share/Teaching/TEFL/Lesson-Plans/Grade%207%20Lesson%20Plans.html";
            }
            {
              name = "Grade 6 Lesson Plans";
              tags = [ "TEFL" ];
              keyword = "G6";
-             url = "file:///home/${username}/share/Teaching/TEFL/Lesson%20Plans/Grade%206%20Lesson%20Plans.html";
+             url = "file:///home/${username}/share/Teaching/TEFL/Lesson-Plans/Grade%206%20Lesson%20Plans.html";
            }
          ];
        }
