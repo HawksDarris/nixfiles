@@ -11,6 +11,7 @@
   qt5,
   libyuv,
   libjpeg8,
+  ...
 }:
 
 let
