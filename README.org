@@ -59,6 +59,10 @@ You can also create simple shell scripts directly inside your configuration. For
 # ../../modules/home-manager/syncthing-package-definition.nix
 #+END_SRC
 
+**** Tencent Meeting
+#+BEGIN_SRC nix
+../../modules/home-manager/tencent-meeting.nix
+#+END_SRC
 **** Scripts
 #+BEGIN_SRC nix
 ../../modules/home-manager/scripts.nix

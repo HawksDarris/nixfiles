@@ -11,6 +11,10 @@ imports = [
 # ../../modules/home-manager/syncthing-package-definition.nix
 # Syncthing Changed; test:1 ends here
 
+# [[file:../../README.org::*Tencent Meeting][Tencent Meeting:1]]
+../../modules/home-manager/tencent-meeting.nix
+# Tencent Meeting:1 ends here
+
 # [[file:../../README.org::*Scripts][Scripts:1]]
 ../../modules/home-manager/scripts.nix
 # Scripts:1 ends here
