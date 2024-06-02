@@ -6,11 +6,6 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -32,7 +27,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, sops-nix, nur, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, sops-nix, ... }@inputs:
   let
     /* ---- SYSTEM SETTINGS ---- */
     system = "x86_64-linux";
@@ -49,19 +44,8 @@
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        { nixpkgs.overlays = [ nur.overlay ]; }
-        ({ pkgs, ... }:
-          let 
-            nur-no-pkgs = import nur {
-              nurpkgs = import nixpkgs { system = "x86_64-linux"; };
-            };
-          in {
-            imports = [ nur-no-pkgs.repos.iopq.modules.xraya  ];
-            services.xraya.enable = true;
-          })
         ./hosts/default/configuration.nix
         sops-nix.nixosModules.sops
-        nur.nixosModules.nur
           #./modules/nixos/locale.nix
           #./hosts/default/home.nix
           #inputs.home-manager.nixosModules.default
