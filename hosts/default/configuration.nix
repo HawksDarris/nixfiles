@@ -174,10 +174,6 @@ virtualisation.libvirtd.enable = true;
 programs.virt-manager.enable = true;
 # Virtual Machine Configuration:1 ends here
 
-# [[file:../../README.org::*Home-Manager][Home-Manager:1]]
-# home-manager.backupFileExtension = "backup";
-# Home-Manager:1 ends here
-
 # [[file:../../README.org::*Closing][Closing:1]]
 }
 # Closing:1 ends here

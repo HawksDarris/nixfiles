@@ -319,6 +319,11 @@ It does work from within nushell.nix and see.
   programs.home-manager.enable = true;
 #+END_SRC
 
+**** TODO Home-Manager
+Medium priority: firefox creates search file that prevents home-manager rebuilds after being backed up until it is manually removed. Annoying.
+#+BEGIN_SRC nix
+  # home-manager.backupFileExtension = "backup";
+#+END_SRC
 *** Closing
 #+BEGIN_SRC nix
   }
@@ -617,11 +622,6 @@ Do not change stateVersion.
   programs.virt-manager.enable = true;
 #+END_SRC
 
-**** TODO Home-Manager
-Medium priority: firefox creates search file that prevents home-manager rebuilds after being backed up until it is manually removed. Annoying.
-#+BEGIN_SRC nix
-  # home-manager.backupFileExtension = "backup";
-#+END_SRC
 *** Closing
 #+BEGIN_SRC nix
 }
