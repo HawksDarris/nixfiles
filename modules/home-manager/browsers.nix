@@ -1,5 +1,6 @@
 { config, inputs, pkgs, username, ... }:
 {
+  # imports = [ nur.repos.rycee.firefox-addons ];
   home.packages = with pkgs; [
     chromium
 ];
@@ -61,10 +62,10 @@ programs.qutebrowser = {
       SearchBar = "unified"; # alternative: "separate"
       ExtensionSettings = {
         "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
-        "uBlock0@raymondhill.net" = {
-          install_url = "./assets/ublock_origin-1.57.2.xpi";
-          installation_mode = "force_installed";
-        };
+        # "uBlock0@raymondhill.net" = {
+        #   install_url = "./assets/ublock_origin-1.57.2.xpi";
+        #   installation_mode = "force_installed";
+        # };
        #  Seems to slow things down. TODO; double check
        # Privacy Badger:
        # "jid1-MnnxcxisBPnSXQ@jetpack" = {
@@ -161,6 +162,8 @@ programs.qutebrowser = {
     };
 
     extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+    # extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      # ublock-origin
     ];
   };
 };

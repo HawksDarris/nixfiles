@@ -3,12 +3,6 @@
 
 {
   nixpkgs.config.allowUnfree = true;
-
-  packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-  };
 # Main File: configuration.nix:1 ends here
 
 # [[file:../../README.org::*Imports][Imports:1]]
