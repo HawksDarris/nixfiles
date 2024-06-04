@@ -60,8 +60,8 @@
    $scrPath=/home/${username}/.config/hypr/scripts
 
    input {
-     kb_layout = us, cn
-     kb_variant = intl, cangjie
+     kb_layout = us
+     kb_variant = altgr-intl
      kb_options = caps:escape
      follow_mouse = 1
      touchpad {
