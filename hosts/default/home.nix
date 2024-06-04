@@ -110,6 +110,15 @@ programs.ripgrep = {
 };
 # ripgrep:1 ends here
 
+# [[file:../../README.org::*dconf][dconf:1]]
+dconf.settings = {
+  "org/virt-manager/virt-manager/connections" = {
+    autoconnect = ["qemu:///system"];
+    uris = ["qemu:///system"];
+  };
+};
+# dconf:1 ends here
+
 # [[file:../../README.org::*Packages][Packages:1]]
 home.packages = with pkgs; [
 # Packages:1 ends here
@@ -142,6 +151,7 @@ rofi-wayland
 rofimoji
 p7zip
 pylint
+python3Full
 slurp
 swappy
 swaylock

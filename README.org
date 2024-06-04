@@ -175,6 +175,15 @@ Add ~.csl~ files for citation.
   };
 #+END_SRC
 
+**** dconf
+#+BEGIN_SRC nix
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
+#+END_SRC
 *** Packages
 lxqt-policykit-agent may be needed
 #+BEGIN_SRC nix
@@ -213,6 +222,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   rofimoji
   p7zip
   pylint
+  python3Full
   slurp
   swappy
   swaylock
@@ -617,6 +627,7 @@ Do not change stateVersion.
 #+END_SRC
 
 **** Virtual Machine Configuration
+See dconf settings in home-manager.
 #+BEGIN_SRC nix
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
