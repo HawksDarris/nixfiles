@@ -43,10 +43,6 @@
       "SUPER SHIFT, left, movetoworkspace, r-1"
       "SUPER SHIFT, right, movetoworkspace, r+1"
       "SUPER SHIFT, down, workspace, empty " # move to next empty workspace
-      "SHIFT ALT, down, movewindow, d"
-      "SHIFT ALT, up, movewindow, u"
-      "SHIFT ALT, left, movewindow, l"
-      "SHIFT ALT, right, movewindow, r"
       "SHIFT ALT, J, movewindow, d"
       "SHIFT ALT, K, movewindow, u"
       "SHIFT ALT, H, movewindow, l"
