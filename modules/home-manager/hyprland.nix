@@ -61,7 +61,7 @@
 
    input {
      kb_layout = us, latam
-     kb_variant = alt_intl
+     kb_variant = intl
      kb_options = caps:escape
      follow_mouse = 1
      touchpad {
