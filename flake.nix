@@ -25,9 +25,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, sops-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, sops-nix, nur, ... }@inputs:
   let
     /* ---- SYSTEM SETTINGS ---- */
     system = "x86_64-linux";
