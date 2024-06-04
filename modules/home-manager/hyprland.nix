@@ -38,6 +38,9 @@
       exec-once = [
 	      # "lxqt-policykit-agent"
 	      # "/usr/lib/polkit-kde-authentication-agent-1 # authentication dialogue for GUI apps"
+
+# "virsh net-autostart default"
+
 	      "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP # for XDPH"
 	      "dbus-update-activation-environment --systemd --all # for XDPH"
 	      "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP # for XDPH"
