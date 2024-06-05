@@ -57,6 +57,10 @@ You can also create simple shell scripts directly inside your configuration. For
   imports = [
 #+END_SRC
 
+**** NUR
+#+BEGIN_SRC nix
+inputs.nur.hmModules.nur
+#+END_SRC
 **** TODO Syncthing Changed; test
 #+BEGIN_SRC nix
 # ../../modules/home-manager/syncthing-package-definition.nix
@@ -199,6 +203,7 @@ lxqt-policykit-agent may be necessary for virtio, etc.
 Syncthing is not provided as a package for the syncthing service. I will do a pull request about it.
 
 #+BEGIN_SRC nix
+  nur.repos.linyinfeng.wemeet
   syncthing
   libreoffice
   bat

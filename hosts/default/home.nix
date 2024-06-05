@@ -7,6 +7,10 @@
 imports = [
 # Imports:1 ends here
 
+# [[file:../../README.org::*NUR][NUR:1]]
+inputs.nur.hmModules.nur
+# NUR:1 ends here
+
 # [[file:../../README.org::*Syncthing Changed; test][Syncthing Changed; test:1]]
 # ../../modules/home-manager/syncthing-package-definition.nix
 # Syncthing Changed; test:1 ends here
@@ -124,6 +128,7 @@ home.packages = with pkgs; [
 # Packages:1 ends here
 
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
+nur.repos.linyinfeng.wemeet
 syncthing
 libreoffice
 bat
