@@ -140,6 +140,7 @@ hardware = {
 # [[file:../../README.org::*System Packages][System Packages:1]]
 environment.systemPackages = with pkgs; [
   kitty
+  # nur.repos.linyinfeng.wemeet
 ];
 # System Packages:1 ends here
 

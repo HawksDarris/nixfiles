@@ -604,6 +604,7 @@ To search, ~$ nix search wget~
 #+BEGIN_SRC nix
   environment.systemPackages = with pkgs; [
     kitty
+    # nur.repos.linyinfeng.wemeet
   ];
 #+END_SRC
 **** Programs
