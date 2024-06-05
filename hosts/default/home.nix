@@ -7,9 +7,9 @@
 imports = [
 # Imports:1 ends here
 
-# [[file:../../README.org::*NUR][NUR:1]]
-inputs.nur.hmModules.nur
-# NUR:1 ends here
+# [[file:../../README.org::*Tencent Meeting][Tencent Meeting:1]]
+../../builds/tencent-meeting/default.nix
+# Tencent Meeting:1 ends here
 
 # [[file:../../README.org::*Syncthing Changed; test][Syncthing Changed; test:1]]
 # ../../modules/home-manager/syncthing-package-definition.nix
@@ -128,7 +128,7 @@ home.packages = with pkgs; [
 # Packages:1 ends here
 
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
-nur.repos.linyinfeng.wemeet
+# nur.repos.linyinfeng.wemeet
 syncthing
 libreoffice
 bat
@@ -228,15 +228,15 @@ home.file = {
   #   org.gradle.daemon.idletimeout=3600000
   # '';
 
-  ".config/nixpkgs/config.nix".text = ''
-{
-  packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-  };
-}
-  '';
+#   ".config/nixpkgs/config.nix".text = ''
+# {
+#   packageOverrides = pkgs: {
+#     nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+#       inherit pkgs;
+#     };
+#   };
+# }
+#   '';
 
 };
 # Config Files Created by home.nix:1 ends here

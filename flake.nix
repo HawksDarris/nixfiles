@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nur.url = "github:nix-community/NUR";
 
 
     sops-nix.url = "github:Mic92/sops-nix";
@@ -29,7 +28,7 @@
 
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, sops-nix, nur, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, sops-nix, ... }@inputs: 
   let
     /* ---- SYSTEM SETTINGS ---- */
     system = "x86_64-linux";
