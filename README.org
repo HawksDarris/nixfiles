@@ -36,6 +36,7 @@
 5. Figure out how to use disko
    1. Set up impermanence (after all config files have been nixified)
    2. Set up LUKS
+6. Figure out how to set up virt-manager entirely declaratively, with no imperative steps.
 
 * TODO Structural Changes for Configuration
 1. Use ~lib.mkOption~ and ~lib.mkDefault~
@@ -440,13 +441,13 @@ case "$ext" in
 }
 #+END_SRC
 * NixOS
+From scratch set up:
+1. ~sudo nixos-rebuild switch --flake .#default~ from directory with ~flake.nix~
+2. ~home-manager switch --flake .#sour~ from directory with ~flake.nix~
 ** Main File: configuration.nix
 :PROPERTIES:
 :header-args: :comments link :tangle ~/nixfiles/hosts/default/configuration.nix
 :END:
-From scratch set up:
-1. ~sudo nixos-rebuild switch --flake .#default~ from directory with ~flake.nix~
-2. ~home-manager switch --flake .#sour~ from directory with ~flake.nix~
 
 #+BEGIN_SRC nix
   { config, pkgs, inputs, ... }:
@@ -462,8 +463,8 @@ From scratch set up:
       ./hardware-configuration.nix
       ./../../modules/nixos/locale.nix
       ../../modules/nixos/overrides.nix
-      #<home-manager/nixos>
       ../../modules/main-user.nix
+      #<home-manager/nixos>
     ];
 #+END_SRC
 **** User Set-up

@@ -11,8 +11,8 @@ imports =
     ./hardware-configuration.nix
     ./../../modules/nixos/locale.nix
     ../../modules/nixos/overrides.nix
-    #<home-manager/nixos>
     ../../modules/main-user.nix
+    #<home-manager/nixos>
   ];
 # Imports:1 ends here
 
