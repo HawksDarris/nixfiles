@@ -457,13 +457,14 @@ From scratch set up:
 #+END_SRC
 **** Imports
 #+BEGIN_SRC nix
-    imports =
-      [
-        ./hardware-configuration.nix
-        ./../../modules/nixos/locale.nix
-        #<home-manager/nixos>
-        ../../modules/main-user.nix
-      ];
+  imports =
+    [
+      ./hardware-configuration.nix
+      ./../../modules/nixos/locale.nix
+      ../../modules/nixos/overrides.nix
+      #<home-manager/nixos>
+      ../../modules/main-user.nix
+    ];
 #+END_SRC
 **** User Set-up
 #+BEGIN_SRC nix
