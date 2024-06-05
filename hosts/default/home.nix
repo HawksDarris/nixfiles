@@ -227,6 +227,17 @@ home.file = {
   #   org.gradle.console=verbose
   #   org.gradle.daemon.idletimeout=3600000
   # '';
+
+  ".config/nixpkgs/config.nix".text = ''
+{
+  packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      inherit pkgs;
+    };
+  };
+}
+  '';
+
 };
 # Config Files Created by home.nix:1 ends here
 
