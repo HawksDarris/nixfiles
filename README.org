@@ -475,8 +475,8 @@ From scratch set up:
 #+BEGIN_SRC nix
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 #+END_SRC
-**** TODO Hyprland
-Low priority: This should work using only home-manager, but currently does not.
+**** Hyprland
+[[https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/][This is required for home-manager to set up hyprland properly]]
 #+BEGIN_SRC nix
   programs.hyprland.enable = true;
 #+END_SRC
