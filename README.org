@@ -41,6 +41,7 @@
 * TODO Structural Changes for Configuration
 1. Use ~lib.mkOption~ and ~lib.mkDefault~
 2. Use a ~default.nix~ file for all of the defaults so there can be fewer import statements in the ~home.nix~.
+3. Move virtualmachines.nix from modules/nixos to modules/home-manager
 * Home Manager
 ** Main File: home.nix
 :PROPERTIES:
@@ -479,6 +480,7 @@ From scratch set up:
       ./hardware-configuration.nix
       ./../../modules/nixos/locale.nix
       ../../modules/nixos/overrides.nix
+      ../../modules/nixos/virtualmachines.nix
       ../../modules/main-user.nix
       #<home-manager/nixos>
     ];
@@ -648,17 +650,50 @@ Do not change stateVersion.
   };
 #+END_SRC
 
-**** Virtual Machine Configuration
-See dconf settings in home-manager.
-#+BEGIN_SRC nix
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
-#+END_SRC
-
 *** Closing
 #+BEGIN_SRC nix
 }
 #+END_SRC
+*** Virtual Machine Configuration
+:PROPERTIES:
+:header-args: :comments link :tangle ~/nixfiles/modules/nixos/virtualmachines.nix
+:END:
+#+BEGIN_SRC nix
+  {config, pkgs, username, ... }:
+
+  {
+    programs.dconf.enable = true;
+
+    users.users.${username}.extraGroups = [ "libvirtd" ];
+
+    programs.virt-manager.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      virt-viewer
+      spice
+      spice-gtk
+      spice-protocol
+      win-virtio
+      win-spice
+      gnome.adwaita-icon-theme
+    ];
+
+    virtualisation = {
+      libvirtd = {
+        enable = true;
+        qemu = {
+          swtpm.enable = true;
+          ovmf.enable = true;
+          ovmf.packages = [ pkgs.OVMFFull.fd ];
+        };
+      };
+      spiceUSBRedirection.enable = true;
+    };
+    services.spice-vdagentd.enable = true;
+  }
+#+END_SRC
+See dconf settings in home-manager.
+
 ** Also Important: hardware-configuration.nix
 :PROPERTIES:
 :header-args: :comments link :tangle ~/nixfiles/hosts/default/hardware-configuration.nix

@@ -43,7 +43,7 @@
     defaultEditor = "nvim";
   in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      specialArgs = {inherit inputs username;};
       modules = [
         ./hosts/default/configuration.nix
         sops-nix.nixosModules.sops

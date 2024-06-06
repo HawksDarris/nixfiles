@@ -15,7 +15,7 @@
   config = lib.mkIf config.main-user.enable {
     users.users.${config.main-user.userName} = {
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
+      extraGroups = [ "networkmanager" "wheel" ];
       initialPassword = "12345";
       description = "${config.main-user.userName}";
       shell = pkgs.nushell;

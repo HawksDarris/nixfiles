@@ -11,6 +11,7 @@ imports =
     ./hardware-configuration.nix
     ./../../modules/nixos/locale.nix
     ../../modules/nixos/overrides.nix
+    ../../modules/nixos/virtualmachines.nix
     ../../modules/main-user.nix
     #<home-manager/nixos>
   ];
@@ -170,11 +171,6 @@ system = {
   stateVersion = "23.11";
 };
 # System:1 ends here
-
-# [[file:../../README.org::*Virtual Machine Configuration][Virtual Machine Configuration:1]]
-virtualisation.libvirtd.enable = true;
-programs.virt-manager.enable = true;
-# Virtual Machine Configuration:1 ends here
 
 # [[file:../../README.org::*Closing][Closing:1]]
 }
