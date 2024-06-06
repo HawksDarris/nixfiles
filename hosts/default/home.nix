@@ -8,7 +8,7 @@ imports = [
 # Imports:1 ends here
 
 # [[file:../../README.org::*Tencent Meeting][Tencent Meeting:1]]
-../../builds/tencent-meeting/default.nix
+# ../../builds/tencent-meeting/default.nix
 # Tencent Meeting:1 ends here
 
 # [[file:../../README.org::*Syncthing Changed; test][Syncthing Changed; test:1]]

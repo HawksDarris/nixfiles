@@ -59,7 +59,7 @@ You can also create simple shell scripts directly inside your configuration. For
 
 **** Tencent Meeting
 #+BEGIN_SRC nix
-../../builds/tencent-meeting/default.nix
+  # ../../builds/tencent-meeting/default.nix
 #+END_SRC
 **** TODO Syncthing Changed; test
 #+BEGIN_SRC nix
