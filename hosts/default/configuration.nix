@@ -39,7 +39,7 @@ networking = {
 # Opening:1 ends here
 
 # [[file:../../README.org::*Firewall][Firewall:1]]
-# firewall.allowedTCPPorts = [ ... ];
+firewall.allowedTCPPorts = [ 8080 ];
 # firewall.allowedUDPPorts = [ ... ];
 # Firewall:1 ends here
 
