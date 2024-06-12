@@ -1,4 +1,4 @@
-{config, ... }: 
+{config, ... }:
 {
   services.mako = with config.colorScheme.palette; {
     enable = true;
@@ -7,7 +7,7 @@
     borderColor = "#${base00}";
     textColor = "#${base05}";
     defaultTimeout = 5000;
-    width = 300; 
+    width = 300;
     height = 300;
     borderRadius = 5;
     borderSize = 2;
@@ -17,7 +17,6 @@
     iconPath = "./assets/notifier-icons:./assets/notifier-icons/vol"; #colon-delimited string of paths
     layer = "overlay";
     extraConfig = ''
-      ignore-timeout=1
       [urgency=low]
       border-color=#${base00}
       [urgency=normal]
@@ -26,4 +25,4 @@
       border-color=#${base08}
       '';
   };
-}  
+}
