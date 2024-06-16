@@ -16,6 +16,7 @@
     icons = true;
     iconPath = "./assets/notifier-icons:./assets/notifier-icons/vol"; #colon-delimited string of paths
     layer = "overlay";
+    groupBy = "app-icon";
     extraConfig = ''
       [urgency=low]
       border-color=#${base00}
@@ -23,6 +24,8 @@
       border-color=#${base0A}
       [urgency=high]
       border-color=#${base08}
+      [grouped]
+      [group-index=0]
       '';
   };
 }
