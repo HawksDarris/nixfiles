@@ -131,6 +131,7 @@ home.packages = with pkgs; [
 # nur.repos.linyinfeng.wemeet
 calibre # Open port 8080 for server
 transmission
+minetest
 syncthing
 libreoffice
 bat

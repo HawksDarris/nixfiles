@@ -207,6 +207,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   # nur.repos.linyinfeng.wemeet
   calibre # Open port 8080 for server
   transmission
+  minetest
   syncthing
   libreoffice
   bat
