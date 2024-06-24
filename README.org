@@ -84,7 +84,7 @@ Need to set this up with secrets
 #+END_SRC
 **** Editors
 #+BEGIN_SRC nix
-  # ../../modules/home-manager/nixvim.nix
+  ../../modules/home-manager/nixvim.nix
   ../../modules/home-manager/emacs.nix
 #+END_SRC
 ***** TODO Editor Changes

@@ -28,7 +28,7 @@ imports = [
 # Shell:1 ends here
 
 # [[file:../../README.org::*Editors][Editors:1]]
-# ../../modules/home-manager/nixvim.nix
+../../modules/home-manager/nixvim.nix
 ../../modules/home-manager/emacs.nix
 # Editors:1 ends here
 
