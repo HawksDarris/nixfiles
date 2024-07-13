@@ -58,7 +58,12 @@
           folding = true;
           indent = true;
         };
-        typst-vim.enable = true;
+        typst-vim = {
+          enable = true;
+          settings = {
+            pdf_viewer = "zathura";
+          };
+        };
         nvim-colorizer.enable = true;
         vimtex = {
           enable = true;
