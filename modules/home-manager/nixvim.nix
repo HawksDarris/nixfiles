@@ -88,6 +88,11 @@
             installRustc = true;
             installCargo = true;
           };
+          tinymist = { 
+            enable = true;
+            autostart = true;
+            settings.exportPdf = "auto";
+          };
         };
       };
 

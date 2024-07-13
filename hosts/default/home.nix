@@ -130,7 +130,7 @@ home.packages = with pkgs; [
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
 # nur.repos.linyinfeng.wemeet
 calibre # Open port 8080 for server
-transmission
+transmission_4
 minetest
 syncthing
 libreoffice
