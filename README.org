@@ -623,6 +623,10 @@ To search, ~$ nix search wget~
     # nur.repos.linyinfeng.wemeet
   ];
 #+END_SRC
+
+#+BEGIN_SRC nix
+fonts.enableGhostscriptFonts = true;
+#+END_SRC
 **** Programs
 Some programs need SUID wrappers, can be configured further or are started in user sessions.
 #+BEGIN_SRC nix
@@ -678,7 +682,7 @@ Do not change stateVersion.
       spice-protocol
       win-virtio
       win-spice
-      gnome.adwaita-icon-theme
+      adwaita-icon-theme
     ];
 
     virtualisation = {

@@ -145,6 +145,10 @@ environment.systemPackages = with pkgs; [
 ];
 # System Packages:1 ends here
 
+# [[file:../../README.org::*System Packages][System Packages:2]]
+fonts.enableGhostscriptFonts = true;
+# System Packages:2 ends here
+
 # [[file:../../README.org::*Programs][Programs:1]]
 programs = {
   neovim.enable = true;
