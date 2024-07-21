@@ -606,7 +606,7 @@ This may be handleable by home-manager.
 #+END_SRC
 **** Sound
 #+BEGIN_SRC nix
-  sound.enable = true;
+  # sound.enable = true;
   hardware = {
     pulseaudio.enable = false;
     bluetooth = {

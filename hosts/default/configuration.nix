@@ -128,7 +128,7 @@ services = {
 # Services:1 ends here
 
 # [[file:../../README.org::*Sound][Sound:1]]
-sound.enable = true;
+# sound.enable = true;
 hardware = {
   pulseaudio.enable = false;
   bluetooth = {
