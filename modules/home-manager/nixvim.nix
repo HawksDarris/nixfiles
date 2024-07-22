@@ -56,7 +56,7 @@
         treesitter = {
           enable = true;
           folding = true;
-          indent = true;
+          settings.indent.enable = true;
         };
         typst-vim = {
           enable = true;
