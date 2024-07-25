@@ -606,14 +606,23 @@ This may be handleable by home-manager.
 #+END_SRC
 **** Sound
 #+BEGIN_SRC nix
-  # sound.enable = true;
-  hardware = {
-    pulseaudio.enable = false;
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
+    # sound.enable = true;
+    hardware = {
+      pulseaudio.enable = false;
+      bluetooth = {
+        enable = true;
+        powerOnBoot = true;
+        settings = {
+          General = {
+            ControllerMode = "dual";
+            DiscoverableTimeout = "180";
+          };
+          Policy = {
+            AutoEnable = "true";
+          };
+        };
+      };
     };
-  };
 #+END_SRC
 **** System Packages
 To search, ~$ nix search wget~

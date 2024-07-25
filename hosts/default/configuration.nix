@@ -134,6 +134,15 @@ hardware = {
   bluetooth = {
     enable = true;
     powerOnBoot = true;
+    settings = {
+      General = {
+        ControllerMode = "dual";
+        DiscoverableTimeout = "180";
+      };
+      Policy = {
+        AutoEnable = "true";
+      };
+    };
   };
 };
 # Sound:1 ends here
