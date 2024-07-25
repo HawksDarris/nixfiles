@@ -618,6 +618,9 @@ This may be handleable by home-manager.
             AlwaysPairable = "false";
             DiscoverableTimeout = "180";
           };
+          GATT = {
+            Cache = "always";
+          };
           Policy = {
             AutoEnable = "true";
           };
@@ -1719,6 +1722,16 @@ parm:           disable_11ax:Disable HE capabilities (default: false) (bool)
 parm:           disable_11be:Disable EHT capabilities (default: false) (bool)
 #+END_SRC
 
+
+*** rfkill list
+#+BEGIN_SRC
+1: phy0: Wireless LAN
+	Soft blocked: no
+	Hard blocked: no
+36: hci0: Bluetooth
+	Soft blocked: yes
+	Hard blocked: no
+#+END_SRC
 ** Attempts to fix it
 *** First Attempt
 Add this to hardware-configuration.nix
@@ -1728,8 +1741,16 @@ hardware.cpu.intel.updateMicrocode = true;
 
 This did not work. I suspect the code that was already there, ~hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;~, was already resolving to true, so I do not think I changed anything. I therefore changed it back. I am also not sure if CPU microcode would ever have been the issue, it is just something that resolved some issues on a former system, so it was worth a shot.
 *** Second Attempt
-I am not sure what to do for a second attempt because I am not sure what is causing this. Some online research makes me think it may be solved with some instructions about the module to the kernel, but I do not know enough about that to get my hands dirty alone.
+#+BEGIN_SRC
+rfkill unblock all
+#+END_SRC
 
+This does make bluetooth available and allowed me to connect, but I do not know
+1. if it will persist across reboots; and
+2. if it has actually resolved the crashing issue
+
+*** Next Attempt
+I am not sure what to do for the next attempt because I am not sure what is causing this. Some online research makes me think it may be solved with some instructions about the module to the kernel, but I do not know enough about that to get my hands dirty alone.
 * Setup                                                     :noexport:
 # Local variables:
 # after-save-hook: org-babel-tangle

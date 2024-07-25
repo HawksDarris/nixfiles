@@ -140,6 +140,9 @@ hardware = {
         AlwaysPairable = "false";
         DiscoverableTimeout = "180";
       };
+      GATT = {
+        Cache = "always";
+      };
       Policy = {
         AutoEnable = "true";
       };
