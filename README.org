@@ -615,6 +615,7 @@ This may be handleable by home-manager.
         settings = {
           General = {
             ControllerMode = "dual";
+            AlwaysPairable = "false";
             DiscoverableTimeout = "180";
           };
           Policy = {

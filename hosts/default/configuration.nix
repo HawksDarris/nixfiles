@@ -137,6 +137,7 @@ hardware = {
     settings = {
       General = {
         ControllerMode = "dual";
+        AlwaysPairable = "false";
         DiscoverableTimeout = "180";
       };
       Policy = {
