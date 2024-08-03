@@ -36,6 +36,7 @@
         #################### Directories #################
         ##################################################
         b = "cd ~/Documents/Business";
+        c = "cd ~/Documents/Business/Consulting";
         cac = "cd ~/.cache";
         cf = "cd ~/.config";
         cfs = "cd ~/.config/nvim/mysnips";
