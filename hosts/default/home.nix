@@ -129,6 +129,7 @@ home.packages = with pkgs; [
 
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
 # nur.repos.linyinfeng.wemeet
+zotero
 calibre # Open port 8080 for server
 transmission_4
 minetest

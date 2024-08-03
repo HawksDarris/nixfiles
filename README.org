@@ -205,6 +205,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
 
 #+BEGIN_SRC nix
   # nur.repos.linyinfeng.wemeet
+  zotero
   calibre # Open port 8080 for server
   transmission_4
   minetest
