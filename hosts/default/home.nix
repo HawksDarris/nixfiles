@@ -129,46 +129,44 @@ home.packages = with pkgs; [
 
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
 # nur.repos.linyinfeng.wemeet
-inkscape
-pdf2svg
-zotero
-calibre # Open port 8080 for server
-transmission_4
-minetest
-syncthing
-libreoffice
+# csslint
 bat
 bc
 brightnessctl
 brightnessctl
 bun
-# csslint
-stylelint
+calibre # Open port 8080 for server
 dart-sass
 dbus
-exfat
 eww
+exfat
 glib
 gnucash
 hugo
+inkscape
 jmtpfs
 jq
 keepassxc
 kitty
 kiwix
 libnotify
+libreoffice
+minetest
 ncdu
-rofi-wayland
-rofimoji
 p7zip
+pdf2svg
 pylint
 python3Full
+rofi-wayland
+rofimoji
 slurp
+stylelint
 swappy
 swaylock
 swww
 syncthing
 taskwarrior3
+transmission_4
 wayshot
 wf-recorder
 wl-clipboard
@@ -177,6 +175,7 @@ wofi
 wttrbar
 xdotool
 yad
+zotero
 # Still to Sort:1 ends here
 
 # [[file:../../README.org::*Candy][Candy:1]]

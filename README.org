@@ -205,46 +205,44 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
 
 #+BEGIN_SRC nix
   # nur.repos.linyinfeng.wemeet
-  inkscape
-  pdf2svg
-  zotero
-  calibre # Open port 8080 for server
-  transmission_4
-  minetest
-  syncthing
-  libreoffice
+  # csslint
   bat
   bc
   brightnessctl
   brightnessctl
   bun
-  # csslint
-  stylelint
+  calibre # Open port 8080 for server
   dart-sass
   dbus
-  exfat
   eww
+  exfat
   glib
   gnucash
   hugo
+  inkscape
   jmtpfs
   jq
   keepassxc
   kitty
   kiwix
   libnotify
+  libreoffice
+  minetest
   ncdu
-  rofi-wayland
-  rofimoji
   p7zip
+  pdf2svg
   pylint
   python3Full
+  rofi-wayland
+  rofimoji
   slurp
+  stylelint
   swappy
   swaylock
   swww
   syncthing
   taskwarrior3
+  transmission_4
   wayshot
   wf-recorder
   wl-clipboard
@@ -253,6 +251,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   wttrbar
   xdotool
   yad
+  zotero
 #+END_SRC
 
 **** Candy
