@@ -43,6 +43,39 @@
 2. Use a ~default.nix~ file for all of the defaults so there can be fewer import statements in the ~home.nix~.
 3. Move virtualmachines.nix from modules/nixos to modules/home-manager
 * Home Manager
+** Jurism
+~lib.fakeSha256~ passes fake hash so build step will reveal real hash
+:PROPERTIES:
+:header-args: :comments link :tangle ~/nixfiles/builds/jurism.nix
+:END:
+#+BEGIN_SRC nix
+  {
+    pkgs ? import (fetchTarball {
+      url = "https://jurism.xyz/jurism/dl?channel=release&platform=linux-x86_64";
+      sha256 = lib.fakeSha256;
+    }) {}
+  }:
+  pkgs.stdenv.mkDerivation rec {
+    pname = "Jurism";
+    version = "6.0";
+
+    src = fetchurl {
+      url = "https://jurism.xyz/jurism/dl?channel=release&platform=linux-x86_64";
+      # rev = "069d2a5bfa4c4024063c25551d5201aeaf921cb3";
+      sha256 = lib.fakeSha256;
+    };
+
+
+    buildPhase = ''
+      tar vxjf Jurism-6.0.22m6_linux-x86_64.tar.bz2
+    '';
+
+    installPhase = ''
+      mkdir -p $out/bin
+      mv $out/bin
+    '';
+  }
+#+END_SRC
 ** Main File: home.nix
 :PROPERTIES:
 :header-args: :comments link :tangle ~/nixfiles/hosts/default/home.nix
@@ -58,6 +91,10 @@ You can also create simple shell scripts directly inside your configuration. For
   imports = [
 #+END_SRC
 
+**** Jurism
+#+BEGIN_SRC nix
+  # ../../builds/jurism.nix
+#+END_SRC
 **** Tencent Meeting
 #+BEGIN_SRC nix
   # ../../builds/tencent-meeting/default.nix

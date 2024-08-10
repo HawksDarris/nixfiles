@@ -7,6 +7,10 @@
 imports = [
 # Imports:1 ends here
 
+# [[file:../../README.org::*Jurism][Jurism:1]]
+# ../../builds/jurism.nix
+# Jurism:1 ends here
+
 # [[file:../../README.org::*Tencent Meeting][Tencent Meeting:1]]
 # ../../builds/tencent-meeting/default.nix
 # Tencent Meeting:1 ends here
