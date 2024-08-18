@@ -134,6 +134,7 @@ home.packages = with pkgs; [
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
 lshw
 dmidecode
+fwupd
 # Still to Sort:1 ends here
 
 # [[file:../../README.org::*Still to Sort][Still to Sort:2]]

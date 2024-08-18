@@ -240,6 +240,7 @@ hardware packages
 #+BEGIN_SRC nix
   lshw
   dmidecode
+  fwupd
 #+END_SRC
 
 lxqt-policykit-agent may be necessary for virtio, etc.
