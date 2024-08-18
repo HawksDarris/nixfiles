@@ -236,6 +236,12 @@ lxqt-policykit-agent may be needed
   home.packages = with pkgs; [
 #+END_SRC
 **** Still to Sort
+hardware packages
+#+BEGIN_SRC nix
+  lshw
+  dmidecode
+#+END_SRC
+
 lxqt-policykit-agent may be necessary for virtio, etc.
 
 Syncthing is not provided as a package for the syncthing service. I will do a pull request about it.

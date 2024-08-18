@@ -132,6 +132,11 @@ home.packages = with pkgs; [
 # Packages:1 ends here
 
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
+lshw
+dmidecode
+# Still to Sort:1 ends here
+
+# [[file:../../README.org::*Still to Sort][Still to Sort:2]]
 # nur.repos.linyinfeng.wemeet
 # csslint
 bat
@@ -180,7 +185,7 @@ wttrbar
 xdotool
 yad
 zotero
-# Still to Sort:1 ends here
+# Still to Sort:2 ends here
 
 # [[file:../../README.org::*Candy][Candy:1]]
 pokeget-rs
