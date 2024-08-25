@@ -251,7 +251,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   calibre # Open port 8080 for server
   dart-sass
   dbus
-  espanso
+  espanso-wayland
   eww
   exfat
   glib
