@@ -416,6 +416,33 @@ Medium priority: firefox creates search file that prevents home-manager rebuilds
   };
 #+END_SRC
 
+**** Espanso
+#+BEGIN_SRC nix
+  services.espanso = {
+    enable = true;
+    configs = {
+      default = { };
+    };
+    # package = pkgs.espanso-wayland;
+    wayland = true;
+    matches = {
+      matches = [
+        {
+          trigger = ":hello";
+          replace = ''world'';
+        }
+      ];
+      base = {
+        matches = [
+          {
+            trigger = ":now";
+            replace = "It's {{currentdate}} {{currenttime}}";
+          }
+        ];
+      };
+    };
+  };
+#+END_SRC
 **** Closing
 #+BEGIN_SRC nix
     }
@@ -634,13 +661,6 @@ This may be handleable by home-manager.
   #	  };
   #	};
   #};
-#+END_SRC
-***** Espanso
-#+BEGIN_SRC nix
-  services.espanso = {
-    enable = true;
-    wayland = true;
-  };
 #+END_SRC
 **** Sound
 #+BEGIN_SRC nix

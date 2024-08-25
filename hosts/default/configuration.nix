@@ -127,13 +127,6 @@ services = {
 #};
 # Services:1 ends here
 
-# [[file:../../README.org::*Espanso][Espanso:1]]
-services.espanso = {
-  enable = true;
-  wayland = true;
-};
-# Espanso:1 ends here
-
 # [[file:../../README.org::*Sound][Sound:1]]
 # sound.enable = true;
 hardware = {
