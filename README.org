@@ -269,10 +269,10 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   wayshot
   wf-recorder
   wofi
-  wttrbar
-  xdotool
-  yad
-  zotero
+  wttrbar # weather
+  xdotool # useful with wayland?
+  yad # display GTK+ dialogs
+  zotero # citations
 #+END_SRC
 *****  Hardware packages
 This: ~sudo dmidecode | grep -A3 'Vendor:\|Product:' && sudo lshw -C cpu | grep -A3 'product:\|vendor:'~
@@ -291,12 +291,6 @@ Results in this:
   lshw
   dmidecode
   fwupd
-#+END_SRC
-**** Candy
-Packages that are just for funsies
-#+BEGIN_SRC nix
-  pokeget-rs
-  macchina
 #+END_SRC
 **** Document Management
 #+BEGIN_SRC nix

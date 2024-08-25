@@ -160,10 +160,10 @@ taskwarrior3
 wayshot
 wf-recorder
 wofi
-wttrbar
-xdotool
-yad
-zotero
+wttrbar # weather
+xdotool # useful with wayland?
+yad # display GTK+ dialogs
+zotero # citations
 # Still to Sort:1 ends here
 
 # [[file:../../README.org::*Hardware packages][Hardware packages:1]]
@@ -171,11 +171,6 @@ lshw
 dmidecode
 fwupd
 # Hardware packages:1 ends here
-
-# [[file:../../README.org::*Candy][Candy:1]]
-pokeget-rs
-macchina
-# Candy:1 ends here
 
 # [[file:../../README.org::*Document Management][Document Management:1]]
 texliveFull
