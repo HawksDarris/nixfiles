@@ -16,6 +16,27 @@ services.syncthing = {
 };
 # Syncthing:1 ends here
 
+# [[file:../../README.org::*Espanso][Espanso:1]]
+services.espanso = {
+  enable = true;
+  configs = {
+    default = {
+    show_notifications = true;
+    };
+  };
+  matches = {
+    base = {
+      matches = [
+        {
+          trigger = ":test"
+            replace = "Testing complete"
+          }
+        ];
+      };
+    };
+};
+# Espanso:1 ends here
+
 # [[file:../../README.org::*Closing][Closing:1]]
 }
 # Closing:1 ends here
