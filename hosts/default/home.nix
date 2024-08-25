@@ -163,12 +163,12 @@ wofi
 wttrbar # weather
 xdotool # useful with wayland?
 yad # display GTK+ dialogs
-zotero # citations
 # Still to Sort:1 ends here
 
 # [[file:../../README.org::*Document Management][Document Management:1]]
 texliveFull
 zathura
+zotero # citations
 # Document Management:1 ends here
 
 # [[file:../../README.org::*Non-GUI Things][Non-GUI Things:1]]

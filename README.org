@@ -272,12 +272,12 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   wttrbar # weather
   xdotool # useful with wayland?
   yad # display GTK+ dialogs
-  zotero # citations
 #+END_SRC
 **** Document Management
 #+BEGIN_SRC nix
   texliveFull
   zathura
+  zotero # citations
 #+END_SRC
 **** Non-GUI Things
 #+BEGIN_SRC nix
@@ -420,7 +420,7 @@ Medium priority: firefox creates search file that prevents home-manager rebuilds
 #+BEGIN_SRC nix
   services.espanso = {
     enable = true;
-    package = pkgs.espanso-wayland;
+    # package = pkgs.espanso-wayland;
     wayland = true;
     matches = {
       base = {
