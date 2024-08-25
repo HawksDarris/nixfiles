@@ -19,11 +19,6 @@ services.syncthing = {
 # [[file:../../README.org::*Espanso][Espanso:1]]
 services.espanso = {
   enable = true;
-  configs = {
-    default = {
-    show_notifications = true;
-    };
-  };
   matches = {
     base = {
       matches = [

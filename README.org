@@ -447,11 +447,6 @@ Medium priority: firefox creates search file that prevents home-manager rebuilds
 #+BEGIN_SRC nix
   services.espanso = {
     enable = true;
-    configs = {
-      default = {
-      show_notifications = true;
-      };
-    };
     matches = {
       base = {
         matches = [
