@@ -28,8 +28,8 @@ services.espanso = {
     base = {
       matches = [
         {
-          trigger = ":test"
-            replace = "Testing complete"
+          trigger = ":test";
+            replace = "Testing complete";
           }
         ];
       };
