@@ -241,11 +241,6 @@ lxqt-policykit-agent may be necessary for virtio, etc.
 Syncthing is not provided as a package for the syncthing service. I will do a pull request about it.
 
 #+BEGIN_SRC nix
-  # nur.repos.linyinfeng.wemeet
-  # csslint
-  bat
-  bc
-  brightnessctl
   brightnessctl
   bun
   calibre # Open port 8080 for server
@@ -253,38 +248,26 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   dbus
   espanso-wayland
   eww
-  exfat
   glib
   gnucash
   hugo
   inkscape
-  jmtpfs
   jq
   keepassxc
-  kitty
   kiwix
   libnotify
   libreoffice
   minetest
   ncdu
-  p7zip
-  pdf2svg
-  pylint
-  python3Full
   rofi-wayland
   rofimoji
   slurp
-  stylelint
   swappy
   swaylock
   swww
-  syncthing
   taskwarrior3
-  transmission_4
   wayshot
   wf-recorder
-  wl-clipboard
-  wl-gammactl
   wofi
   wttrbar
   xdotool
@@ -309,7 +292,6 @@ Results in this:
   dmidecode
   fwupd
 #+END_SRC
-
 **** Candy
 Packages that are just for funsies
 #+BEGIN_SRC nix
@@ -321,17 +303,31 @@ Packages that are just for funsies
   texliveFull
   zathura
 #+END_SRC
-**** CLI Utilities
+**** Non-GUI Things
 #+BEGIN_SRC nix
+  bat
+  bc
+  exfat
   gh
   fdupes
   fzf
+  jmtpfs
   killall
+  kitty
   mpv
-  rsync
-  tldr
+  p7zip
   pamixer
   pciutils
+  pdf2svg
+  pylint
+  python3Full
+  rsync
+  stylelint
+  syncthing
+  tldr
+  transmission_4
+  wl-clipboard
+  wl-gammactl
 #+END_SRC
 **** Media :issue:
 ~mpc-cli~ and ~ncmpcpp~ are both music players. Probably don't need both. Music system not set up yet.

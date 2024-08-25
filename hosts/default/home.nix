@@ -132,11 +132,6 @@ home.packages = with pkgs; [
 # Packages:1 ends here
 
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
-# nur.repos.linyinfeng.wemeet
-# csslint
-bat
-bc
-brightnessctl
 brightnessctl
 bun
 calibre # Open port 8080 for server
@@ -144,38 +139,26 @@ dart-sass
 dbus
 espanso-wayland
 eww
-exfat
 glib
 gnucash
 hugo
 inkscape
-jmtpfs
 jq
 keepassxc
-kitty
 kiwix
 libnotify
 libreoffice
 minetest
 ncdu
-p7zip
-pdf2svg
-pylint
-python3Full
 rofi-wayland
 rofimoji
 slurp
-stylelint
 swappy
 swaylock
 swww
-syncthing
 taskwarrior3
-transmission_4
 wayshot
 wf-recorder
-wl-clipboard
-wl-gammactl
 wofi
 wttrbar
 xdotool
@@ -199,17 +182,31 @@ texliveFull
 zathura
 # Document Management:1 ends here
 
-# [[file:../../README.org::*CLI Utilities][CLI Utilities:1]]
+# [[file:../../README.org::*Non-GUI Things][Non-GUI Things:1]]
+bat
+bc
+exfat
 gh
 fdupes
 fzf
+jmtpfs
 killall
+kitty
 mpv
-rsync
-tldr
+p7zip
 pamixer
 pciutils
-# CLI Utilities:1 ends here
+pdf2svg
+pylint
+python3Full
+rsync
+stylelint
+syncthing
+tldr
+transmission_4
+wl-clipboard
+wl-gammactl
+# Non-GUI Things:1 ends here
 
 # [[file:../../README.org::*Media][Media:1]]
 grimblast
