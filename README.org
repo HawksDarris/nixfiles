@@ -274,24 +274,6 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   yad # display GTK+ dialogs
   zotero # citations
 #+END_SRC
-*****  Hardware packages
-This: ~sudo dmidecode | grep -A3 'Vendor:\|Product:' && sudo lshw -C cpu | grep -A3 'product:\|vendor:'~
-
-Results in this:
-	Vendor: INSYDE Corp.
-	Version: 03.05
-	Release Date: 08/23/2022
-	Address: 0xE0000
-       product: 12th Gen Intel(R) Core(TM) i7-1260P
-       vendor: Intel Corp.
-       physical id: 4
-       bus info: cpu@0
-       version: 6.154.3
-#+BEGIN_SRC nix
-  lshw
-  dmidecode
-  fwupd
-#+END_SRC
 **** Document Management
 #+BEGIN_SRC nix
   texliveFull
