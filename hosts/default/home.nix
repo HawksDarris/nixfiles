@@ -142,6 +142,7 @@ bun
 calibre # Open port 8080 for server
 dart-sass
 dbus
+espanso
 eww
 exfat
 glib
