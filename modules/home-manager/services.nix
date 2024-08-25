@@ -16,24 +16,6 @@ services.syncthing = {
 };
 # Syncthing:1 ends here
 
-# [[file:../../README.org::*Espanso][Espanso:1]]
-services.espanso = {
-  enable = true;
-  # package = pkgs.espanso-wayland;
-  wayland = true;
-  matches = {
-    base = {
-      matches = [
-        {
-          trigger = ":now";
-          replace = "It's {{currentdate}} {{currenttime}}";
-        }
-      ];
-    };
-  };
-};
-# Espanso:1 ends here
-
 # [[file:../../README.org::*Closing][Closing:1]]
 }
 # Closing:1 ends here
