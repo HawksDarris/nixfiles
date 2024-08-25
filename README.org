@@ -344,7 +344,6 @@ If you do want to update the value, then make sure to first check the Home Manag
 *** Config Files Created by home.nix
 use xdg.configFile for config files instead of home.file.
 #+BEGIN_SRC nix
-  {
   home.file = { ".config/espanso/configs/default.yml" =
     { text =
     ''

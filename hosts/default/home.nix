@@ -218,7 +218,6 @@ home.stateVersion = "23.11";
 # State Version:1 ends here
 
 # [[file:../../README.org::*Config Files Created by home.nix][Config Files Created by home.nix:1]]
-{
 home.file = { ".config/espanso/configs/default.yml" =
   { text =
   ''
