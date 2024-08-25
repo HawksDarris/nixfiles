@@ -426,12 +426,12 @@ Medium priority: firefox creates search file that prevents home-manager rebuilds
       base = {
         matches = [
           {
-            trigger = ":test";
-              replace = "Testing complete";
-            }
-          ];
-        };
+            trigger = ":now";
+            replace = "It's {{currentdate}} {{currenttime}}";
+          }
+        ];
       };
+    };
   };
 #+END_SRC
 **** Closing

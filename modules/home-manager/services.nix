@@ -25,12 +25,12 @@ services.espanso = {
     base = {
       matches = [
         {
-          trigger = ":test";
-            replace = "Testing complete";
-          }
-        ];
-      };
+          trigger = ":now";
+          replace = "It's {{currentdate}} {{currenttime}}";
+        }
+      ];
     };
+  };
 };
 # Espanso:1 ends here
 
