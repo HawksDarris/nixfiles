@@ -520,13 +520,16 @@ case "$ext" in
 }
 #+END_SRC
 ** Files I want created by home-manager
+:PROPERTIES:
+:header-args: :comments link :tangle ~/nixfiles/modules/home-manager/files.nix
+:END:
 Creating this file manually because I am doing something wrong with the espanso module and it is not creating the configuration directory
 #+BEGIN_SRC nix
   home.file = { ".config/espanso/configs/default.yml" =
     { text =
     ''
 
-    ''
+    '';
       executable = false;
     };
               };
