@@ -421,9 +421,10 @@ Medium priority: firefox creates search file that prevents home-manager rebuilds
   services.espanso = {
     enable = true;
     configs = {
-      default = { };
+      default = {
+      };
     };
-    # package = pkgs.espanso-wayland;
+    package = pkgs.espanso-wayland;
     wayland = true;
     matches = {
       matches = [
@@ -456,7 +457,7 @@ Medium priority: firefox creates search file that prevents home-manager rebuilds
   {
     home.packages = with pkgs; [
 #+END_SRC
-**** compiler script
+*** compiler script
 #+BEGIN_SRC nix
 (pkgs.writeShellScriptBin "compiler"
   ''
@@ -513,10 +514,22 @@ case "$ext" in
         esac
         '')
 #+END_SRC
-**** Closing
+*** Closing
 #+BEGIN_SRC nix
   ];
 }
+#+END_SRC
+** Files I want created by home-manager
+Creating this file manually because I am doing something wrong with the espanso module and it is not creating the configuration directory
+#+BEGIN_SRC nix
+  home.file = { ".config/espanso/configs/default.yml" =
+    { text =
+    ''
+
+    ''
+      executable = false;
+    };
+              };
 #+END_SRC
 * NixOS
 From scratch set up:

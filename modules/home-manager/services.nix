@@ -20,9 +20,10 @@ services.syncthing = {
 services.espanso = {
   enable = true;
   configs = {
-    default = { };
+    default = {
+    };
   };
-  # package = pkgs.espanso-wayland;
+  package = pkgs.espanso-wayland;
   wayland = true;
   matches = {
     matches = [
