@@ -104,7 +104,7 @@ You can also create simple shell scripts directly inside your configuration. For
 # ../../modules/home-manager/syncthing-package-definition.nix
 #+END_SRC
 
-**** Scripts
+**** Scripts and Files
 #+BEGIN_SRC nix
 ../../modules/home-manager/scripts.nix
 #+END_SRC
@@ -342,31 +342,16 @@ If you do want to update the value, then make sure to first check the Home Manag
   home.stateVersion = "23.11";
 #+END_SRC
 *** Config Files Created by home.nix
-Leave the comments until you need to use it.
+use xdg.configFile for config files instead of home.file.
 #+BEGIN_SRC nix
-  home.file = {
-    # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-
-  #   ".config/nixpkgs/config.nix".text = ''
-  # {
-  #   packageOverrides = pkgs: {
-  #     nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-  #       inherit pkgs;
-  #     };
-  #   };
-  # }
-  #   '';
-
-  };
+  {
+  home.file = { ".config/espanso/configs/default.yml" =
+    { text =
+    ''
+    '';
+      executable = false;
+    };
+              };
 #+END_SRC
 
 *** Session Variables :issue:
@@ -518,21 +503,6 @@ case "$ext" in
 #+BEGIN_SRC nix
   ];
 }
-#+END_SRC
-** Files I want created by home-manager
-:PROPERTIES:
-:header-args: :comments link :tangle ~/nixfiles/modules/home-manager/files.nix
-:END:
-Creating this file manually because I am doing something wrong with the espanso module and it is not creating the configuration directory
-#+BEGIN_SRC nix
-  home.file = { ".config/espanso/configs/default.yml" =
-    { text =
-    ''
-
-    '';
-      executable = false;
-    };
-              };
 #+END_SRC
 * NixOS
 From scratch set up:

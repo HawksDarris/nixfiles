@@ -19,9 +19,9 @@ imports = [
 # ../../modules/home-manager/syncthing-package-definition.nix
 # Syncthing Changed; test:1 ends here
 
-# [[file:../../README.org::*Scripts][Scripts:1]]
+# [[file:../../README.org::*Scripts and Files][Scripts and Files:1]]
 ../../modules/home-manager/scripts.nix
-# Scripts:1 ends here
+# Scripts and Files:1 ends here
 
 # [[file:../../README.org::*Neomutt][Neomutt:1]]
 #../../modules/home-manager/neomutt.nix
@@ -218,29 +218,14 @@ home.stateVersion = "23.11";
 # State Version:1 ends here
 
 # [[file:../../README.org::*Config Files Created by home.nix][Config Files Created by home.nix:1]]
-home.file = {
-  # Building this configuration will create a copy of 'dotfiles/screenrc' in
-  # the Nix store. Activating the configuration will then make '~/.screenrc' a
-  # symlink to the Nix store copy.
-  # ".screenrc".source = dotfiles/screenrc;
-
-  # You can also set the file content immediately.
-  # ".gradle/gradle.properties".text = ''
-  #   org.gradle.console=verbose
-  #   org.gradle.daemon.idletimeout=3600000
-  # '';
-
-#   ".config/nixpkgs/config.nix".text = ''
-# {
-#   packageOverrides = pkgs: {
-#     nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-#       inherit pkgs;
-#     };
-#   };
-# }
-#   '';
-
-};
+{
+home.file = { ".config/espanso/configs/default.yml" =
+  { text =
+  ''
+  '';
+    executable = false;
+  };
+            };
 # Config Files Created by home.nix:1 ends here
 
 # [[file:../../README.org::*Session Variables][Session Variables:1]]
