@@ -251,7 +251,6 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   calibre # Open port 8080 for server
   dart-sass
   dbus
-  espanso-wayland
   eww
   exfat
   glib
@@ -448,6 +447,8 @@ Medium priority: firefox creates search file that prevents home-manager rebuilds
 #+BEGIN_SRC nix
   services.espanso = {
     enable = true;
+    package = pkgs.espanso-wayland;
+    wayland = true;
     matches = {
       base = {
         matches = [

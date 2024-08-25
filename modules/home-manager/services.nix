@@ -19,6 +19,8 @@ services.syncthing = {
 # [[file:../../README.org::*Espanso][Espanso:1]]
 services.espanso = {
   enable = true;
+  package = pkgs.espanso-wayland;
+  wayland = true;
   matches = {
     base = {
       matches = [
