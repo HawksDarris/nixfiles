@@ -81,8 +81,8 @@
 :header-args: :comments link :tangle ~/nixfiles/hosts/default/home.nix
 :END:
 #+BEGIN_SRC nix
-{ config, pkgs, lib, inputs, username, defaultEditor, ... }:
-{
+    { config, pkgs, lib, inputs, username, defaultEditor, ... }:
+    {
 #+END_SRC
 You can also create simple shell scripts directly inside your configuration. For example, this adds a command 'my-hello' to your environment:
 
@@ -341,16 +341,34 @@ If you do want to update the value, then make sure to first check the Home Manag
 #+BEGIN_SRC nix
   home.stateVersion = "23.11";
 #+END_SRC
+*** Files Created by home.nix
+#+BEGIN_SRC nix
+  # home.file = { ".config/espanso/configs/default.yml" =
+  #   { text =
+  #   ''
+  #   '';
+  #     executable = false;
+  #   };
+  #             };
+#+END_SRC
+
 *** Config Files Created by home.nix
 use xdg.configFile for config files instead of home.file.
 #+BEGIN_SRC nix
-  home.file = { ".config/espanso/configs/default.yml" =
-    { text =
-    ''
-    '';
+  xdg.configFile = {
+    ".config/espanso/configs/default.yml" = {
+      target = "/espanso/configs/default.yml";
+      enable = true;
+      text =
+        ''
+        Test
+          '';
       executable = false;
+      onChange = ""; # shell command to run when file has changed between generations
+
+
     };
-              };
+  };
 #+END_SRC
 
 *** Session Variables :issue:
@@ -517,6 +535,8 @@ From scratch set up:
 
   {
     nixpkgs.config.allowUnfree = true;
+    nix.binaryCaches = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" "https://cache.nixos.org/" ];
+
 
 #+END_SRC
 **** Imports
