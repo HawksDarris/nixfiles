@@ -2,14 +2,17 @@
   description = "Vinegar Flakes";
 
   nixConfig = {
-    extra-substituters = [
+    trusted-substituters = [
       "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
     ];
+
+    # extra-trusted-public-keys = [
+    #   ""
+    # ];
   };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
 
     sops-nix.url = "github:Mic92/sops-nix";
 
