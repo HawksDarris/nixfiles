@@ -561,7 +561,7 @@ Need to do flake equivalent of ~nix-channel --add https://mirrors.tuna.tsinghua.
 [[https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/][This is required for home-manager to set up hyprland properly]]
 #+BEGIN_SRC nix
   programs.hyprland.enable = true;
-  
+
 #+END_SRC
 **** Networking
 
@@ -654,15 +654,15 @@ This may be handleable by home-manager.
   #  services.mpd = {
   #    XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.sour.uid}";
   #  };
-  #displayManager = {
-  #	sddm = {
-  #	  enable = true;
-  #	  wayland = {
-  #	    enable = true;
-  #	    compositor = "weston";
-  #	  };
-  #	};
-  #};
+  # displayManager = {
+  # 	sddm = {
+  # 	  enable = true;
+  # 	  wayland = {
+  # 	    enable = true;
+  # 	    compositor = "weston";
+  # 	  };
+  # 	};
+  # };
 #+END_SRC
 **** Sound
 #+BEGIN_SRC nix

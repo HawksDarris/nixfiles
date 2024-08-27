@@ -116,15 +116,15 @@ services = {
 #  services.mpd = {
 #    XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.sour.uid}";
 #  };
-#displayManager = {
-#	sddm = {
-#	  enable = true;
-#	  wayland = {
-#	    enable = true;
-#	    compositor = "weston";
-#	  };
-#	};
-#};
+# displayManager = {
+# 	sddm = {
+# 	  enable = true;
+# 	  wayland = {
+# 	    enable = true;
+# 	    compositor = "weston";
+# 	  };
+# 	};
+# };
 # Services:1 ends here
 
 # [[file:../../README.org::*Sound][Sound:1]]
