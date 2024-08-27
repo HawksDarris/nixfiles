@@ -1,6 +1,16 @@
 # [[file:../../README.org::*Main File: home.nix][Main File: home.nix:1]]
 { config, pkgs, lib, inputs, username, defaultEditor, ... }:
 {
+  # wayland.windowManager.sway = { 
+  #   enable = true;
+  #   config = rec {
+  #     modifier = "Mod4";
+  #     terminal = "kitty";
+  #     startup = [
+  #       {command = "firefox";}
+  #     ];
+  #   };
+  # };
 # Main File: home.nix:1 ends here
 
 # [[file:../../README.org::*Imports][Imports:1]]

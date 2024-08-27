@@ -561,6 +561,7 @@ Need to do flake equivalent of ~nix-channel --add https://mirrors.tuna.tsinghua.
 [[https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/][This is required for home-manager to set up hyprland properly]]
 #+BEGIN_SRC nix
   programs.hyprland.enable = true;
+  
 #+END_SRC
 **** Networking
 
