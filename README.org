@@ -529,14 +529,12 @@ From scratch set up:
 :PROPERTIES:
 :header-args: :comments link :tangle ~/nixfiles/hosts/default/configuration.nix
 :END:
-
+Need to do flake equivalent of ~nix-channel --add https://mirrors.tuna.tsinghua.edu.cn/nix-channels/nixpkgs-unstable~
 #+BEGIN_SRC nix
   { config, pkgs, inputs, ... }:
 
   {
     nixpkgs.config.allowUnfree = true;
-    nix.binaryCaches = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" "https://cache.nixos.org/" ];
-
 
 #+END_SRC
 **** Imports

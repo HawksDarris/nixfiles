@@ -3,7 +3,6 @@
 
 {
   nixpkgs.config.allowUnfree = true;
-  nix.binaryCaches = [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store" "https://cache.nixos.org/" ];
 # Main File: configuration.nix:1 ends here
 
 # [[file:../../README.org::*Imports][Imports:1]]
