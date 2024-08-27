@@ -218,30 +218,31 @@ home.stateVersion = "23.11";
 # State Version:1 ends here
 
 # [[file:../../README.org::*Files Created by home.nix][Files Created by home.nix:1]]
-# home.file = { ".config/espanso/configs/default.yml" =
-#   { text =
-#   ''
-#   '';
-#     executable = false;
-#   };
-#             };
+home.file = { ".config/espanso/configs/default.yml" =
+  { text =
+  ''
+  Testjljl
+  '';
+    executable = false;
+  };
+            };
 # Files Created by home.nix:1 ends here
 
 # [[file:../../README.org::*Config Files Created by home.nix][Config Files Created by home.nix:1]]
-xdg.configFile = {
-  ".config/espanso/configs/default.yml" = {
-    target = "/espanso/configs/default.yml";
-    enable = true;
-    text =
-      ''
-      Test
-        '';
-    executable = false;
-    onChange = ""; # shell command to run when file has changed between generations
+# xdg.configFile = {
+#   ".config/espanso/configs/default.yml" = {
+#     target = "/espanso/configs/default.yml";
+#     enable = true;
+#     text =
+#       ''
+#       Test
+#         '';
+#     executable = false;
+#     onChange = ""; # shell command to run when file has changed between generations
 
 
-  };
-};
+#   };
+# };
 # Config Files Created by home.nix:1 ends here
 
 # [[file:../../README.org::*Session Variables][Session Variables:1]]
