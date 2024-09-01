@@ -6,9 +6,9 @@
       "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
     ];
 
-    extra-trusted-public-keys = [
-      "AAAAC3NzaC1lZDI1NTE5AAAAIElKUkue9e/+1JjHvJocbCuF+71UmWfNj+TgOQ8kIGod"
-    ];
+    # extra-trusted-public-keys = [
+    #   ""
+    # ];
   };
 
   inputs = {
