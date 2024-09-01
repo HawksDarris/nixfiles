@@ -2,7 +2,7 @@
   description = "Vinegar Flakes";
 
   nixConfig = {
-    substituters = [
+    trusted-substituters = [
       "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
     ];
 
