@@ -160,6 +160,7 @@ taskwarrior3
 wayshot
 wf-recorder
 wofi
+wpsoffice
 wttrbar # weather
 xdotool # useful with wayland?
 yad # display GTK+ dialogs
