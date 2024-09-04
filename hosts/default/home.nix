@@ -132,6 +132,7 @@ home.packages = with pkgs; [
 # Packages:1 ends here
 
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
+wpsoffice
 brightnessctl
 bun
 calibre # Open port 8080 for server

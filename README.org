@@ -241,6 +241,7 @@ lxqt-policykit-agent may be necessary for virtio, etc.
 Syncthing is not provided as a package for the syncthing service. I will do a pull request about it.
 
 #+BEGIN_SRC nix
+  wpsoffice
   brightnessctl
   bun
   calibre # Open port 8080 for server

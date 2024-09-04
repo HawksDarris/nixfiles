@@ -50,9 +50,20 @@
     defaultWebBrowser = "qutebrowser";
     defaultFileBrowser = "lf";
     defaultEditor = "nvim";
+
+    /* ---- UNFREE PACKAGES ---- */
+    # Define the list of unfree packages to allow here, so you can pass it to
+    # both `sudo nixos-rebuild` and `home-manager`
+    allowed-unfree-packages = [
+      "obsidian"
+      "postman"
+      "vscode"
+      "vscode-extension-github-copilot"
+      "wpsoffice"
+    ];
   in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs username;};
+      specialArgs = {inherit inputs username allowed-unfree-packages;};
       modules = [
         ./hosts/default/configuration.nix
         sops-nix.nixosModules.sops
@@ -80,6 +91,7 @@
           defaultWebBrowser
           defaultFileBrowser
           defaultEditor
+          allowed-unfree-packages
         ; };
       };
     };
