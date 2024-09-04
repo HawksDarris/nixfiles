@@ -2,7 +2,6 @@
 { config, pkgs, inputs, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
 # Main File: configuration.nix:1 ends here
 
 # [[file:../../README.org::*Imports][Imports:1]]
