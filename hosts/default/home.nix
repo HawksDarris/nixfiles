@@ -1,6 +1,9 @@
 # [[file:../../README.org::*Main File: home.nix][Main File: home.nix:1]]
-{ config, pkgs, lib, inputs, username, defaultEditor, ... }:
+{ config, pkgs, lib, inputs, username, defaultEditor, allowed-unfree-packages, ... }:
 {
+  nixpkgs.config = {
+    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
+  };
 # Main File: home.nix:1 ends here
 
 # [[file:../../README.org::*Imports][Imports:1]]

@@ -81,8 +81,11 @@
 :header-args: :comments link :tangle ~/nixfiles/hosts/default/home.nix
 :END:
 #+BEGIN_SRC nix
-    { config, pkgs, lib, inputs, username, defaultEditor, ... }:
-    {
+  { config, pkgs, lib, inputs, username, defaultEditor, allowed-unfree-packages, ... }:
+  {
+    nixpkgs.config = {
+      allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) allowed-unfree-packages;
+    };
 #+END_SRC
 You can also create simple shell scripts directly inside your configuration. For example, this adds a command 'my-hello' to your environment:
 
