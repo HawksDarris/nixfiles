@@ -55,10 +55,10 @@
     # Define the list of unfree packages to allow here, so you can pass it to
     # both `sudo nixos-rebuild` and `home-manager`
     allowed-unfree-packages = [
-      "obsidian"
-      "postman"
-      "vscode"
-      "vscode-extension-github-copilot"
+      # "obsidian"
+      # "postman"
+      # "vscode"
+      # "vscode-extension-github-copilot"
       "wpsoffice"
     ];
   in {
