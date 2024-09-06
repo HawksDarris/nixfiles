@@ -161,6 +161,7 @@ swappy
 swaylock
 swww
 taskwarrior3
+tun2socks # necessary for outline vpn; see tun2socksoutline script
 wayshot
 wf-recorder
 wofi

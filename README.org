@@ -241,6 +241,8 @@ lxqt-policykit-agent may be necessary for virtio, etc.
 
 Syncthing is not provided as a package for the syncthing service. I will do a pull request about it.
 
+tun2socksoutline script is not provided here because I have not set up secrets yet and I do not want to put my key on github :)
+
 #+BEGIN_SRC nix
   brightnessctl
   bun
@@ -268,6 +270,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   swaylock
   swww
   taskwarrior3
+  tun2socks # necessary for outline vpn; see tun2socksoutline script
   wayshot
   wf-recorder
   wofi
