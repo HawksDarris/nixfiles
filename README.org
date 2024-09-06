@@ -122,7 +122,7 @@ Need to set this up with secrets
 #+END_SRC
 **** Editors
 #+BEGIN_SRC nix
-  ../../modules/home-manager/nixvim.nix
+  # ../../modules/home-manager/nixvim.nix
   ../../modules/home-manager/emacs.nix
 #+END_SRC
 ***** TODO Editor Changes
@@ -242,7 +242,6 @@ lxqt-policykit-agent may be necessary for virtio, etc.
 Syncthing is not provided as a package for the syncthing service. I will do a pull request about it.
 
 #+BEGIN_SRC nix
-  wpsoffice
   brightnessctl
   bun
   calibre # Open port 8080 for server
@@ -261,6 +260,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   libreoffice
   minetest
   ncdu
+  plocate
   rofi-wayland
   rofimoji
   slurp
@@ -271,6 +271,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   wayshot
   wf-recorder
   wofi
+  wpsoffice
   wttrbar # weather
   xdotool # useful with wayland?
   yad # display GTK+ dialogs

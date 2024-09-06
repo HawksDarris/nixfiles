@@ -35,7 +35,7 @@ imports = [
 # Shell:1 ends here
 
 # [[file:../../README.org::*Editors][Editors:1]]
-../../modules/home-manager/nixvim.nix
+# ../../modules/home-manager/nixvim.nix
 ../../modules/home-manager/emacs.nix
 # Editors:1 ends here
 
@@ -135,7 +135,6 @@ home.packages = with pkgs; [
 # Packages:1 ends here
 
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
-wpsoffice
 brightnessctl
 bun
 calibre # Open port 8080 for server
@@ -154,6 +153,7 @@ libnotify
 libreoffice
 minetest
 ncdu
+plocate
 rofi-wayland
 rofimoji
 slurp
@@ -164,6 +164,7 @@ taskwarrior3
 wayshot
 wf-recorder
 wofi
+wpsoffice
 wttrbar # weather
 xdotool # useful with wayland?
 yad # display GTK+ dialogs
