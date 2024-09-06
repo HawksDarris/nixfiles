@@ -708,6 +708,10 @@ Some programs need SUID wrappers, can be configured further or are started in us
   programs = {
     neovim.enable = true;
     nano.enable = false;
+    appimage = {
+      enable = true;
+      binfmt = true;
+    };
   };
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {

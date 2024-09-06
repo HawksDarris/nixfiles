@@ -165,6 +165,10 @@ fonts.enableGhostscriptFonts = true;
 programs = {
   neovim.enable = true;
   nano.enable = false;
+  appimage = {
+    enable = true;
+    binfmt = true;
+  };
 };
 # programs.mtr.enable = true;
 # programs.gnupg.agent = {
