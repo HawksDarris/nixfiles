@@ -231,6 +231,18 @@ Add ~.csl~ files for citation.
   };
 #+END_SRC
 
+**** zathura
+#+BEGIN_SRC nix
+    programs.zathura = {
+      enable = true;
+      options = {
+        default-fg = "#FFFFFF";
+        default-bg = "#000000";
+        selection-clipboard = "clipboard";
+        };
+      };
+#+END_SRC
+
 *** Packages
 lxqt-policykit-agent may be needed
 #+BEGIN_SRC nix
@@ -282,7 +294,6 @@ tun2socksoutline script is not provided here because I have not set up secrets y
 **** Document Management
 #+BEGIN_SRC nix
   texliveFull
-  zathura
   zotero # citations
 #+END_SRC
 **** Non-GUI Things
@@ -581,8 +592,14 @@ Low priority: use variable for hostname.
 
 ******* Firewall
 #+BEGIN_SRC nix
-  firewall.allowedTCPPorts = [ 8080 ];
-  # firewall.allowedUDPPorts = [ ... ];
+        firewall.allowedTCPPorts = [
+          8080
+          22
+          43741
+        ];
+        firewall.allowedUDPPorts = [
+          43741
+        ];
 #+END_SRC
 ******* Proxy
 #+BEGIN_SRC nix

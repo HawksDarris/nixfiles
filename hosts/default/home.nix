@@ -130,6 +130,17 @@ dconf.settings = {
 };
 # dconf:1 ends here
 
+# [[file:../../README.org::*zathura][zathura:1]]
+programs.zathura = {
+  enable = true;
+  options = {
+    default-fg = "#FFFFFF";
+    default-bg = "#000000";
+    selection-clipboard = "clipboard";
+    };
+  };
+# zathura:1 ends here
+
 # [[file:../../README.org::*Packages][Packages:1]]
 home.packages = with pkgs; [
 # Packages:1 ends here
@@ -173,7 +184,6 @@ yad # display GTK+ dialogs
 
 # [[file:../../README.org::*Document Management][Document Management:1]]
 texliveFull
-zathura
 zotero # citations
 # Document Management:1 ends here
 
