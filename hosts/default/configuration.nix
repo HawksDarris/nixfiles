@@ -74,6 +74,12 @@ xdg.portal = {
 boot.loader.systemd-boot.enable = true;
 boot.loader.efi.canTouchEfiVariables = true;
 boot.supportedFilesystems = [ "ntfs" ];
+
+boot.kernel.sysctl = {
+  "net.ipv6.conf.all.disable_ipv6" = 1;
+  "net.ipv6.conf.default.disable_ipv6" = 1;
+  "net.ipv4.tcp_timestamps" = 0;
+};
 # Bootloader:1 ends here
 
 # [[file:../../README.org::*Services][Services:1]]
