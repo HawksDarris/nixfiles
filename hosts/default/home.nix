@@ -268,10 +268,6 @@ home.sessionVariables = {
 programs.home-manager.enable = true;
 # Let Home Manager install and manage itself:1 ends here
 
-# [[file:../../README.org::*Home-Manager][Home-Manager:1]]
-# home-manager.backupFileExtension = "backup";
-# Home-Manager:1 ends here
-
 # [[file:../../README.org::*Closing][Closing:1]]
 }
 # Closing:1 ends here

@@ -44,6 +44,7 @@ firewall.allowedTCPPorts = [
   43741
 ];
 firewall.allowedUDPPorts = [
+  22
   43741
 ];
 # Firewall:1 ends here
@@ -72,14 +73,15 @@ xdg.portal = {
 
 # [[file:../../README.org::*Bootloader][Bootloader:1]]
 boot.loader.systemd-boot.enable = true;
-boot.loader.efi.canTouchEfiVariables = true;
-boot.supportedFilesystems = [ "ntfs" ];
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
 
-boot.kernel.sysctl = {
-  "net.ipv6.conf.all.disable_ipv6" = 1;
-  "net.ipv6.conf.default.disable_ipv6" = 1;
-  "net.ipv4.tcp_timestamps" = 0;
-};
+#   boot.kernel.sysctl = {
+#     "net.ipv6.conf.all.disable_ipv6" = 1;
+# ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMV2tCUGx4MTR6SDNLMU9oeVk4S1JB@104.168.61.82:43741
+#     "net.ipv6.conf.default.disable_ipv6" = 1;
+#     "net.ipv4.tcp_timestamps" = 0;
+#} ;
 # Bootloader:1 ends here
 
 # [[file:../../README.org::*Services][Services:1]]
@@ -99,7 +101,8 @@ services = {
   };
   # blueman.enable = true;
   # Enable the OpenSSH daemon.
-  # openssh.enable = true;
+  openssh.enable = true;
+
   gvfs.enable = true;
   devmon.enable = true;
   udisks2.enable = true;

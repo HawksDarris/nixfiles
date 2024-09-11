@@ -90,6 +90,7 @@ You can also create simple shell scripts directly inside your configuration. For
 *** Imports
 #+BEGIN_SRC nix
   imports = [
+
 #+END_SRC
 
 **** Jurism
@@ -402,9 +403,6 @@ It does work from within nushell.nix and see.
 
 **** TODO Home-Manager
 Medium priority: firefox creates search file that prevents home-manager rebuilds after being backed up until it is manually removed. Annoying.
-#+BEGIN_SRC nix
-  # home-manager.backupFileExtension = "backup";
-#+END_SRC
 *** Closing
 #+BEGIN_SRC nix
   }
@@ -592,14 +590,15 @@ Low priority: use variable for hostname.
 
 ******* Firewall
 #+BEGIN_SRC nix
-        firewall.allowedTCPPorts = [
-          8080
-          22
-          43741
-        ];
-        firewall.allowedUDPPorts = [
-          43741
-        ];
+  firewall.allowedTCPPorts = [
+    8080
+    22
+    43741
+  ];
+  firewall.allowedUDPPorts = [
+    22
+    43741
+  ];
 #+END_SRC
 ******* Proxy
 #+BEGIN_SRC nix
@@ -626,15 +625,16 @@ This may be handleable by home-manager.
 #+END_SRC
 **** Bootloader
 #+BEGIN_SRC nix
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
+    boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernel.sysctl = {
-    "net.ipv6.conf.all.disable_ipv6" = 1;
-    "net.ipv6.conf.default.disable_ipv6" = 1;
-    "net.ipv4.tcp_timestamps" = 0;
-  };
+  #   boot.kernel.sysctl = {
+  #     "net.ipv6.conf.all.disable_ipv6" = 1;
+  # ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpMV2tCUGx4MTR6SDNLMU9oeVk4S1JB@104.168.61.82:43741
+  #     "net.ipv6.conf.default.disable_ipv6" = 1;
+  #     "net.ipv4.tcp_timestamps" = 0;
+  #} ;
 #+END_SRC
 **** Services
 #+BEGIN_SRC nix
@@ -654,7 +654,8 @@ This may be handleable by home-manager.
     };
     # blueman.enable = true;
     # Enable the OpenSSH daemon.
-    # openssh.enable = true;
+    openssh.enable = true;
+
     gvfs.enable = true;
     devmon.enable = true;
     udisks2.enable = true;
