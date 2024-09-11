@@ -146,7 +146,6 @@ home.packages = with pkgs; [
 # Packages:1 ends here
 
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
-shadowsocks-libev
 brightnessctl
 bun
 calibre # Open port 8080 for server
@@ -174,6 +173,7 @@ swaylock
 swww
 taskwarrior3
 tun2socks # necessary for outline vpn; see tun2socksoutline script
+shadowsocks-libev
 wayshot
 wf-recorder
 wofi
