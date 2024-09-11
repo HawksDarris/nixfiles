@@ -308,7 +308,6 @@ tun2socksoutline script is not provided here because I have not set up secrets y
   jmtpfs
   killall
   kitty
-  mpv
   p7zip
   pamixer
   pciutils
@@ -330,9 +329,11 @@ tun2socksoutline script is not provided here because I have not set up secrets y
 #+BEGIN_SRC nix
   grimblast
   mpc-cli
+  mpv
   ncmpcpp
   nsxiv
   playerctl
+  vlc
 #+END_SRC
 
 **** Overrides
@@ -655,7 +656,6 @@ This may be handleable by home-manager.
     # blueman.enable = true;
     # Enable the OpenSSH daemon.
     openssh.enable = true;
-
     gvfs.enable = true;
     devmon.enable = true;
     udisks2.enable = true;

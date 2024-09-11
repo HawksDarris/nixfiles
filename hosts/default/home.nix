@@ -197,7 +197,6 @@ fzf
 jmtpfs
 killall
 kitty
-mpv
 p7zip
 pamixer
 pciutils
@@ -216,9 +215,11 @@ wl-gammactl
 # [[file:../../README.org::*Media][Media:1]]
 grimblast
 mpc-cli
+mpv
 ncmpcpp
 nsxiv
 playerctl
+vlc
 # Media:1 ends here
 
 # [[file:../../README.org::*Overrides][Overrides:1]]
