@@ -257,6 +257,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
 tun2socksoutline script is not provided here because I have not set up secrets yet and I do not want to put my key on github :)
 
 #+BEGIN_SRC nix
+  shadowsocks-libev
   brightnessctl
   bun
   calibre # Open port 8080 for server
