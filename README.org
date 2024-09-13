@@ -294,6 +294,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
 **** Document Management
 #+BEGIN_SRC nix
   texliveFull
+  groff
   zotero # citations
 #+END_SRC
 **** Non-GUI Things

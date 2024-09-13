@@ -185,6 +185,7 @@ yad # display GTK+ dialogs
 
 # [[file:../../README.org::*Document Management][Document Management:1]]
 texliveFull
+groff
 zotero # citations
 # Document Management:1 ends here
 
