@@ -2,12 +2,10 @@
 {
   fonts.fontconfig = {
     enable = true;
-    localConf = ''
-      <match target="pattern">
-        <test qual="any" name="family"><string>NewCenturySchlbk</string></test>
-        <edit name="family" mode="assign" binding="same"><string>TeX Gyre Schola</string></edit>
-      </match>
-    '';
+    defaultFonts = {
+      serif = [ "TeX Gyre Schola" ];
+      sansSerif = [ "FiraCode Nerd Font Mono" ];
+    };
   };
   home.packages = with pkgs; [
     fira-code
