@@ -20,5 +20,6 @@
     ubuntu_font_family
     liberation_ttf
     gyre-fonts
+    noto-fonts-cjk
   ];
 }
