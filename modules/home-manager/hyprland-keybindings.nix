@@ -57,7 +57,6 @@
       "SUPER, F, fullscreen, 2 "
       "SUPER, P, pseudo"
       "SUPER, space, togglefloating,"
-      "SUPER, N, exec, $editor +'VimwikiIndex'"
       "SUPER, backspace, exec, pkill wlogout || wlogout"
       "SUPER, Q, killactive" # exec, $scrPath/dontkillsteam.sh # killactive, kill the window on focus
       "SUPER, mouse_down, workspace, e+1"
@@ -68,6 +67,7 @@
       "SUPER, right, movefocus, r"
       "SUPER, up, movefocus, u"
       "SUPER SHIFT, K, exec, keepassxc"
+      "SUPER, N, exec, $editor +'VimwikiIndex'"
       "SUPER SHIFT, N, exec, emacsclient --create-frame"
       "SUPER, grave, exec, rofimoji --action type copy --selector rofi"
     ];
