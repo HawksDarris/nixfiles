@@ -41,6 +41,7 @@
     Neve = {
       url = "github:redyf/Neve";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, hyprland, sops-nix, ... }@inputs: 
