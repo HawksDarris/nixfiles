@@ -31,11 +31,16 @@
 
     nix-colors.url = "github:misterio77/nix-colors";
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Vanilla nixvim
+    # nixvim = {
+    #   url = "github:nix-community/nixvim";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
+    # Neve nixvim
+    Neve = {
+      url = "github:redyf/Neve";
+      inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, home-manager, hyprland, sops-nix, ... }@inputs: 
