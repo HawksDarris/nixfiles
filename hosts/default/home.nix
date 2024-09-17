@@ -167,7 +167,6 @@ minetest
 ncdu
 plocate
 rofi-wayland
-rofimoji
 slurp
 swappy
 swaylock
@@ -178,9 +177,9 @@ shadowsocks-libev
 wayshot
 wf-recorder
 wofi
+wofi-emoji
 wpsoffice
 wttrbar # weather
-wtype
 xdotool # useful with wayland?
 yad # display GTK+ dialogs
 # Still to Sort:1 ends here

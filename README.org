@@ -276,7 +276,6 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   ncdu
   plocate
   rofi-wayland
-  rofimoji
   slurp
   swappy
   swaylock
@@ -287,9 +286,9 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   wayshot
   wf-recorder
   wofi
+  wofi-emoji
   wpsoffice
   wttrbar # weather
-  wtype
   xdotool # useful with wayland?
   yad # display GTK+ dialogs
 #+END_SRC
