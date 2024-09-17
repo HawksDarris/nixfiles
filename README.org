@@ -276,6 +276,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   ncdu
   plocate
   rofi-wayland
+  rofimoji
   slurp
   swappy
   swaylock
