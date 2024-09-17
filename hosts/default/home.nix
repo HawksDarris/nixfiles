@@ -180,6 +180,7 @@ wf-recorder
 wofi
 wpsoffice
 wttrbar # weather
+wtype
 xdotool # useful with wayland?
 yad # display GTK+ dialogs
 # Still to Sort:1 ends here
