@@ -167,7 +167,6 @@ minetest
 ncdu
 plocate
 rofi-wayland
-rofimoji
 slurp
 swappy
 swaylock
