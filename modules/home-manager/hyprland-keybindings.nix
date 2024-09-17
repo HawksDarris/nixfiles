@@ -69,7 +69,7 @@
       "SUPER SHIFT, K, exec, keepassxc"
       "SUPER, N, exec, $editor +'VimwikiIndex'"
       "SUPER SHIFT, N, exec, emacsclient --create-frame"
-      "SUPER, grave, exec, rofimoji --action type copy --selector rofi"
+      "SUPER, grave, exec, rofi -modi 'emoji:rofimoji' --action clipboard -show emoji"
     ];
 
     binde = [
