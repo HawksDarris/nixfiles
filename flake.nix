@@ -67,6 +67,7 @@
       # "vscode"
       # "vscode-extension-github-copilot"
       "wpsoffice"
+      "wechat-uos"
     ];
   in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
