@@ -175,7 +175,7 @@ taskwarrior3
 tun2socks # necessary for outline vpn; see tun2socksoutline script
 shadowsocks-libev
 wayshot
-# wechat-uos
+wechat-uos
 wf-recorder
 wofi
 wofi-emoji
