@@ -86,6 +86,7 @@ boot.loader.systemd-boot.enable = true;
 
 # [[file:../../README.org::*Services][Services:1]]
 services = {
+  flatpak.enable = true;
   printing.enable = true;
   pipewire = {
     enable = true;
