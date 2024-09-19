@@ -741,6 +741,7 @@ Some programs need SUID wrappers, can be configured further or are started in us
       enable = true;
       binfmt = true;
     };
+    virt-manager.enable = true;
   };
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {

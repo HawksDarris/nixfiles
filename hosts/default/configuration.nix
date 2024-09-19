@@ -184,6 +184,7 @@ programs = {
     enable = true;
     binfmt = true;
   };
+  virt-manager.enable = true;
 };
 # programs.mtr.enable = true;
 # programs.gnupg.agent = {
