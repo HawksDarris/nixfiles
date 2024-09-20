@@ -8,6 +8,7 @@
     };
   };
   home.packages = with pkgs; [
+    corefonts
     fira-code
     fira-code-symbols
     font-awesome
