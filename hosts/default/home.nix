@@ -162,7 +162,7 @@ jq
 keepassxc
 kiwix
 libnotify
-libreoffice
+onlyoffice
 minetest
 ncdu
 plocate

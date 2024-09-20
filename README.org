@@ -271,7 +271,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   keepassxc
   kiwix
   libnotify
-  libreoffice
+  onlyoffice
   minetest
   ncdu
   plocate
