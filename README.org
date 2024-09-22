@@ -459,6 +459,26 @@ Medium priority: firefox creates search file that prevents home-manager rebuilds
     };
   };
 #+END_SRC
+
+**** Shadowsocks
+#+BEGIN_SRC nix
+  systemd.user.services = {
+    shadowsocks-proxy = {
+      Unit = {
+        Description = “Local Shadowsocks proxy”;
+        After = “network.target”;
+      };
+      Install = {
+        WantedBy = [ “default.target” ];
+      };
+      Service = {
+        ExecStart = “${pkgs.shadowsocks-rust}/bin/sslocal -c ${config.home.homeDirectory}/shadowsocks.json”;
+        ExecStop = “${pkgs.toybox}/bin/killall sslocal”;
+      };
+    };
+  };
+#+END_SRC
+
 **** Closing
 #+BEGIN_SRC nix
     }
