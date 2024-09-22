@@ -56,6 +56,22 @@
       nix.enable = true;
       neorg = {
         enable = true;
+        modules = {
+          "core.defaults" = {
+            __empty = null;
+          };
+          "core.concealer" = {
+            __empty = null;
+          };
+          "core.dirman" = {
+            config = {
+              workspaces = {
+                home = "~/Documents/${main-user.userName}/notes/personal";
+                work = "~/Documents/${main-user.userName}/notes/work";
+              };
+            };
+          };
+        };
       };
       rainbow-delimiters.enable = true;
       vim-surround.enable = true;
