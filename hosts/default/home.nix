@@ -146,7 +146,6 @@ home.packages = with pkgs; [
 # Packages:1 ends here
 
 # [[file:../../README.org::*Still to Sort][Still to Sort:1]]
-inputs.Neve.packages.${pkgs.system}.default
 brightnessctl
 bun
 calibre # Open port 8080 for server
