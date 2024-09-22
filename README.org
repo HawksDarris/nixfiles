@@ -232,14 +232,15 @@ Add ~.csl~ files for citation.
 
 **** zathura
 #+BEGIN_SRC nix
-    programs.zathura = {
-      enable = true;
-      options = {
-        default-fg = "#FFFFFF";
-        default-bg = "#000000";
-        selection-clipboard = "clipboard";
-        };
+  programs.zathura = {
+    enable = true;
+    options = {
+      recolor = "true";
+      recolor-lightcolor = "#222222";
+      recolor-keephue = "#222230";
+      selection-clipboard = "clipboard";
       };
+    };
 #+END_SRC
 
 *** Packages

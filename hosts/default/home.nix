@@ -134,8 +134,9 @@ dconf.settings = {
 programs.zathura = {
   enable = true;
   options = {
-    default-fg = "#FFFFFF";
-    default-bg = "#000000";
+    recolor = "true";
+    recolor-lightcolor = "#222222";
+    recolor-keephue = "#222230";
     selection-clipboard = "clipboard";
     };
   };
