@@ -78,7 +78,6 @@
 				    view_method = "zathura";
 			    };
 	    };
-	    wakatime.enable = true;
 	    which-key.enable = true;
 	    wilder = {
 		    enable = true;
@@ -356,6 +355,9 @@
         vim.g.vimwiki_key_mappings = {
           table_mappings = 0,
         }
+        vim.g.vimwiki_markdown_link_ext = 1
+        vim.g.vimwiki_stripsym = ' '
+        vim.g.vimwiki_global_ext = 0
       end
       '';
 
