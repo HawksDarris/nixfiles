@@ -24,6 +24,8 @@
 - [[#secrets][Secrets]]
 :END:
 
+* Issues to Address
+1. Hardware
 * TODO Features to Add
 1. Set up wallpaper picker
 2. Some way to change between themes
