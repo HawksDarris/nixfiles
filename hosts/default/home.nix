@@ -161,6 +161,7 @@ inkscape
 jq
 keepassxc
 kiwix
+luarocks
 libnotify
 onlyoffice-bin
 minetest
