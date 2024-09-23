@@ -38,6 +38,22 @@
     };
     globals.mapleader = " ";
     plugins = {
+      bufferline = {
+        enable = true;
+        settings = {
+          options = {
+            separatorStyle = "thick"; # “slant”, “padded_slant”, “slope”, “padded_slope”, “thick”, “thin“
+            offsets = [
+              {
+                filetype = "neo-tree";
+                text = "Neo-tree";
+                highlight = "Directory";
+                text_align = "left";
+              }
+            ];
+          };
+        };
+      };
       cmp = {
         enable = true;
         autoEnableSources = true;
@@ -56,7 +72,6 @@
       lint.enable = true; # TODO set up linting https://github.com/mfussenegger/nvim-lint
       luasnip.enable = true;
       markdown-preview.enable = true;
-      oil.enable = true;
       nix.enable = true;
       neorg = {
         enable = true;
@@ -78,8 +93,10 @@
           };
         };
       };
+      nvim-autopairs.enable = true;
+      nvim-colorizer.enable = true;
+      oil.enable = true;
       rainbow-delimiters.enable = true;
-      vim-surround.enable = true;
       telescope.enable = true;
       treesitter = {
         enable = true;
@@ -92,8 +109,7 @@
           pdf_viewer = "zathura";
         };
       };
-      nvim-autopairs.enable = true;
-      nvim-colorizer.enable = true;
+      vim-surround.enable = true;
       vimtex = {
         enable = true;
         texlivePackage = null; # if not set to null, has default package: texlive-combined-medium-2023-final. I need full.
@@ -102,6 +118,7 @@
           view_method = "zathura";
         };
       };
+      web-devicons.enable = true;
       which-key.enable = true;
       wilder = {
         enable = true;
@@ -143,22 +160,6 @@
                                                     })
                                     )''
         ];
-      };
-      bufferline = {
-        enable = true;
-        settings = {
-          options = {
-            separatorStyle = "thick"; # “slant”, “padded_slant”, “slope”, “padded_slope”, “thick”, “thin“
-            offsets = [
-              {
-                filetype = "neo-tree";
-                text = "Neo-tree";
-                highlight = "Directory";
-                text_align = "left";
-              }
-            ];
-          };
-        };
       };
     };
     keymaps = [
