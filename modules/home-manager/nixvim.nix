@@ -6,9 +6,6 @@
       inputs.nixvim.homeManagerModules.nixvim
     ];
 
-  home.packages = with pkgs; [
-    luarocks # necessary for neorg
-  ];
   programs.nixvim = {
     enableMan = true;
     enable = true;
