@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, ... }:
+{ config, inputs, pkgs, pkgs-stable, ... }:
 
 {
   imports =
@@ -60,7 +60,7 @@
       nix.enable = true;
       neorg = {
         enable = true;
-        package = pkgs-stable.vimPlugins.neorg; # required until neorg is fixed on unstable
+        package = pkgs-stable.vimPlugins.neorg;
         modules = {
           "core.defaults" = {
             __empty = null;
@@ -119,19 +119,19 @@
                                                             end,
                                                             dir_command = {'fd', '-td'},
                                                             filters = {'cpsm_filter'},
-                                                            }),
+                                                    }),
                                                     wilder.substitute_pipeline({
                                                             pipeline = wilder.python_search_pipeline({
                                                                             skip_cmdtype_check = 1,
                                                                             pattern = wilder.python_fuzzy_pattern({
                                                                                             start_at_boundary = 0,
-                                                                                            }),
                                                                             }),
                                                             }),
+                                                    }),
                                                     wilder.cmdline_pipeline({
                                                             language = 'python',
                                                             fuzzy = 1,
-                                                            }),
+                                                    }),
                                                     {
                                                             wilder.check(function(ctx, x) return x == "" end),
                                                             wilder.history(),
@@ -139,9 +139,9 @@
                                                     wilder.python_search_pipeline({
                                                                     pattern = wilder.python_fuzzy_pattern({
                                                                                     start_at_boundary = 0,
-                                                                                    }),
-                                                                    })
-                    )''
+                                                                    }),
+                                                    })
+                                    )''
         ];
       };
       bufferline = {
@@ -341,6 +341,17 @@
           os.execute("pandoc -i \"" .. bufname .. "\" -t revealjs -o " .. output_html .. " --slide-level=2 --standalone")
         end
       end
+                  require("nvim-treesitter.configs").setup {
+                    highlight = {
+                      enable = true,
+                    }
+                  }
+
+                  require("neorg").setup {
+                    load = {
+                      ["core.defaults"] = {}
+                    }
+                  }
       '';
 
     extraConfigVim = ''

@@ -17,7 +17,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11"; # required for neorg until it is fixed, but probably a good thing to have as a fallback regardless.
+    nixpkgs-stable = {
+      url = "github:NixOS/nixpkgs/nixos-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     sops-nix.url = "github:Mic92/sops-nix";
 
@@ -41,14 +44,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Neve nixvim
-    # Neve = {
-    #   url = "github:redyf/Neve";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, sops-nix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, sops-nix, nixpkgs-stable, ... }@inputs:
   let
     /* ---- SYSTEM SETTINGS ---- */
     system = "x86_64-linux";
@@ -61,7 +59,9 @@
     defaultWebBrowser = "qutebrowser";
     defaultFileBrowser = "lf";
     defaultEditor = "nvim";
-    pkgs-stable = import nixpkgs-stable {inherit system;}; # see neorg note above
+
+    /* ---- STABLE PACKAGES ---- */
+    pkgs-stable = import nixpkgs-stable {inherit system;};
 
     /* ---- UNFREE PACKAGES ---- */
     # Define the list of unfree packages to allow here, so you can pass it to
