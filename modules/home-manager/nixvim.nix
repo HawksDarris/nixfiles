@@ -1,10 +1,14 @@
 { config, inputs, pkgs, ... }:
+
 {
   imports =
     [
       inputs.nixvim.homeManagerModules.nixvim
     ];
 
+  home.packages = with pkgs; [
+    luarocks # necessary for neorg
+  ];
   programs.nixvim = {
     enableMan = true;
     enable = true;
@@ -56,6 +60,7 @@
       nix.enable = true;
       neorg = {
         enable = true;
+        package = pkgs-stable.vimPlugins.neorg; # required until neorg is fixed on unstable
         modules = {
           "core.defaults" = {
             __empty = null;
@@ -66,8 +71,8 @@
           "core.dirman" = {
             config = {
               workspaces = {
-                home = "~/Documents/${main-user.userName}/notes/personal";
-                work = "~/Documents/${main-user.userName}/notes/work";
+                home = "~/Documents/${config.home.username}/notes/personal";
+                work = "~/Documents/${config.home.username}/notes/work";
               };
             };
           };
@@ -284,7 +289,7 @@
           installRustc = true;
           installCargo = true;
         };
-        tinymist = { 
+        tinymist = {
           enable = true;
           autostart = true;
           settings.exportPdf = "auto";
@@ -292,10 +297,10 @@
       };
     };
 
-    extraPlugins = with pkgs.vimPlugins; [
-      {
-      }
-    ];
+    # extraPlugins = with pkgs.vimPlugins; [
+    #   {
+    #   }
+    # ];
 
     autoCmd = [
       {
@@ -336,7 +341,6 @@
           os.execute("pandoc -i \"" .. bufname .. "\" -t revealjs -o " .. output_html .. " --slide-level=2 --standalone")
         end
       end
-      init=function ()
       '';
 
     extraConfigVim = ''
