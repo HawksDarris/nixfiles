@@ -17,10 +17,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixpkgs-stable = {
-      url = "github:NixOS/nixpkgs/nixos-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
 
     sops-nix.url = "github:Mic92/sops-nix";
 
