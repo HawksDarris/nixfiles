@@ -22,6 +22,6 @@
     noto-fonts-emoji
     proggyfonts
     ubuntu_font_family
-    vista-fonts
+    vistafonts
   ];
 }

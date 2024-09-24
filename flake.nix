@@ -71,7 +71,7 @@
       "wpsoffice"
       "wechat-uos"
       "corefonts"
-      "vista-fonts"
+      "vistafonts"
     ];
   in {
     nixosConfigurations.default = nixpkgs.lib.nixosSystem {
