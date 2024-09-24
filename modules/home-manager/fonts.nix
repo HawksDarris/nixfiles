@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, allowed-unfree-packages, ... }:
 {
   fonts.fontconfig = {
     enable = true;
