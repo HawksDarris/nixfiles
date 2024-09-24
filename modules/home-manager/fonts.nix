@@ -14,7 +14,6 @@
     font-awesome
     gyre-fonts
     liberation_ttf
-    liberation_ttf
     mplus-outline-fonts.githubRelease
     nerdfonts
     noto-fonts
