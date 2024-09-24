@@ -13,6 +13,7 @@
     fira-code-symbols
     font-awesome
     gyre-fonts
+    inter
     liberation_ttf
     mplus-outline-fonts.githubRelease
     nerdfonts
@@ -21,5 +22,6 @@
     noto-fonts-emoji
     proggyfonts
     ubuntu_font_family
+    vistafonts
   ];
 }
