@@ -12,15 +12,15 @@
     fira-code
     fira-code-symbols
     font-awesome
+    gyre-fonts
+    liberation_ttf
     liberation_ttf
     mplus-outline-fonts.githubRelease
     nerdfonts
     noto-fonts
+    noto-fonts-cjk
     noto-fonts-emoji
     proggyfonts
     ubuntu_font_family
-    liberation_ttf
-    gyre-fonts
-    noto-fonts-cjk
   ];
 }
