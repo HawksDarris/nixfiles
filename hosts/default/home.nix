@@ -179,7 +179,6 @@ wf-recorder
 wofi
 wofi-emoji
 wpsoffice
-libreoffice
 wttrbar # weather
 xdotool # useful with wayland?
 yad # display GTK+ dialogs

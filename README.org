@@ -286,7 +286,6 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   wofi
   wofi-emoji
   wpsoffice
-  libreoffice
   wttrbar # weather
   xdotool # useful with wayland?
   yad # display GTK+ dialogs
