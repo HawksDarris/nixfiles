@@ -4,6 +4,8 @@
   imports =
     [
       inputs.nixvim.homeManagerModules.nixvim
+      ./conform-nvim.nix
+      ./noice.nix
     ];
 
   programs.nixvim = {
