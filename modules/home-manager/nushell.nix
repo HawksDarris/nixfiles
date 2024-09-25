@@ -75,7 +75,7 @@
         cfma = "nvim ~/nixfiles/modules/home-manager/mako.nix";
         cfq = "nvim ~/.config/qutebrowser/config.py	# sxiv (image viewer) key/script handler";
         cfu = "nvim ~/.config/newsboat/urls		# RSS urls for newsboat";
-        cfv = "nvim ~/nixfiles/modules/home-manager/nixvim.nix";
+        cfv = "nvim ~/nixfiles/modules/home-manager/nixvim/default.nix";
         cfw = "nvim ~/nixfiles/modules/home-manager/waybar.nix";
       };
 
