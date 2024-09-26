@@ -1,9 +1,4 @@
 {
-pkgs,
-lib,
-config,
-...
-}:   
 
 programs.nixvim.opts = {
   clipboard = [ "unnamedplus" ];
