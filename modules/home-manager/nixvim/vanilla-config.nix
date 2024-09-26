@@ -13,5 +13,5 @@ programs.nixvim.opts = {
   shiftwidth = 2;        # Tab width should be 2
 };
 
-};
+}
 
