@@ -7,6 +7,7 @@
       ./conform-nvim.nix
       ./noice.nix
       ./bufferline.nix
+      ./vanilla-config.nix
     ];
 
   programs.nixvim = {
@@ -50,10 +51,24 @@
       comment.enable = true;
       dressing.enable = true;
       harpoon.enable = true;
+      headlines.enable = true;
       friendly-snippets.enable = true;
       fzf-lua.enable = true;
       lightline.enable = true;
-      lint.enable = true; # TODO set up linting https://github.com/mfussenegger/nvim-lint
+      lint = {
+        enable = true; # TODO set up linting https://github.com/mfussenegger/nvim-lint
+        lintersByFt = {
+          nix = ["statix"];
+          lua = ["selene"];
+          python = ["flake8"];
+          javascript = ["eslint_d"];
+          javascriptreact = ["eslint_d"];
+          typescript = ["eslint_d"];
+          typescriptreact = ["eslint_d"];
+          json = ["jsonlint"];
+          java = ["checkstyle"];
+        };
+      };
       luasnip.enable = true;
       markdown-preview.enable = true;
       nix.enable = true;
@@ -86,6 +101,13 @@
         enable = true;
         folding = true;
         settings.indent.enable = true;
+        nixvimInjections = true;
+      };
+      treesitter-context.enable = true;
+      ts-autotag.enable = true;
+      ts-context-commentstring = {
+        enable = true;
+        disableAutoInitialization = false;
       };
       typst-vim = {
         enable = true;
@@ -296,14 +318,6 @@
         };
       }
     ];
-
-
-    opts = {
-      clipboard = [ "unnamedplus" ];
-      number = true;         # Show line numbers
-      relativenumber = true; # Show relative line numbers
-      shiftwidth = 2;        # Tab width should be 2
-    };
 
     extraConfigLua = ''
       local function AvoidStrings(bufname)
