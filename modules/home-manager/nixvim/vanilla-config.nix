@@ -20,7 +20,7 @@ programs.nixvim.opts = {
         event = [ "BufWritePost" ];
         pattern = [ "*.c" "*.cpp" "*.cs" "*.go" "*.h" "*.java" "*.m" "*.md" "*.mom" "*.ms" "*.py" "*.Rmd" "*.rs" "*.sass" "*.scad" "*.sent" "*.typ" ];
         callback = {
-          __raw = "function() CompileOnSave() end";
+          __raw = "function() CompileOnSave() end"; # TODO: Make CompileOnSave a switch so it only compiles on save after the function has been manually called
         };
       }
     ];
