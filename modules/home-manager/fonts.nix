@@ -9,6 +9,7 @@
   };
   home.packages = with pkgs; [
     corefonts
+    commit-mono
     fira-code
     fira-code-symbols
     font-awesome
