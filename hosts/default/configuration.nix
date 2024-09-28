@@ -178,8 +178,9 @@ fonts.enableGhostscriptFonts = true;
 
 # [[file:../../README.org::*Programs][Programs:1]]
 programs = {
-  neovim.enable = true;
   nano.enable = false;
+  neovim.enable = true;
+  npm.enable = true;
   appimage = {
     enable = true;
     binfmt = true;
