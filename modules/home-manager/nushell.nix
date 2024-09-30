@@ -16,7 +16,7 @@
       shellAliases = {
         cat = "bat";
         # cpt = "rsync -rtDvzP --update ~/share/Teaching/* /run/media/${username}/Teaching/";
-        cpt = "rsync -auv --update ~/share/Teaching/* /run/media/${username}/Teaching/";
+        cpt = "rsync -auhPK --update ~/share/Teaching/*  /run/media/${username}/Teaching/";
         e = "emacsclient";
         g = "git";
         ka = "killall";
