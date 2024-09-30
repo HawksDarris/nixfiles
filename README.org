@@ -271,6 +271,7 @@ Syncthing is not provided as a package for the syncthing service. I will do a pu
   libnotify
   onlyoffice-bin
   minetest
+  nodejs
   ncdu
   plocate
   rofi-wayland

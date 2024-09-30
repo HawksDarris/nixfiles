@@ -164,6 +164,7 @@ kiwix
 libnotify
 onlyoffice-bin
 minetest
+nodejs
 ncdu
 plocate
 rofi-wayland
