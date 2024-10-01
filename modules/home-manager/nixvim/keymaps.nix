@@ -50,7 +50,7 @@
         key = "<leader>bb";
         action = "<cmd>e #<cr>";
         options = {
-          desc = "Switch to Other Buffer";
+          desc = "Alternate between buffers";
         };
       }
 
