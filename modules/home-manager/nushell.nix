@@ -58,6 +58,7 @@
         games = "cd ~/share/Teaching/reveal.js-master/Games";
         ti = "cd ~/texmf/tex/latex/local";
         vv = "cd ~/Videos";
+        ww = "cd ~/.var/app/com.tencent.WeChat/xwechat_files/wxid_l0zluz5mpig922_e8d6/msg";
 
         ##################################################
         #################### Config Files ################

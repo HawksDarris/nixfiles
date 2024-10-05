@@ -143,7 +143,7 @@
           os.execute("compiler \"" .. bufname .. "\"" )
         end
         if string.find(bufname, "reveal.js%-master/") then
-          os.execute("pandoc -i \"" .. bufname .. "\" -t revealjs -o " .. output_html .. " --slide-level=2 --standalone")
+          os.execute("pandoc -i \"" .. bufname .. "\" -t revealjs -V revealjs-url=./ -o " .. output_html .. " --slide-level=2 --embed-resources --standalone")
         end
       end
       require("nvim-treesitter.configs").setup {
