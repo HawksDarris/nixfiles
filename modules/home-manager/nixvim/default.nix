@@ -176,14 +176,14 @@
         bashls.enable = true;
         cssls.enable = true;
         jsonls.enable = true;
-        kotlin-language-server.enable = true;
-        lua-ls = {
+        kotlin_language_server.enable = true;
+        lua_ls = {
           enable = true;
           settings.telemetry.enable = false;
         };
         nushell.enable = true;
-        ts-ls.enable = true;
-        rust-analyzer = {
+        ts_ls.enable = true;
+        rust_analyzer = {
           enable = true;
           installRustc = true;
           installCargo = true;
