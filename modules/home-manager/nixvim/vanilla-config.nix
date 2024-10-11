@@ -135,7 +135,28 @@
         end
         return false
       end
+
+      compile_on_save_enabled = false
+
+      -- Function to enable compilation
+      vim.api.nvim_set_keymap('n', '<leader>c', ':lua EnableCompile()<CR>', { noremap = true, silent = true })
+
+      function EnableCompile()
+        if not compile_on_save_enabled then
+          compile_on_save_enabled = true
+          print("Start compile on save")
+        end 
+        if compile_on_save_enabled then
+          compile_on_save_enabled = false
+          print("Stop compile on save")
+        end 
+      end
+
       local function CompileOnSave()
+        if not compile_on_save_enabled then
+          return
+        end
+
         local bufname = vim.api.nvim_buf_get_name(0)
         local filename = bufname:match("^.+/(.+)%..+$")
         local output_html = filename .. ".html"
