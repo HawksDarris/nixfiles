@@ -142,13 +142,13 @@
       vim.api.nvim_set_keymap('n', '<leader>c', ':lua EnableCompile()<CR>', { noremap = true, silent = true })
 
       function EnableCompile()
-        if not compile_on_save_enabled then
-          compile_on_save_enabled = true
-          print("Start compile on save")
-        end 
         if compile_on_save_enabled then
           compile_on_save_enabled = false
           print("Stop compile on save")
+        end 
+        if not compile_on_save_enabled then
+          compile_on_save_enabled = true
+          print("Start compile on save")
         end 
       end
 
