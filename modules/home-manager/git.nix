@@ -2,7 +2,8 @@
   programs.git = {
     enable = true;
     userName = "HawksDarris";
-    userEmail = "darris.hawks@gmail.com";
+    # userEmail = "darris.hawks@gmail.com";
+    userEmail = "15005237+darrishawks@user.noreply.gitee.com";
     diff-so-fancy = {
       enable = true;
       changeHunkIndicators = true;
